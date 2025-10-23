@@ -1,16 +1,23 @@
 @use "../variables";
 
+.bloque__boton {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
 .button {
-  display: inline-block;
-  padding: 0.75rem 1.5rem;
-  background-color: variables.$color-button;
-  color: variables.$color-background;
-  text-decoration: none;
-  border-radius: 5px;
-  font-weight: bold;
-  transition: background-color 0.3s;
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background-color: variables.$color-button;
+    color: variables.$color-background;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
 
   &:hover {
     background-color: variables.$color-button-hover;
   }
 }
+

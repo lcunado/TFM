@@ -50,11 +50,16 @@
     font-size: 1rem;
   }
 
-  &__boton {
-    display: flex;
-    justify-content: center;
-    margin-top: 1rem;
+  &__grid {
+    display: grid;
     width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media screen and (max-width: 768px) {

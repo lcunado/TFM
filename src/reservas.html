@@ -9,8 +9,51 @@
   </head>
   <body>
     <include src="./views/header.html"></include>
-    <section><p>Reservas</p></section>
+    
+    <section class="bloque">
+      <div class="bloque__container">
+        <h2 class="bloque__title">Gestión de reservas</h2>
+        <div class="bloque__grid">
+          
+          <!-- Formulario de nueva reserva -->
+          <form class="form">
+            <h3 class="form__title">Realizar una reserva</h3>
+
+            <label for="entrada">Fecha de entrada</label>
+            <input type="date" id="entrada" name="entrada" required>
+
+            <label for="salida">Fecha de salida</label>
+            <input type="date" id="salida" name="salida" required>
+
+            <label for="huespedes">Número de huéspedes</label>
+            <input type="number" id="huespedes" name="huespedes" min="1" max="10" required>
+
+            <button type="submit" class="button">Consultar disponibilidad</button>
+          </form>
+
+          <!-- Formulario de cancelación -->
+          <form class="form">
+            <h3 class="form__title">Cancelar una reserva</h3>
+
+            <label for="id">ID de reserva</label>
+            <input type="text" id="id" name="id" required>
+
+            <label for="dni">DNI</label>
+            <input type="text" id="dni" name="dni" required>
+
+            <button type="submit" class="button">Cancelar reserva</button>
+
+            <p class="form__info">
+              Se abonará el 100 % si cancelas antes de 7 días y el 40 % si cancelas después.
+            </p>
+          </form>
+
+        </div>
+      </div>
+    </section>
+    
     <include src="./views/footer.html"></include>
     <script type="module" src="./assets/scripts/main.js"></script><!-- do not remove this line! -->
+    
   </body>
 </html>
