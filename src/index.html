@@ -9,7 +9,64 @@
   </head>
   <body>
     <include src="./views/header.html"></include>
-    <section class="container"><p>Index</p></section>
+
+    <!-- Cabecera catedral -->
+    <section class="catedral">
+      <div class="catedral__overlay">
+        <p class="catedral__conoce">Conoce Burgos</p>
+        <p class="catedral__refugio">Refugio del Mirador</p>
+      </div>
+      <img src="./assets/images/catedral.webp" alt="Catedral de Burgos" class="catedral__image">
+    </section>
+
+    <!-- Sección título -->
+    <section class="bloque">
+      <div class="bloque__container">
+        <h2 class="bloque__titleh1">Piso de Uso Turístico</h2>
+        <h2 class="bloque__name">Refugio del Mirador</h2>
+        <p class="bloque__comment">Desde 80€ / noche</p>
+        <img src="./assets/images/5-estrellas.webp" alt="Reseña de cinco estrellas" style="width: 80px;">
+        <hr class="line">
+      </div>
+    </section>
+
+    <!-- Sección información -->
+    <section class="bloque">
+      <div class="bloque__container">
+        <h2 class="bloque__title">Información general</h2>
+        <p class="bloque__text">
+          Vivienda de Uso Turísitco. Se encuentra en... Dispone de...
+        </p>
+      </div>
+    </section>
+
+    <!-- Sección políticas de reserva -->
+    <section class="bloque">
+      <div class="bloque__container">
+        <h2 class="bloque__title">Políticas de reserva</h2>
+        <p class="bloque__text">
+          Horas de entrada y salida. Precio por habitaciones. Cancelación.
+        </p>
+      </div>
+    </section>
+
+    <!-- Sección ubicación -->
+    <section class="bloque">
+      <div class="bloque__container">
+        <h2 class="bloque__title">Ubicación</h2>
+        <iframe class="mapa" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2949.197132956632!2d-3.689641224030949!3d42.338320271194895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd45fccb928c1b6b%3A0x4792c0f007913cef!2sC.%20de%20Rivalamora%2C%2012%2C%2009002%20Burgos!5e0!3m2!1ses!2ses!4v1747730966350!5m2!1ses!2ses" 
+          allowfullscreen="" 
+          loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade">
+        </iframe>
+      </div>
+    </section>
+
+
+
+    
+
     <include src="./views/footer.html"></include>
     <script type="module" src="./assets/scripts/main.js"></script><!-- do not remove this line! -->
   </body>
