@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="./assets/styles/main.scss"><!-- do not remove this line! -->
     <title>Alquiler de Piso Turístico en Burgos</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
   </head>
   <body>
     <include src="./views/header.html"></include>
@@ -35,8 +36,83 @@
       <div class="bloque__container">
         <h2 class="bloque__title">Información general</h2>
         <p class="bloque__text">
-          Vivienda de Uso Turísitco. Se encuentra en... Dispone de...
+          Ubicado en pleno corazón de Burgos, este alojamiento turístico ofrece una localización privilegiada, rodeado de los principales puntos de interés de la ciudad.
         </p>
+        <p class="bloque__text">
+          Con una superficie útil de 62 m², el apartamento está completamente equipado y orientado al Noreste y al Sur, lo que garantiza una excelente entrada de luz natural y una atmósfera cálida y confortable durante todo el año.
+        </p>
+        <p class="bloque__text">
+          Entre sus comodidades destacan: conexión wifi de alta velocidad (500 Mb), smart TV, ascensor, calefacción, cocina totalmente equipada, salón con sofá cama, dos habitaciones con ventiladores de techo para invierno y verano, iluminación de tres ambientes, dos baños completos y plaza de garaje (altura máxima de vehículo: 2 m).
+        </p>     
+        <p class="bloque__text">
+          A escasa distancia encontrarás lugares emblemáticos como:
+        </p>
+        <ul class="bloque__list">
+          <li class="bloque__item">Catedral de Burgos (600 m)</li>
+          <li class="bloque__item">Arco de Santa María (500 m)</li>
+          <li class="bloque__item">Museo de la Evolución Humana (100 m)</li>
+          <li class="bloque__item">Paseo del Espolón (300 m)</li>
+          <li class="bloque__item">Plaza Mayor de Burgos (500 m)</li>
+          <li class="bloque__item">Castillo de Burgos (1'1 km)</li>
+        </ul>
+        <p class="bloque__text">
+          Además, en los alrededores hay tiendas, restaurantes y supermercados, incluyendo uno que permanece abierto todos los días de 9:00 a 21:30, incluso domingos y festivos.
+        </p>
+        <hr class="line">
+      </div>
+    </section>
+
+    <!-- Sección iconos -->
+    <section class="bloque">
+      <div class="bloque__container">
+        <h2 class="bloque__title">¿Qué incluye?</h2>
+        <div class="icon__grid">
+          <div class="icon__item">
+            <i class="fa-solid fa-house-user"></i>
+            <span>Pisio de 62 m<sup>2</sup></span>
+          </div>
+          <div class="icon__item">
+            <i class="fa-solid fa-users"></i>
+            <span>1-5 personas</span>
+          </div>
+          <div class="icon__item">
+            <i class="fa-solid fa-bed"></i>
+            <span>2 habitaciones (una doble y una individual)</span>
+          </div>
+          <div class="icon__item">
+            <i class="fa-solid fa-bath"></i>
+            <span>2 baños completos</span>
+          </div>
+          <div class="icon__item">
+            <i class="fa-solid fa-couch"></i>
+            <span>Sofá cama</span>
+          </div>
+          <div class="icon__item">
+            <i class="fa-solid fa-question"></i>
+            <span>Totalmente equipado</span>
+          </div>
+          <div class="icon__item">
+            <i class="fa-solid fa-wifi"></i>
+            <span>Wi-Fi gratuito</span>
+          </div>
+          <div class="icon__item">
+            <i class="fa-solid fa-tv"></i>
+            <span>Smart TV</span>
+          </div>
+          <div class="icon__item">
+            <i class="fa-solid fa-baby"></i>
+            <span>Bebés 0-2 años gratis, disponen de cuna</span>
+          </div>
+          <div class="icon__item">
+            <i class="fa-solid fa-temperature-high"></i>
+            <span>Calefacción</span>
+          </div>  
+          <div class="icon__item">
+            <i class="fa-solid fa-square-parking"></i>
+            <span>Garaje</span>
+          </div>
+        </div>
+      <hr class="line">
       </div>
     </section>
 
@@ -44,9 +120,32 @@
     <section class="bloque">
       <div class="bloque__container">
         <h2 class="bloque__title">Políticas de reserva</h2>
+        <div class="icon__grid">
+          <div class="icon__item">
+            <i class="fa-regular fa-clock"></i>
+            <span>Entrada a partir de las 17:00 horas</span>
+          </div>
+          <div class="icon__item">
+            <i class="fa-regular fa-clock"></i>
+            <span>Salida hasta las 12:00 horas</span>
+          </div>
+        </div>
         <p class="bloque__text">
-          Horas de entrada y salida. Precio por habitaciones. Cancelación.
+          * Los horarios de entrada y salida pueden modificarse previa solicitud, siempre sujetos a disponibilidad.
         </p>
+        <p class="bloque__text">
+          Las reservas se formalizan mediante Bizum o transferencia bancaria. El pago debe realizarse en un plazo máximo de 24 horas tras la confirmación.
+        </p>
+        <p class="bloque__text">
+          Todos los huéspedes deben estar debidamente registrados. Para ello, es necesario enviar el NIE, NIF o pasaporte de cada persona el día anterior a la entrada, con el fin de completar la firma a la llegada.
+        </p>
+        <p class="bloque__text">
+          Política de cancelación: se reembolsa el 100% del importe si se cancela con al menos 7 días de antelación. En cancelaciones posteriores, se devuelve el 40%.
+        </p>
+        <div class="bloque__boton">
+          <a href="reservas.html" class="button">Reservar</a>
+        </div>
+        <hr class="line">
       </div>
     </section>
 
@@ -55,7 +154,7 @@
       <div class="bloque__container">
         <h2 class="bloque__title">Ubicación</h2>
         <iframe class="mapa" 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2949.197132956632!2d-3.689641224030949!3d42.338320271194895!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd45fccb928c1b6b%3A0x4792c0f007913cef!2sC.%20de%20Rivalamora%2C%2012%2C%2009002%20Burgos!5e0!3m2!1ses!2ses!4v1747730966350!5m2!1ses!2ses" 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2949.197132956632!2d-3.701234!3d42.338765!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd45fcd1e3e9f3e9%3A0x123456789abcdef!2sCalle%20San%20Pablo%2C%2012%2C%2009002%20Burgos!5e0!3m2!1ses!2ses!4v1747739999999!5m2!1ses!2ses" 
           allowfullscreen="" 
           loading="lazy" 
           referrerpolicy="no-referrer-when-downgrade">

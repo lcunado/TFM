@@ -2,7 +2,7 @@
 
 .bloque {
   background-color: variables.$color-background;
-  padding: 3rem 1.5rem;
+  padding: 1rem 1.5rem;
 
   &__container {
     max-width: 1200px;
@@ -37,7 +37,24 @@
     font-size: 1rem;
     line-height: 1.6;
     color: variables.$color-text;
-    max-width: 800px;
+  }
+
+  &__list {
+    list-style: disc;
+    padding-left: 1.5rem;
+    margin: 1rem 0;
+  }
+
+  &__item {
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+
+  &__boton {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    width: 100%;
   }
 
   @media screen and (max-width: 768px) {

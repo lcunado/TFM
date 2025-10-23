@@ -1,0 +1,33 @@
+@use "../variables";
+
+.icon {
+  &__grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 2rem;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+
+    i {
+      width: 40px;
+      font-size: 1.5rem;
+      color: variables.$color-icon;
+    }
+
+    span {
+      flex: 1;
+    }
+  }
+}
+
