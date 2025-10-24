@@ -1,2 +1,17 @@
 @use "../variables";
 
+.contacto {
+    &__grid {
+        display: grid;
+        width: 100%;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        text-align: center;
+        justify-items: center;
+
+        @media screen and (max-width: 768px) {
+            grid-template-columns: 1fr;
+            justify-items:flex-start;
+        }   
+    }
+}
