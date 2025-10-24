@@ -8,6 +8,7 @@
   padding: 2rem;
   border-radius: 8px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
 
   &__title {
     font-size: 1.5rem;
@@ -35,23 +36,55 @@
     min-height: 100px;
   }
 
-  &__info {
-    font-size: 0.9rem;
-    margin-top: 0.5rem;
+  &__group {
+    display: flex;
+    gap: 2rem;
   }
 
-  &--compact {
-    padding: 1rem;
-    font-size: 0.9rem;
+  &__section {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
   }
 
-  &--horizontal {
-    flex-direction: row;
-    flex-wrap: wrap;
+  &__grid {
+    display: grid;
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
 
-    label,
-    input {
-      flex: 1 1 45%;
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  &__stars {
+    display: flex;
+    flex-direction: row-reverse;
+    gap: 0.5rem;
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    label {
+      font-size: 2rem;
+      color: variables.$color-star-grey;
+      cursor: pointer;
+      transition: color 0.2s;
+    }
+
+    input[type="radio"]:checked ~ label {
+      color: variables.$color-star-grey;
+    }
+
+    input[type="radio"]:checked + label,
+    input[type="radio"]:checked + label ~ label {
+      color: variables.$color-star-yellow;
+    }
+
+    label:hover,
+    label:hover ~ label {
+      color: variables.$color-star-yellow;
     }
   }
 }

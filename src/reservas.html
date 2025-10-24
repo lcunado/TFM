@@ -28,7 +28,10 @@
             <label for="huespedes">Número de huéspedes</label>
             <input type="number" id="huespedes" name="huespedes" min="1" max="10" required>
 
-            <button type="submit" class="button">Consultar disponibilidad</button>
+            <div class="button__wrapper">
+              <button type="submit" class="button">Consultar disponibilidad</button>
+            </div>
+
           </form>
 
           <!-- Formulario de cancelación -->
@@ -41,7 +44,10 @@
             <label for="dni">DNI</label>
             <input type="text" id="dni" name="dni" required>
 
-            <button type="submit" class="button">Cancelar reserva</button>
+            <div class="button__wrapper">
+              <button type="submit" class="button">Cancelar reserva</button>
+            </div>
+            
 
             <p class="form__info">
               Se abonará el 100 % si cancelas antes de 7 días y el 40 % si cancelas después.

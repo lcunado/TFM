@@ -9,7 +9,187 @@
   </head>
   <body>
     <include src="./views/header.html"></include>
-    <section><p>Valoraciones</p></section>
+    
+    <section class="bloque">
+      <div class="bloque__container">
+        <h2 class="bloque__title">Valoraciones</h2>
+
+        <form class="form">
+          <h3 class="form__title">Escribe tu valoración</h3>
+          
+          <div class="form__section">
+            <label for="nombre">Nombre</label>
+            <input type="text" id="nombre" name="nombre" required>
+          </div>
+
+          <div class="form__section">
+            <div class="form__grid">
+            <div class="form__group">
+              <label for="general" class="form__label">Valoración general</label>
+              <div class="form__stars">
+                <input type="radio" id="general-5" name="general" value="5">
+                <label for="general-5" title="5 estrellas">★</label>
+
+                <input type="radio" id="general-4" name="general" value="4">
+                <label for="general-4" title="4 estrellas">★</label>
+
+                <input type="radio" id="general-3" name="general" value="3">
+                <label for="general-3" title="3 estrellas">★</label>
+
+                <input type="radio" id="general-2" name="general" value="2">
+                <label for="general-2" title="2 estrellas">★</label>
+
+                <input type="radio" id="general-1" name="general" value="1">
+                <label for="general-1" title="1 estrella">★</label>
+              </div>
+            </div>
+          </div>
+          </div>
+          
+          <div class="form__section">
+            <div class="form__grid">
+              <div class="form__group">
+                <label for="limpieza" class="form__label">Limpieza</label>
+                <div class="form__stars">
+                  <input type="radio" id="limpieza-5" name="limpieza" value="5">
+                  <label for="limpieza-5" title="5 estrellas">★</label>
+
+                  <input type="radio" id="limpieza-4" name="limpieza" value="4">
+                  <label for="limpieza-4" title="4 estrellas">★</label>
+
+                  <input type="radio" id="limpieza-3" name="limpieza" value="3">
+                  <label for="limpieza-3" title="3 estrellas">★</label>
+
+                  <input type="radio" id="limpieza-2" name="limpieza" value="2">
+                  <label for="limpieza-2" title="2 estrellas">★</label>
+
+                  <input type="radio" id="limpieza-1" name="limpieza" value="1">
+                  <label for="limpieza-1" title="1 estrella">★</label>
+                </div>
+              </div>
+
+              <div class="form__group">
+                <label for="veracidad" class="form__label">Veracidad</label>
+                <div class="form__stars">
+                  <input type="radio" id="veracidad-5" name="veracidad" value="5">
+                  <label for="veracidad-5" title="5 estrellas">★</label>
+
+                  <input type="radio" id="veracidad-4" name="veracidad" value="4">
+                  <label for="veracidad-4" title="4 estrellas">★</label>
+
+                  <input type="radio" id="veracidad-3" name="veracidad" value="3">
+                  <label for="veracidad-3" title="3 estrellas">★</label>
+
+                  <input type="radio" id="veracidad-2" name="veracidad" value="2">
+                  <label for="veracidad-2" title="2 estrellas">★</label>
+
+                  <input type="radio" id="veracidad-1" name="veracidad" value="1">
+                  <label for="veracidad-1" title="1 estrella">★</label>
+                </div>
+              </div>
+              
+              <div class="form__group">
+                <label for="llegada" class="form__label">Llegada</label>
+                <div class="form__stars">
+                  <input type="radio" id="llegada-5" name="llegada" value="5">
+                  <label for="llegada-5" title="5 estrellas">★</label>
+
+                  <input type="radio" id="llegada-4" name="llegada" value="4">
+                  <label for="llegada-4" title="4 estrellas">★</label>
+
+                  <input type="radio" id="llegada-3" name="llegada" value="3">
+                  <label for="llegada-3" title="3 estrellas">★</label>
+
+                  <input type="radio" id="llegada-2" name="llegada" value="2">
+                  <label for="llegada-2" title="2 estrellas">★</label>
+
+                  <input type="radio" id="llegada-1" name="llegada" value="1">
+                  <label for="llegada-1" title="1 estrella">★</label>
+                </div>
+              </div>
+
+              <div class="form__group">
+                <label for="comunicacion" class="form__label">Comunicación</label>
+                <div class="form__stars">
+                  <input type="radio" id="comunicacion-5" name="comunicacion" value="5">
+                  <label for="comunicacion-5" title="5 estrellas">★</label>
+
+                  <input type="radio" id="comunicacion-4" name="comunicacion" value="4">
+                  <label for="comunicacion-4" title="4 estrellas">★</label>
+
+                  <input type="radio" id="comunicacion-3" name="comunicacion" value="3">
+                  <label for="comunicacion-3" title="3 estrellas">★</label>
+
+                  <input type="radio" id="comunicacion-2" name="comunicacion" value="2">
+                  <label for="comunicacion-2" title="2 estrellas">★</label>
+
+                  <input type="radio" id="comunicacion-1" name="comunicacion" value="1">
+                  <label for="comunicacion-1" title="1 estrella">★</label>
+                </div>
+              </div>
+
+              <div class="form__group">
+                <label for="ubicacion" class="form__label">Ubicación</label>
+                <div class="form__stars">
+                  <input type="radio" id="ubicacion-5" name="ubicacion" value="5">
+                  <label for="ubicacion-5" title="5 estrellas">★</label>
+
+                  <input type="radio" id="ubicacion-4" name="ubicacion" value="4">
+                  <label for="ubicacion-4" title="4 estrellas">★</label>
+
+                  <input type="radio" id="ubicacion-3" name="ubicacion" value="3">
+                  <label for="ubicacion-3" title="3 estrellas">★</label>
+
+                  <input type="radio" id="ubicacion-2" name="ubicacion" value="2">
+                  <label for="ubicacion-2" title="2 estrellas">★</label>
+
+                  <input type="radio" id="ubicacion-1" name="ubicacion" value="1">
+                  <label for="ubicacion-1" title="1 estrella">★</label>
+                </div>
+              </div>
+
+              <div class="form__group">
+                <label for="calidad" class="form__label">Calidad</label>
+                <div class="form__stars">
+                  <input type="radio" id="calidad-5" name="calidad" value="5">
+                  <label for="calidad-5" title="5 estrellas">★</label>
+
+                  <input type="radio" id="calidad-4" name="calidad" value="4">
+                  <label for="calidad-4" title="4 estrellas">★</label>
+
+                  <input type="radio" id="calidad-3" name="calidad" value="3">
+                  <label for="calidad-3" title="3 estrellas">★</label>
+
+                  <input type="radio" id="calidad-2" name="calidad" value="2">
+                  <label for="calidad-2" title="2 estrellas">★</label>
+
+                  <input type="radio" id="calidad-1" name="calidad" value="1">
+                  <label for="calidad-1" title="1 estrella">★</label>
+                </div>
+              </div>
+            </div>
+          </div>
+        
+          <div class="form__section">
+            <label for="comentario">Comentario</label>
+            <textarea id="comentario" name="comentario" placeholder="Escribe tu experiencia..."></textarea>
+          </div>
+          
+          <div class="button__wrapper">
+            <button type="submit" class="button">Enviar valoración</button>
+          </div>
+            
+        </form>
+      </div>
+    </section>
+
+    <section class="bloque" id="valoraciones-lista">
+      <div class="bloque__container">
+        <h2 class="bloque__title">Valoraciones de nuestros huéspedes</h2>
+        <button id="mostrar-todas">Mostrar todas las valoraciones</button>
+      </div>
+    </section>
+
     <include src="./views/footer.html"></include>
     <script type="module" src="./assets/scripts/main.js"></script><!-- do not remove this line! -->
   </body>
