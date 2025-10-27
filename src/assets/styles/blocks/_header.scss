@@ -1,8 +1,7 @@
 @use "../variables";
 
 .header {
-  //background-color: variables.$color-background;
-  background-color: aqua;
+  background-color: variables.$color-background;
   padding: 1rem;
 
   &__nav {
