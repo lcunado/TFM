@@ -36,10 +36,8 @@
 
           </form>
 
-          
-
           <!-- Formulario de cancelación -->
-          <form class="form">
+          <form id="form-cancel" class="form">
             <h3 class="form__title">Cancelar una reserva</h3>
 
             <label for="id">ID de reserva</label>
@@ -55,7 +53,11 @@
             <p class="form__info form__cancelacion"></p>
           </form>
 
+          <!-- Formulario de confirmación de reserva -->
           <div id="resultado-precio" class="form__info"></div>
+
+          <!-- Formulario de confirmación de cancelación -->
+          <div id="resultado-precio-cancel" class="form__info"></div>
 
         </div>
       </div>
@@ -63,6 +65,7 @@
     
     <include src="./views/footer.html"></include>
     <script type="module" src="./assets/scripts/reservas.js"></script>
+    <script type="module" src="./assets/scripts/cancel-reserva.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
     <script type="module" src="./assets/scripts/calendario.js"></script>
     <script type="module" src="./assets/scripts/main.js"></script><!-- do not remove this line! -->

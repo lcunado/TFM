@@ -3,6 +3,10 @@
 $precioDiario   = 60;
 $precioSabDom   = 90;
 $precioLimpieza = 125;
+$maxHuespedes   = 5;
+
+// Email del propietario
+$propietarioEmail = "lcunado@uoc.edu";
 
 // Configuración de conexión a la base de datos
 $db_host = "sql213.infinityfree.com";     // servidor de MySQL
