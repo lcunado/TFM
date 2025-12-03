@@ -13,6 +13,9 @@ document.addEventListener("DOMContentLoaded", () => {
       center: "title",
       right: "dayGridMonth,timeGridWeek,timeGridDay"
     },
+    validRange: {
+      start: new Date() // Bloquear navegacion fechas anteriores
+    },
     events: "./get-reservas.php",
     eventClick: function(info) {
       alert(`Reserva: ${info.event.title}\nEntrada: ${info.event.start.toLocaleDateString()}`);

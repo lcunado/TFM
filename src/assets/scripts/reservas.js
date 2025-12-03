@@ -15,9 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       resultado.innerHTML = await response.text();
       
       // Paso 2: confirmar reserva (segundo formulario dinámico)
-      console.log("HTML insertado:", resultado.innerHTML);
       const segundoForm = document.getElementById("form-confirmar");
-      console.log("Segundo form encontrado:", segundoForm);
       if (segundoForm) {
         segundoForm.addEventListener("submit", async (ev) => {
           ev.preventDefault();

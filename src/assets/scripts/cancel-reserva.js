@@ -15,9 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
       resultado.innerHTML = await response.text();
 
       // Paso 2: confirmar cancelación (segundo formulario dinámico)
-      console.log("HTML insertado:", resultado.innerHTML);
       const segundoForm = document.getElementById("form-cancelar");
-      console.log("Segundo form encontrado:", segundoForm);
 
       if (segundoForm) {
         segundoForm.addEventListener("submit", async (ev) => {
