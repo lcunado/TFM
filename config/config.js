@@ -1,12 +1,12 @@
 export const CONFIG = {
-    localidad: 'Burgos',
+    localidad: "Burgos",
     vivienda: "Refugio del Mirador",
     direccion: "Calle San Pablo, 12<br>09002 Burgos<br>España",
     latitud: 42.338405,
     longitud: -3.700559,
     telefono: "+34 600 123 456",
     whatsapp: "+34 600 123 456",
-    email: "info@refugiodelmirador.com",
+    email: "lcunado@uoc.edu",
     informacionGeneral: {
         textos: [
         'Ubicado en pleno corazón de Burgos, este alojamiento turístico ofrece una localización privilegiada, rodeado de los principales puntos de interés de la ciudad.',
@@ -48,5 +48,18 @@ export const CONFIG = {
         "Todos los huéspedes deben estar debidamente registrados. Para ello, es necesario enviar el NIE, NIF o pasaporte de cada persona el día anterior a la entrada, con el fin de completar la firma a la llegada.",
         "Política de cancelación: se reembolsa el 100% del importe si se cancela con al menos 7 días de antelación. En cancelaciones posteriores, se devuelve el 40%."
         ]
+    },
+    "precioDiario": 60,
+    "precioSabDom": 90,
+    "precioLimpieza": 125,
+    "maxHuespedes": 5,
+    "moneda": "EUR",
+    "politicaCancelacion": {
+        "reembolsoCompletoDias": 7,
+        "reembolsoParcialPorcentaje": 40
+    },
+    "horarios": {
+        "entrada": "17:00",
+        "salida": "12:00"
     }
 };

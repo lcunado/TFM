@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" type="text/css" href="./assets/styles/main.scss"><!-- do not remove this line! -->
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
     <title>Alquiler de Piso Turístico en Burgos</title>
   </head>
   <body>
@@ -13,10 +14,11 @@
     <section class="bloque">
       <div class="bloque__container">
         <h2 class="bloque__title">Gestión de reservas</h2>
+        <div id="calendario" class="reservas__calendario"></div>
         <div class="reservas__grid">
           
           <!-- Formulario de nueva reserva -->
-          <form class="form">
+          <form id="form-reserva" class="form">
             <h3 class="form__title">Realizar una reserva</h3>
 
             <label for="entrada">Fecha de entrada</label>
@@ -29,10 +31,12 @@
             <input type="number" id="huespedes" name="huespedes" min="1" max="10" required>
 
             <div class="button__wrapper">
-              <button type="submit" class="button">Consultar disponibilidad</button>
+              <button type="submit" class="button">Calcular precio</button>
             </div>
 
           </form>
+
+          
 
           <!-- Formulario de cancelación -->
           <form class="form">
@@ -51,12 +55,17 @@
             <p class="form__info form__cancelacion"></p>
           </form>
 
+          <div id="resultado-precio" class="form__info"></div>
+
         </div>
       </div>
     </section>
     
     <include src="./views/footer.html"></include>
+    <script type="module" src="./assets/scripts/reservas.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>
+    <script type="module" src="./assets/scripts/calendario.js"></script>
     <script type="module" src="./assets/scripts/main.js"></script><!-- do not remove this line! -->
-    <script type="module" src="./config/config-render.js"></script>
+    <script type="module" src="../config/config-render.js"></script>
   </body>
 </html>
