@@ -14,7 +14,7 @@
       <div class="bloque__container">
         <h2 class="bloque__title">Valoraciones</h2>
 
-        <form class="form">
+        <form class="form" id="valoracion-form">
           <h3 class="form__title">Escribe tu valoración</h3>
           
           <div class="form__section">
@@ -185,13 +185,13 @@
 
     <section class="bloque" id="valoraciones-lista">
       <div class="bloque__container">
-        <h2 class="bloque__title">Valoraciones de nuestros huéspedes</h2>
-        <button id="mostrar-todas">Mostrar todas las valoraciones</button>
+        <div id="valoraciones-container"></div>
       </div>
     </section>
 
     <include src="./views/footer.html"></include>
     <script type="module" src="./assets/scripts/main.js"></script><!-- do not remove this line! -->
+    <script type="module" src="./assets/scripts/valoraciones.js"></script>
     <script type="module" src="../config/config-render.js"></script>
   </body>
 </html>
