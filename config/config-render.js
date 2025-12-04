@@ -107,7 +107,7 @@ if (direccionFooter) {
 // Contacto footer
 const contactoFooter = document.querySelector(".footer__contacto");
 if (contactoFooter) {
-  contactoFooter.innerHTML = `Tel: ${CONFIG.telefono}<br>Email: ${CONFIG.email}`;
+  contactoFooter.innerHTML = `${CONFIG.telefono}<br>${CONFIG.email}`;
 }
 
 // Políticas de cancelación
@@ -134,7 +134,7 @@ if (contactoGrid) {
       <i class="fa-solid fa-phone"></i>
     </a>
     <a href="tel:${CONFIG.telefono.replace(/\s+/g, '')}">
-      <span>Teléfono</span>
+      <span>${CONFIG.telefono}</span>
     </a>
   `;
   contactoGrid.appendChild(telefonoItem);
@@ -148,7 +148,7 @@ if (contactoGrid) {
       <i class="fa-brands fa-whatsapp"></i>
     </a>
     <a href="https://wa.me/${whatsappLink}">
-      <span>Whatsapp</span>
+      <span>${CONFIG.telefono}</span>
     </a>
   `;
   contactoGrid.appendChild(whatsappItem);

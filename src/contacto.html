@@ -20,7 +20,7 @@
     <section class="bloque">
       <div class="bloque__container">
         <h2 class="bloque__title">Envíanos un mensaje</h2>
-        <form class="form">
+        <form class="form" id="contact-form">
           <div class="form__section">
             <label for="nombre">Nombre</label>
             <input type="text" id="nombre" name="nombre" required>
@@ -40,9 +40,12 @@
             <button type="submit" class="button">Enviar</button>
           </div>
         </form>
+
+        <div id="contact-response"></div>
       </div>
     </section>
     <include src="./views/footer.html"></include>
+    <script type="module" src="./assets/scripts/contacto.js"></script>
     <script type="module" src="./assets/scripts/main.js"></script><!-- do not remove this line! -->
     <script type="module" src="../config/config-render.js"></script>
   </body>

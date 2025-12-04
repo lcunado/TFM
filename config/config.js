@@ -49,17 +49,4 @@ export const CONFIG = {
         "Política de cancelación: se reembolsa el 100% del importe si se cancela con al menos 7 días de antelación. En cancelaciones posteriores, se devuelve el 40%."
         ]
     },
-    "precioDiario": 60,
-    "precioSabDom": 90,
-    "precioLimpieza": 125,
-    "maxHuespedes": 5,
-    "moneda": "EUR",
-    "politicaCancelacion": {
-        "reembolsoCompletoDias": 7,
-        "reembolsoParcialPorcentaje": 40
-    },
-    "horarios": {
-        "entrada": "17:00",
-        "salida": "12:00"
-    }
 };
