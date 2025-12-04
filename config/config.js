@@ -6,7 +6,7 @@ export const CONFIG = {
     longitud: -3.700559,
     telefono: "+34 600 123 456",
     whatsapp: "+34 600 123 456",
-    email: "lcunado@uoc.edu",
+    email: "contactorefugiodelmirador@gmail.com",
     informacionGeneral: {
         textos: [
         'Ubicado en pleno corazón de Burgos, este alojamiento turístico ofrece una localización privilegiada, rodeado de los principales puntos de interés de la ciudad.',

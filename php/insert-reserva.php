@@ -1,6 +1,16 @@
 <?php
+
 // Incluir configuración
 require_once "config.php";
+
+//Incluir phpmailer
+require 'vendor/phpmailer/Exception.php';
+require 'vendor/phpmailer/PHPMailer.php';
+require 'vendor/phpmailer/SMTP.php';
+
+// Envío de correos con PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
 
 // Recoger datos del POST
 $dni         = $_POST['dni'] ?? '';
@@ -23,35 +33,29 @@ $stmt->bind_param("ssssisssd",
 );
 
 if ($stmt->execute()) {
+    $id = $conexion->insert_id;
     echo "<p>✅ Reserva confirmada correctamente. Consulta tu correo.</p>";
-    /*
-    // --- Envío de correos con PHPMailer ---
-    use PHPMailer\PHPMailer\PHPMailer;
-    use PHPMailer\PHPMailer\Exception;
-
-    require 'PHPMailer/src/Exception.php';
-    require 'PHPMailer/src/PHPMailer.php';
-    require 'PHPMailer/src/SMTP.php';
-
+    
     $mail = new PHPMailer(true);
 
     try {
         // Configuración SMTP
         $mail->isSMTP();
-        $mail->Host       = 'smtp.gmail.com';        // Servidor SMTP
+        $mail->Host       = 'smtp.gmail.com';   // Servidor SMTP de gmail
         $mail->SMTPAuth   = true;
         $mail->Username   = $propietarioEmail;   
-        $mail->Password   = 'TU_APP_PASSWORD';      
+        $mail->Password   = $propietarioPassword;    
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
         // Remitente
-        $mail->setFrom($propietarioEmail, 'Reservas Piso Burgos');
+        $mail->setFrom($propietarioEmail, 'Reservas Piso Turistico');
 
-        // --- Correo al usuario ---
+        // Correo al usuario
         $mail->addAddress($email, $nombre);
-        $mail->Subject = "Confirmación de tu reserva en Piso Turístico Burgos";
+        $mail->Subject = "Reserva Confirmada";
         $mail->Body    = "Hola $nombre,\n\nTu reserva ha sido confirmada.\n\n".
+                         "Id: $id\n".
                          "Entrada: $entrada\n".
                          "Salida: $salida\n".
                          "Personas: $num_personas\n".
@@ -59,11 +63,12 @@ if ($stmt->execute()) {
                          "¡Gracias por reservar con nosotros!";
         $mail->send();
 
-        // --- Correo al propietario ---
+        // Correo al propietario
         $mail->clearAddresses();
         $mail->addAddress($propietarioEmail);
         $mail->Subject = "Nueva reserva confirmada";
         $mail->Body    = "Se ha confirmado una nueva reserva:\n\n".
+                         "Id: $id\n".
                          "Cliente: $nombre $apellidos\n".
                          "DNI: $dni\n".
                          "Email: $email\n".
@@ -76,7 +81,7 @@ if ($stmt->execute()) {
 
     } catch (Exception $e) {
         echo "<p>Error al enviar correos: {$mail->ErrorInfo}</p>";
-    }*/
+    }
 
 } else {
     echo "<p>Error al confirmar la reserva: " . $stmt->error . "</p>";

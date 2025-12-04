@@ -6,7 +6,8 @@ $precioLimpieza = 125;
 $maxHuespedes   = 5;
 
 // Email del propietario
-$propietarioEmail = "lcunado@uoc.edu";
+$propietarioEmail = 'contactorefugiodelmirador@gmail.com';
+$propietarioPassword = 'wjwx dagq kaxz xmjx';
 
 // Configuración de conexión a la base de datos
 $db_host = "sql213.infinityfree.com";     // servidor de MySQL
