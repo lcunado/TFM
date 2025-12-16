@@ -172,5 +172,11 @@ document.addEventListener("DOMContentLoaded", () => {
     inputHuespedes.setAttribute("max", CONFIG.maxHuespedes);
   }
 
+  // Precio base
+  const precioComment = document.querySelector(".bloque__comment");
+  if (precioComment) {
+    precioComment.textContent = `Desde ${CONFIG.precioBase}€ / noche`;
+  }
+
 });
 
