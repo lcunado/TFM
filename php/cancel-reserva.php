@@ -42,8 +42,8 @@ if ($id_reserva > 0 && !empty($dni)) {
         $stmtDelete->bind_param("is", $id_reserva, $dni);
 
         if ($stmtDelete->execute()) {
-            echo "<p>✅ Reserva cancelada correctamente.</p>";
-            echo "<p>Se reembolsarán <strong>{$reembolso} €</strong>.</p>";
+            echo "<p>✅ Reserva cancelada correctamente. Consulta tu correo.</p>";
+            echo "<p>Si se ha realizado el pago, se reembolsarán <strong>{$reembolso} €</strong>.</p>";
 
             // Enviar correos
             $mail = new PHPMailer(true);
