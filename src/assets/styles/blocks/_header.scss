@@ -2,7 +2,18 @@
 
 .header {
   background-color: variables.$color-background;
-  padding: 1rem;
+  padding: 1rem 2rem;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo img {
+    height: 64px; 
+    width: auto;
+  }
 
   &__nav {
     display: flex;
