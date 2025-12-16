@@ -36,6 +36,7 @@ if ($stmt->execute()) {
     $id = $conexion->insert_id;
     echo "<p>✅ Reserva confirmada correctamente. Consulta tu correo.</p>";
     
+    // Enviar correos
     $mail = new PHPMailer(true);
 
     try {
