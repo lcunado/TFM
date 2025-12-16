@@ -54,32 +54,119 @@ if ($stmt->execute()) {
         // Correo al usuario
         $mail->addAddress($email, $nombre);
         $mail->Subject = "Reserva Confirmada";
-        $mail->Body    = "Hola $nombre,\n\nTu reserva ha sido confirmada.\n\n".
-                         "Id: $id\n".
-                         "Entrada: $entrada\n".
-                         "Salida: $salida\n".
-                         "Personas: $num_personas\n".
-                         "Precio: $precio €\n\n".
-                         "Recuerda que dispones de 24 horas para realizar el pago de la estancia\n".
-                         "Numero de cuenta: ES29 2100 0414 6102 0026 5167\n\n".
-                         "Si tienes alguna duda, no dudes en contactarnos\n\n".
-                         "¡Gracias por reservar con nosotros!";
+        $mail->isHTML(true); // Activar formato HTML
+
+        $mail->Body = "
+            <html>
+                <body style='font-family: Arial, sans-serif; color: #333;'>
+                    <h2>Hola $nombre,</h2>
+                    <p>Tu reserva ha sido <strong>confirmada</strong>. Aquí tienes los detalles:</p>
+
+                    <table style='border-collapse: collapse; margin: 20px 0; width: 100%;'>
+                        <tr style='background-color: #f6f2f2;'>
+                            <td style='padding: 8px; border: 1px solid #ccc;'><strong>ID de reserva:</strong></td>
+                            <td style='padding: 8px; border: 1px solid #ccc;'>$id</td>
+                        </tr>
+                        <tr>
+                            <td style='padding: 8px; border: 1px solid #ccc;'><strong>Nombre:</strong></td>
+                            <td style='padding: 8px; border: 1px solid #ccc;'>$nombre $apellidos</td>
+                        </tr>
+                        <tr style='background-color: #f6f2f2;'>
+                            <td style='padding: 8px; border: 1px solid #ccc;'><strong>DNI:</strong></td>
+                            <td style='padding: 8px; border: 1px solid #ccc;'>$dni</td>
+                        </tr>
+                        <tr>
+                            <td style='padding: 8px; border: 1px solid #ccc;'><strong>Email:</strong></td>
+                            <td style='padding: 8px; border: 1px solid #ccc;'>$email</td>
+                        </tr>
+                        <tr style='background-color: #f6f2f2;'>
+                            <td style='padding: 8px; border: 1px solid #ccc;'><strong>Teléfono:</strong></td>
+                            <td style='padding: 8px; border: 1px solid #ccc;'>$telefono</td>
+                        </tr>
+                        <tr>
+                            <td style='padding: 8px; border: 1px solid #ccc;'><strong>Total de personas:</strong></td>
+                            <td style='padding: 8px; border: 1px solid #ccc;'>$num_personas</td>
+                        </tr>
+                        <tr style='background-color: #f6f2f2;'>
+                            <td style='padding: 8px; border: 1px solid #ccc;'><strong>Fecha de entrada:</strong></td>
+                            <td style='padding: 8px; border: 1px solid #ccc;'>$entrada</td>
+                        </tr>
+                        <tr>
+                            <td style='padding: 8px; border: 1px solid #ccc;'><strong>Fecha de salida:</strong></td>
+                            <td style='padding: 8px; border: 1px solid #ccc;'>$salida</td>
+                        </tr>
+                        <tr style='background-color: #f6f2f2;'>
+                            <td style='padding: 8px; border: 1px solid #ccc;'><strong>Total:</strong></td>
+                            <td style='padding: 8px; border: 1px solid #ccc;'>$precio €</td>
+                        </tr>
+                    </table>
+
+                    <p><strong>Recuerda:</strong> dispones de 24 horas para realizar el pago de la estancia.</p>
+                    <p>Número de cuenta: <strong>$numeroCuenta</strong></p>
+                    <p>Si tienes alguna duda, no dudes en contactarnos.</p>
+                    <p style='margin-top: 30px;'>¡Gracias por reservar con nosotros!</p>
+                </body>
+            </html>
+        ";
+
         $mail->send();
 
         // Correo al propietario
         $mail->clearAddresses();
         $mail->addAddress($propietarioEmail);
         $mail->Subject = "Nueva reserva confirmada";
-        $mail->Body    = "Se ha confirmado una nueva reserva:\n\n".
-                         "Id: $id\n".
-                         "Cliente: $nombre $apellidos\n".
-                         "DNI: $dni\n".
-                         "Email: $email\n".
-                         "Teléfono: $telefono\n".
-                         "Entrada: $entrada\n".
-                         "Salida: $salida\n".
-                         "Personas: $num_personas\n".
-                         "Precio: $precio €";
+        $mail->isHTML(true); // Activar formato HTML
+
+        $mail->Body = "
+            <html>
+                <body style='font-family: Arial, sans-serif; color: #333;'>
+                    <h2>Nueva reserva confirmada</h2>
+                    <p>Se ha confirmado una nueva reserva con los siguientes detalles:</p>
+
+                    <table style='border-collapse: collapse; margin: 20px 0; width: 100%;'>
+                    <tr style='background-color: #f6f2f2;'>
+                        <td style='padding: 8px; border: 1px solid #ccc;'><strong>ID de reserva:</strong></td>
+                        <td style='padding: 8px; border: 1px solid #ccc;'>$id</td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 8px; border: 1px solid #ccc;'><strong>Cliente:</strong></td>
+                        <td style='padding: 8px; border: 1px solid #ccc;'>$nombre $apellidos</td>
+                    </tr>
+                    <tr style='background-color: #f6f2f2;'>
+                        <td style='padding: 8px; border: 1px solid #ccc;'><strong>DNI:</strong></td>
+                        <td style='padding: 8px; border: 1px solid #ccc;'>$dni</td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 8px; border: 1px solid #ccc;'><strong>Email:</strong></td>
+                        <td style='padding: 8px; border: 1px solid #ccc;'>$email</td>
+                    </tr>
+                    <tr style='background-color: #f6f2f2;'>
+                        <td style='padding: 8px; border: 1px solid #ccc;'><strong>Teléfono:</strong></td>
+                        <td style='padding: 8px; border: 1px solid #ccc;'>$telefono</td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 8px; border: 1px solid #ccc;'><strong>Personas:</strong></td>
+                        <td style='padding: 8px; border: 1px solid #ccc;'>$num_personas</td>
+                    </tr>
+                    <tr style='background-color: #f6f2f2;'>
+                        <td style='padding: 8px; border: 1px solid #ccc;'><strong>Entrada:</strong></td>
+                        <td style='padding: 8px; border: 1px solid #ccc;'>$entrada</td>
+                    </tr>
+                    <tr>
+                        <td style='padding: 8px; border: 1px solid #ccc;'><strong>Salida:</strong></td>
+                        <td style='padding: 8px; border: 1px solid #ccc;'>$salida</td>
+                    </tr>
+                    <tr style='background-color: #f6f2f2;'>
+                        <td style='padding: 8px; border: 1px solid #ccc;'><strong>Precio:</strong></td>
+                        <td style='padding: 8px; border: 1px solid #ccc;'>$precio €</td>
+                    </tr>
+                    </table>
+
+                    <p><strong>Número de cuenta para el pago:</strong> $numeroCuenta</p>
+                </body>
+            </html>
+        ";
+
         $mail->send();
 
     } catch (Exception $e) {

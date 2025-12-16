@@ -2,6 +2,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("contact-form");
   const responseBox = document.getElementById("contact-response");
 
+  if (!form) return;
+  
   form.addEventListener("submit", async (e) => {
     e.preventDefault(); // Evita recargar la página
 

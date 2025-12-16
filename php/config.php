@@ -9,6 +9,9 @@ $maxHuespedes   = 5;
 $propietarioEmail = 'contactorefugiodelmirador@gmail.com';
 $propietarioPassword = 'wjwx dagq kaxz xmjx';
 
+// Número de cuenta bancaria
+$numeroCuenta = "ES29 2100 0414 6102 0026 5167";
+
 // Configuración de conexión a la base de datos
 $db_host = "sql213.infinityfree.com";     // servidor de MySQL
 $db_user = "if0_40560777";      // usuario de la BD
