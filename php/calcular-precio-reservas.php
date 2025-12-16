@@ -22,6 +22,11 @@ if ($salida <= $entrada) {
     die("<p>⚠️ La fecha de salida debe ser posterior a la de entrada.</p>");
 }
 
+// Validar número de huéspedes
+if ($huespedes < 1 || $huespedes > $maxHuespedes) {
+    die("<p>⚠️ El número de huéspedes debe estar entre 1 y $maxHuespedes.</p>");
+}
+
 // Validar solapamiento con reservas existentes
 $stmt = $conexion->prepare("
     SELECT id 

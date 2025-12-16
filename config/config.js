@@ -7,6 +7,7 @@ export const CONFIG = {
     telefono: "+34 600 123 456",
     whatsapp: "+34 600 123 456",
     email: "contactorefugiodelmirador@gmail.com",
+    maxHuespedes: 5,
     informacionGeneral: {
         textos: [
         'Ubicado en pleno corazón de Burgos, este alojamiento turístico ofrece una localización privilegiada, rodeado de los principales puntos de interés de la ciudad.',
