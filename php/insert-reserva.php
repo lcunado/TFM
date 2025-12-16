@@ -60,6 +60,9 @@ if ($stmt->execute()) {
                          "Salida: $salida\n".
                          "Personas: $num_personas\n".
                          "Precio: $precio €\n\n".
+                         "Recuerda que dispones de 24 horas para realizar el pago de la estancia\n".
+                         "Numero de cuenta: ES29 2100 0414 6102 0026 5167\n\n".
+                         "Si tienes alguna duda, no dudes en contactarnos\n\n".
                          "¡Gracias por reservar con nosotros!";
         $mail->send();
 
