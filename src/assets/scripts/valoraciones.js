@@ -10,7 +10,7 @@ document.getElementById("valoracion-form").addEventListener("submit", function(e
     .then(response => response.text())
     .then(data => {
         // Mostrar el mensaje que devuelve PHP directamente
-        document.getElementById("valoraciones-lista").innerHTML = data;
+        document.getElementById("valoracion-mensaje").innerHTML = data;
 
         // Refrescar lista de valoraciones
         cargarValoraciones();
@@ -18,7 +18,7 @@ document.getElementById("valoracion-form").addEventListener("submit", function(e
         // Vaciar formulario
         this.reset();
     })
-    .catch(error => console.error("❌ Error:", error));
+    .catch(error => console.error("⚠️ Error:", error));
 });
 
 function cargarValoraciones(mostrarTodas = false) {
@@ -36,8 +36,8 @@ function cargarValoraciones(mostrarTodas = false) {
                 botonMostrarTodas.addEventListener("click", () => cargarValoraciones(true));
             }
         })
-        .catch(error => console.error("❌ Error al cargar valoraciones:", error));
+        .catch(error => console.error("⚠️ Error al cargar valoraciones:", error));
 }
 
-// ✅ Cargar solo 3 valoraciones al iniciar
+// Cargar solo 3 valoraciones al iniciar
 document.addEventListener("DOMContentLoaded", () => cargarValoraciones(false));

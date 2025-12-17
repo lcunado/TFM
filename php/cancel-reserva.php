@@ -170,19 +170,19 @@ if ($id_reserva > 0 && !empty($dni)) {
                 $mail->send();
 
             } catch (Exception $e) {
-                echo "<p>Error al enviar correos: {$mail->ErrorInfo}</p>";
+                echo "<p>⚠️ Error al enviar correos: {$mail->ErrorInfo}</p>";
             }
 
         } else {
-            echo "<p>Error al cancelar la reserva: " . $stmtDelete->error . "</p>";
+            echo "<p>⚠️ Error al cancelar la reserva: " . $stmtDelete->error . "</p>";
         }
 
         $stmtDelete->close();
     } else {
-        echo "<p>No se encontró ninguna reserva con esos datos.</p>";
+        echo "<p>⚠️ No se encontró ninguna reserva con esos datos.</p>";
     }
 } else {
-    echo "<p>Datos de cancelación incompletos.</p>";
+    echo "<p>⚠️ Datos de cancelación incompletos.</p>";
 }
 
 $conexion->close();

@@ -171,11 +171,11 @@ if ($stmt->execute()) {
         $mail->send();
 
     } catch (Exception $e) {
-        echo "<p>Error al enviar correos: {$mail->ErrorInfo}</p>";
+        echo "<p>⚠️ Error al enviar correos: {$mail->ErrorInfo}</p>";
     }
 
 } else {
-    echo "<p>Error al confirmar la reserva: " . $stmt->error . "</p>";
+    echo "<p>⚠️ Error al confirmar la reserva: " . $stmt->error . "</p>";
 }
 
 $stmt->close();

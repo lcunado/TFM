@@ -32,12 +32,12 @@ document.addEventListener("DOMContentLoaded", () => {
               window.calendar.refetchEvents();
             }
           } catch (error) {
-            resultado.innerHTML = "<p>Error al confirmar la reserva.</p>";
+            resultado.innerHTML = "<p>⚠️ Error al confirmar la reserva.</p>";
           }
         });
       }
     } catch (error) {
-      resultado.innerHTML = "<p>Error al calcular la reserva.</p>";
+      resultado.innerHTML = "<p>⚠️ Error al calcular la reserva.</p>";
     }
   });
 });

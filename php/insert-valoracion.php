@@ -14,7 +14,7 @@ $comentario   = $_POST["comentario"]   ?? "";
 
 // Validación básica
 if (empty($nombre) || $general == 0) {
-    die("<p>❌ Error: datos incompletos.</p>");
+    die("<p>⚠️ Error: datos incompletos.</p>");
 }
 
 // Insertar en la base de datos
@@ -40,7 +40,7 @@ $stmt->bind_param(
 if ($stmt->execute()) {
     echo "<p>✅ ¡Tu valoración se ha guardado correctamente!</p>";
 } else {
-    echo "<p>❌ Error al guardar la valoración: " . $stmt->error . "</p>";
+    echo "<p>⚠️ Error al guardar la valoración: " . $stmt->error . "</p>";
 }
 
 $stmt->close();

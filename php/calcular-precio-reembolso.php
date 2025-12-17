@@ -40,12 +40,12 @@ if ($id_reserva > 0 && !empty($dni)) {
             </div>';
         echo '</form>';
     } else {
-        echo "<p>No se encontró ninguna reserva con ese ID y DNI.</p>";
+        echo "<p>⚠️ No se encontró ninguna reserva con ese ID y DNI.</p>";
     }
 
     $stmt->close();
 } else {
-    echo "<p>Datos de cancelación incompletos.</p>";
+    echo "<p>⚠️ Datos de cancelación incompletos.</p>";
 }
 
 ?>

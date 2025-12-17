@@ -34,12 +34,12 @@ document.addEventListener("DOMContentLoaded", () => {
               window.calendar.refetchEvents();
             }
           } catch (error) {
-            resultado.innerHTML = "<p>Error al confirmar la cancelación.</p>";
+            resultado.innerHTML = "<p>⚠️ Error al confirmar la cancelación.</p>";
           }
         });
       }
     } catch (error) {
-      resultado.innerHTML = "<p>Error al calcular el reembolso.</p>";
+      resultado.innerHTML = "<p>⚠️ Error al calcular el reembolso.</p>";
     }
   });
 });
