@@ -11,6 +11,12 @@ $comunicacion = $_POST["comunicacion"] ?? 0;
 $ubicacion    = $_POST["ubicacion"]    ?? 0;
 $calidad      = $_POST["calidad"]      ?? 0;
 $comentario   = $_POST["comentario"]   ?? "";
+$hp_field   = $_POST["hp_field"]   ?? "";
+
+// Validación Honeypot
+if (!empty($hp_field)) {
+    die("<p>⚠️ Error: detección de spam.</p>");
+}
 
 // Validación básica
 if (empty($nombre) || $general == 0) {

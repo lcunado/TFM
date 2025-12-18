@@ -6,12 +6,28 @@ leoProfanity.loadDictionary("es");
 // Añadir lista personalizada
 leoProfanity.add(["mierda", "joder", "puta", "cabron", "coño", "gilipollas"]);
 
+// Guardar tiempo de inicio
+let inicio = Date.now();
+
 document.getElementById("valoracion-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
     let formData = new FormData(this);
-        let comentario = formData.get("comentario");
+    let comentario = formData.get("comentario");
     
+    // Control Honeypot, si el campo oculto tiene contenido es spam
+    if (formData.get("hp_field")) {
+        alert("⚠️ Detección de spam. Comentario bloqueado.");
+        return;
+    }
+
+    // Control tiempo, si tarda menos de 5 segundos es sospechoso
+    let tiempo = Date.now() - inicio;
+    if (tiempo < 5000) {
+        alert("⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.");
+        return;
+    }
+
     // Filtrar comentario
     if (comentario && leoProfanity.check(comentario)) {
         formData.set("comentario", leoProfanity.clean(comentario));
