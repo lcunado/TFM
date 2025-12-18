@@ -1,4 +1,4 @@
-@use "../variables";
+@use "../variables" as v;
 
 .contacto {
     &__grid {
@@ -9,7 +9,7 @@
         text-align: center;
         justify-items: center;
 
-        @media screen and (max-width: 768px) {
+        @media screen and (max-width: v.$max-width) {
             grid-template-columns: 1fr;
             justify-items:flex-start;
         }   

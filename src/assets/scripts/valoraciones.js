@@ -1,8 +1,29 @@
+import leoProfanity from "leo-profanity";
+
+// cargar diccionario español
+leoProfanity.loadDictionary("es");
+
+// añadir lista personalizada
+leoProfanity.add(["mierda", "joder", "puta", "cabron", "coño"]);
+
+// prueba rápida
+console.log(leoProfanity.check("esto es una mierda")); 
+// → true si la palabra está en el diccionario, false si no
+
+console.log(leoProfanity.clean("esto es una mierda")); 
+// → "esto es una *****"
+
 document.getElementById("valoracion-form").addEventListener("submit", function(event) {
     event.preventDefault();
 
     let formData = new FormData(this);
-
+    
+    // Filtrar comentario
+    let comentario = formData.get("comentario");
+    if (comentario && leoProfanity.check(comentario)) {
+        formData.set("comentario", leoProfanity.clean(comentario));
+    }
+    
     fetch("insert-valoracion.php", {
         method: "POST",
         body: formData

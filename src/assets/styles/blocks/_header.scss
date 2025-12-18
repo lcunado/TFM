@@ -1,8 +1,10 @@
-@use "../variables";
+@use "../variables" as v;
 
 .header {
-  background-color: variables.$color-background;
+  background-color: v.$color-background;
   padding: 1rem 2rem;
+  position: relative;
+  z-index: 1000; // asegura que el header esté por encima
 
   &__container {
     display: flex;
@@ -15,10 +17,41 @@
     width: auto;
   }
 
+  /* Botón hamburguesa */
+  &__toggle {
+    display: none; // oculto en escritorio
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: v.$color-component;
+    cursor: pointer;
+
+    @media screen and (max-width: v.$max-width) {
+      display: block; // visible en móvil
+    }
+  }
+
   &__nav {
     display: flex;
-    justify-content: flex-end;
     align-items: center;
+
+    /* Menú oculto en móvil */
+    @media screen and (max-width: v.$max-width) {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      width: 100%;
+      background-color: v.$color-background;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 1rem;
+      display: none;
+      z-index: 1001;
+    }
+
+    &.active {
+      display: flex; 
+    }
   }
 
   &__list {
@@ -27,21 +60,54 @@
     gap: 2rem;
     margin: 0;
     padding: 0;
-    @media screen and (max-width: 768px) {
+
+    @media screen and (max-width: v.$max-width) {
       flex-direction: column;
-      align-items: flex-end;
-      gap: 0.3rem;
+      gap: 1rem;
+      width: 100%;
     }
   }
 
   &__link {
-    color: variables.$color-component;
+    color: v.$color-component;
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 
     &:hover {
-      color: variables.$color-component-hover;
+      color: v.$color-component-hover;
+    }
+  }
+
+  &__translate {
+    margin-left: 2rem;
+    display: flex;
+    align-items: center;
+
+    @media screen and (max-width: v.$max-width) {
+      margin: 1rem 0 0 0;
+      width: 100%;
+      justify-content: flex-start;
     }
   }
 }
+
+/* Estilos del combo de Google Translate */
+.goog-te-combo {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid v.$color-background;
+  font-family: inherit;
+  font-size: 14px;
+  background-color: v.$color-component;
+  color: v.$color-background;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.goog-te-combo:hover {
+  background-color: v.$color-component-hover;
+}
+
+
+

@@ -1,4 +1,4 @@
-@use "../variables";
+@use "../variables" as v;
 
 .reservas{
   &__grid {
@@ -8,7 +8,7 @@
     gap: 1.5rem;
     margin-top: 2rem;
 
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: v.$max-width) {
       grid-template-columns: 1fr;
     }
   }

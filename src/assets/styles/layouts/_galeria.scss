@@ -1,4 +1,4 @@
-@use "../variables";
+@use "../variables" as v;
 
 .galeria {
   &__grid {
@@ -21,7 +21,7 @@
     aspect-ratio: 4/3; 
     object-fit: cover;
     border-radius: 10px;
-    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 2px 2px 10px v.$color-shadow;
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
   }
@@ -29,6 +29,6 @@
   &__caption {
     margin-top: 0.5rem;
     font-size: 0.9rem;
-    color: variables.$color-text;
+    color: v.$color-text;
   }
 }

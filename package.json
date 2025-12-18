@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^7.0.1",
-    "bad-words": "^4.0.0"
+    "bad-words": "^4.0.0",
+    "leo-profanity": "^1.8.0"
   }
 }

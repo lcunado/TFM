@@ -10,21 +10,21 @@ $color-text: #333333;
 
 $color-component: #2E7D32;
 $color-component-hover: #1B5E20;
+$color-component-border: #000000;
 
 $color-footer: #000000;
 $color-footer-text: #CCCCCC;
-$color-footer-title: #ffffff;
-
-$color-catedral-text: #ffffff;
-
-$color-button: #2E7D32;
-$color-button-hover: #1B5E20;
-
-$color-icon: #2E7D32;
 
 $color-form: #f6f2f2;
 
 $color-star-yellow: #f1d628;
 $color-star-grey: #CCCCCC;
 
-$mqMinWidth: 420px;
+$color-shadow: rgba(0, 0, 0, 0.2);
+$color-overlay: rgba(0, 0, 0, 0.5);
+
+$color-comment: #444;
+$color-comment-date: #666;
+$color-comment-empty: #999;
+
+$max-width: 768px;

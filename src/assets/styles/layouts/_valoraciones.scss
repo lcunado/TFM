@@ -10,7 +10,7 @@
   margin-bottom: 20px;
   border-radius: 8px;
   background-color: v.$color-form;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px v.$color-shadow;
 }
 
 .valoraciones__title {
@@ -20,7 +20,7 @@
 
 .valoraciones__date {
   font-weight: normal;
-  color: #666;
+  color: v.$color-comment-date;
 }
 
 .valoraciones__detail {
@@ -29,11 +29,11 @@
 
 .valoraciones__comment {
   font-style: italic;
-  color: #444;
+  color: v.$color-comment;
 }
 
 .valoraciones__empty {
-  color: #999;
+  color: v.$color-comment-empty;
   font-style: italic;
 }
 

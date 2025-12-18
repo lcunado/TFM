@@ -1,7 +1,7 @@
-@use "../variables";
+@use "../variables" as v;
 
 .bloque {
-  background-color: variables.$color-background;
+  background-color: v.$color-background;
   padding: 1rem 1.5rem;
 
   &__container {
@@ -36,7 +36,7 @@
   &__text {
     font-size: 1rem;
     line-height: 1.6;
-    color: variables.$color-text;
+    color: v.$color-text;
   }
 
   &__list {
@@ -50,7 +50,7 @@
     font-size: 1rem;
   }
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: v.$max-width) {
     padding: 2rem 1rem;
 
     &__title {
