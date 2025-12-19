@@ -31,7 +31,8 @@
             <input type="date" id="salida" name="salida" required>
 
             <label for="huespedes">Número de huéspedes</label>
-            <input type="number" id="huespedes" name="huespedes" min="1" required>
+            <input type="number" id="huespedes" name="huespedes" min="1" required 
+              placeholder="Incluye solo mayores de 4 años">
 
             <div class="button__wrapper">
               <button type="submit" class="button">Calcular precio</button>
@@ -48,6 +49,9 @@
 
             <label for="dni">DNI</label>
             <input type="text" id="dni" name="dni" required>
+
+            <label for="motivo">Motivo de la cancelación</label>
+            <textarea id="motivo" name="motivo" rows="3" placeholder="Explica brevemente el motivo..." required></textarea>
 
             <div class="button__wrapper">
               <button type="submit" class="button">Cancelar reserva</button>

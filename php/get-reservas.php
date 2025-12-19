@@ -4,7 +4,9 @@ require_once "config.php";
 
 header('Content-Type: application/json');
 
-$sql = "SELECT id, fecha_entrada, fecha_salida FROM reservas";
+$sql = "SELECT id, fecha_entrada, fecha_salida, estado 
+        FROM reservas 
+        WHERE estado IN ('pendiente','pagado')";
 $result = $conexion->query($sql);
 
 $eventos = [];

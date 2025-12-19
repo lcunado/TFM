@@ -35,7 +35,7 @@ export const CONFIG = {
         { icono: "fa-question", texto: "Totalmente equipado" },
         { icono: "fa-wifi", texto: "Wi-Fi gratuito" },
         { icono: "fa-tv", texto: "Smart TV" },
-        { icono: "fa-baby", texto: "Bebés 0-2 años gratis, disponen de cuna" },
+        { icono: "fa-baby", texto: "Niños 0-4 años gratis" },
         { icono: "fa-temperature-high", texto: "Calefacción" },
         { icono: "fa-square-parking", texto: "Garaje" }
     ],
@@ -48,7 +48,7 @@ export const CONFIG = {
         "* Los horarios de entrada y salida pueden modificarse previa solicitud, siempre sujetos a disponibilidad.",
         "Las reservas se formalizan mediante Bizum o transferencia bancaria. El pago debe realizarse en un plazo máximo de 24 horas tras la confirmación.",
         "Todos los huéspedes deben estar debidamente registrados. Para ello, es necesario enviar el NIE, NIF o pasaporte de cada persona el día anterior a la entrada, con el fin de completar la firma a la llegada.",
-        "Política de cancelación: se reembolsa el 100% del importe si se cancela con al menos 7 días de antelación. En cancelaciones posteriores, se devuelve el 40%."
+        "Política de cancelación: se reembolsa el 100% del importe pagado si se cancela con al menos 7 días de antelación. En cancelaciones posteriores, se devuelve el 40%."
         ]
     },
 };

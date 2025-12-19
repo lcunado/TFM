@@ -13,7 +13,8 @@ use PHPMailer\PHPMailer\Exception;
 
 $id_reserva = $_POST['id'] ?? 0;
 $dni        = $_POST['dni'] ?? '';
-$reembolso  = $_POST['reembolso'] ?? 0;
+$reembolso  = (float)($_POST['reembolso'] ?? 0);
+$motivo     = $_POST['motivo'] ?? '';
 
 if ($id_reserva > 0 && !empty($dni)) {
     // Consultar la reserva
@@ -35,15 +36,24 @@ if ($id_reserva > 0 && !empty($dni)) {
         $num_personas= $reserva['num_personas'];
         $entrada     = $reserva['fecha_entrada'];
         $salida      = $reserva['fecha_salida'];
-        $precio      = $reserva['precio'];
+        $precio      = (float)$reserva['precio'];
     
-        // Eliminar la reserva
-        $stmtDelete = $conexion->prepare("DELETE FROM reservas WHERE id = ? AND dni = ?");
+        // Actualizar el estado de la reserva
+        $stmtDelete = $conexion->prepare("UPDATE reservas SET estado = 'cancelado' WHERE id = ? AND dni = ?");
         $stmtDelete->bind_param("is", $id_reserva, $dni);
 
         if ($stmtDelete->execute()) {
+            // Insertar en cancelaciones
+            $estadoCancelacion = ($reembolso > 0) ? 'pendiente' : 'no_reembolsable';
+            $stmtCancel = $conexion->prepare("INSERT INTO cancelaciones 
+                (id_reserva, fecha_cancelacion, importe_pagado, importe_reembolsar, motivo, estado_cancelacion) 
+                VALUES (?, NOW(), ?, ?, ?, ?)");
+            $stmtCancel->bind_param("iddss", $id_reserva, $precio, $reembolso, $motivo, $estadoCancelacion);
+            $stmtCancel->execute();
+            $stmtCancel->close();
+
             echo "<p>✅ Reserva cancelada correctamente. Consulta tu correo.</p>";
-            echo "<p>Si se ha realizado el pago, se reembolsarán <strong>{$reembolso} €</strong>.</p>";
+            echo "<p>Se reembolsarán <strong>{$reembolso} €</strong>.</p>";
 
             // Enviar correos
             $mail = new PHPMailer(true);
@@ -105,6 +115,10 @@ if ($id_reserva > 0 && !empty($dni)) {
                                 <td style='padding: 8px; border: 1px solid #ccc;'><strong>Reembolso:</strong></td>
                                 <td style='padding: 8px; border: 1px solid #ccc;'>$reembolso €</td>
                             </tr>
+                            <tr style='background-color: #f6f2f2;'>
+                                <td style='padding: 8px; border: 1px solid #ccc;'><strong>Motivo:</strong></td>
+                                <td style='padding: 8px; border: 1px solid #ccc;'>$motivo</td>
+                            </tr>
                             </table>
 
                             <p>Si el pago se realizó correctamente, recibirá el reembolso en la misma cuenta.</p>
@@ -162,6 +176,10 @@ if ($id_reserva > 0 && !empty($dni)) {
                             <tr style='background-color: #f6f2f2;'>
                                 <td style='padding: 8px; border: 1px solid #ccc;'><strong>Reembolso:</strong></td>
                                 <td style='padding: 8px; border: 1px solid #ccc;'>$reembolso €</td>
+                            </tr>
+                            <tr>
+                                <td style='padding: 8px; border: 1px solid #ccc;'><strong>Motivo:</strong></td>
+                                <td style='padding: 8px; border: 1px solid #ccc;'>$motivo</td>
                             </tr>
                             </table>
                         </body>

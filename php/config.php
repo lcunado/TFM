@@ -1,7 +1,7 @@
 <?php
 // Configuración de tarifas
-$precioDiario   = 60;
-$precioSabDom   = 90;
+$precioDiario   = 20;
+$precioSabDom   = 40;
 $precioLimpieza = 125;
 $maxHuespedes   = 5;
 

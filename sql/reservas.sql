@@ -8,5 +8,6 @@ CREATE TABLE reservas (
   num_personas INT NOT NULL,
   fecha_entrada DATE NOT NULL,
   fecha_salida DATE NOT NULL,
-  precio DECIMAL(10,2) NOT NULL
+  precio DECIMAL(10,2) NOT NULL,
+  estado ENUM('pendiente', 'pagado', 'cancelado') NOT NULL DEFAULT 'pendiente'
 );

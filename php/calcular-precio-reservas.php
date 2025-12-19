@@ -27,11 +27,13 @@ if ($huespedes < 1 || $huespedes > $maxHuespedes) {
     die("<p>⚠️ El número de huéspedes debe estar entre 1 y $maxHuespedes.</p>");
 }
 
-// Validar solapamiento con reservas existentes
+// Validar solapamiento con reservas activas existentes
 $stmt = $conexion->prepare("
     SELECT id 
     FROM reservas 
-    WHERE fecha_entrada < ? AND fecha_salida > ?
+    WHERE estado IN ('pendiente','pagado')
+      AND fecha_entrada < ? 
+      AND fecha_salida > ?
 ");
 $entradaStr = $entrada->format('Y-m-d');
 $salidaStr  = $salida->format('Y-m-d');
