@@ -27,13 +27,38 @@
         <form class="form" id="contact-form">
 
           <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre" required>
+          <input 
+            type="text" 
+            id="nombre" 
+            name="nombre" 
+            required
+            pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,40}"
+            title="Solo letras y espacios, entre 2 y 40 caracteres">
 
           <label for="correo">Correo electrónico</label>
-          <input type="email" id="correo" name="correo" required>
+          <input 
+            type="email" 
+            id="correo" 
+            name="correo" 
+            required>
 
           <label for="mensaje">Mensaje</label>
-          <textarea id="mensaje" name="mensaje" rows="5" required></textarea>
+          <textarea 
+            id="mensaje" 
+            name="mensaje" 
+            rows="5" 
+            maxlength="500"
+            minlength="5"
+            placeholder="Escribe tu mensaje..."></textarea>
+
+          <!-- Honeypot oculto -->
+          <div style="display:none;">
+            <label>No rellenar este campo</label>
+            <input 
+              type="text" 
+              name="hp_field_contacto" 
+              value="">
+          </div>
 
           <div class="button__wrapper">
             <button type="submit" class="button">Enviar</button>

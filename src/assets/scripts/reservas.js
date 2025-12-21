@@ -2,11 +2,56 @@ document.addEventListener("DOMContentLoaded", () => {
   const form = document.getElementById("form-reserva");
   const resultado = document.getElementById("resultado-precio");
 
-  // Paso 1: calcular precio
+  // Guardar tiempo de inicio
+  let inicio = Date.now();
+
+  // Calcular precio
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
     const datos = new FormData(form);
 
+    // Validación de campos
+    // Fecha de entrada
+    const entrada = datos.get("fecha_entrada");
+    if (!entrada) {
+      resultado.innerHTML = "<p>⚠️ Debes seleccionar una fecha de entrada.</p>";
+      return;
+    }
+
+    // Fecha de salida
+    const salida = datos.get("fecha_salida");
+    if (!salida) {
+      resultado.innerHTML = "<p>⚠️ Debes seleccionar una fecha de salida.</p>";
+      return;
+    }
+
+    // Validar que salida > entrada
+    if (entrada >= salida) {
+      resultado.innerHTML = "<p>⚠️ La fecha de salida debe ser posterior a la de entrada.</p>";
+      return;
+    }
+
+    // Número de huéspedes
+    const huespedes = datos.get("num_personas");
+    if (!/^[0-9]+$/.test(huespedes) || huespedes < 1 ) {
+      resultado.innerHTML = "<p>⚠️ Debes seleccionar un número de huéspedes correcto.</p>";
+      return;
+    }
+    
+    // Control Honeypot, si el campo oculto tiene contenido es spam
+    if (datos.get("hp_field_reservas")) {
+      resultado.innerHTML = "<p>⚠️ Detección de spam. Reserva bloqueada.</p>";
+      return;
+    }
+
+    // Control tiempo, si tarda menos de 5 segundos es sospechoso
+    let tiempo = Date.now() - inicio;
+    if (tiempo < 5000) {
+      resultado.innerHTML = "<p>⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.</p>";
+      return;
+    }
+
+    // Envío al servidor
     try {
       const response = await fetch("./calcular-precio-reservas.php", {
         method: "POST",
@@ -14,7 +59,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
       resultado.innerHTML = await response.text();
       
-      // Paso 2: confirmar reserva (segundo formulario dinámico)
+      // Confirmar reserva (segundo formulario dinámico)
       const segundoForm = document.getElementById("form-confirmar");
       if (segundoForm) {
         segundoForm.addEventListener("submit", async (ev) => {
@@ -27,7 +72,15 @@ document.addEventListener("DOMContentLoaded", () => {
               body: datos2
             });
             resultado.innerHTML = await resp2.text();
-            // Actualiza calendario
+            
+            // Limpiar formularios
+            form.reset();          
+            segundoForm.reset();   
+
+            // Reiniciar tiempo anti-spam
+            inicio = Date.now();
+
+            // Actualizar el calendario
             if (window.calendar) {
               window.calendar.refetchEvents();
             }

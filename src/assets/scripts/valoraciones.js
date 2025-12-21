@@ -13,10 +13,31 @@ document.getElementById("valoracion-form").addEventListener("submit", function(e
     event.preventDefault();
 
     let formData = new FormData(this);
-    let comentario = formData.get("comentario");
+
+    // Validaciones
+    // Nombre
+    const nombre = formData.get("nombre")?.trim();
+    if (!/^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,40}$/.test(nombre)) {
+        alert("⚠️ El nombre no es válido.");
+        return;
+    }
+
+    // Comentario
+    const comentario = formData.get("comentario")?.trim();
+    if (!comentario || comentario.length < 5 || comentario.length > 500) {
+        alert("⚠️ El comentario debe tener entre 5 y 500 caracteres.");
+        return;
+    }
+
+    // General
+    const general = formData.get("general");
+    if (!/^[1-5]$/.test(general)) {
+        alert("⚠️ Debes seleccionar una valoración general.");
+        return;
+    }
     
     // Control Honeypot, si el campo oculto tiene contenido es spam
-    if (formData.get("hp_field")) {
+    if (formData.get("hp_field_valoraciones")) {
         alert("⚠️ Detección de spam. Comentario bloqueado.");
         return;
     }
@@ -33,6 +54,7 @@ document.getElementById("valoracion-form").addEventListener("submit", function(e
         formData.set("comentario", leoProfanity.clean(comentario));
     }
     
+    // Envío
     fetch("insert-valoracion.php", {
         method: "POST",
         body: formData

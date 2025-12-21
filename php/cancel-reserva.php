@@ -1,4 +1,5 @@
 <?php
+session_start();
 // Incluir configuración
 require_once "config.php";
 
@@ -11,10 +12,48 @@ require 'vendor/phpmailer/SMTP.php';
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
-$id_reserva = $_POST['id'] ?? 0;
-$dni        = $_POST['dni'] ?? '';
-$reembolso  = (float)($_POST['reembolso'] ?? 0);
-$motivo     = $_POST['motivo'] ?? '';
+// Control Honeypot, si el campo oculto tiene contenido es spam
+if (!empty($_POST['hp_field_cancelaciones'])) {
+    die("<p>⚠️ Detección de spam. Cancelación rechazada.</p>");
+}
+
+// Control tiempo, si tarda menos de 5 segundos es sospechoso
+if (!isset($_SESSION['form_start'])) {
+    $_SESSION['form_start'] = time();
+}
+$tiempoEnvio = time() - $_SESSION['form_start'];
+if ($tiempoEnvio < 5) {
+    die("<p>⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.</p>");
+}
+$_SESSION['form_start'] = time(); // Reinicio del tiempo
+
+// Recoger los datos sin espacios
+$id_reserva = trim($_POST['id'] ?? '');
+$dni        = trim($_POST['dni'] ?? '');
+$reembolso  = trim($_POST['reembolso'] ?? '');
+$motivo     = trim($_POST['motivo'] ?? '');
+
+// Validaciones de datos
+// Validar ID numérico
+if (!ctype_digit($id_reserva) || (int)$id_reserva <= 0) {
+    die("<p>⚠️ ID de reserva inválido.</p>");
+}
+
+// Validar DNI o Pasaporte (letras y números, 5-20 chars)
+if (!preg_match('/^[A-Za-z0-9]{5,20}$/', $dni)) {
+    die("<p>⚠️ DNI o pasaporte no válido.</p>");
+}
+
+// Validar motivo (entre 5 y 500 caracteres)
+if (strlen($motivo) < 5 || strlen($motivo) > 500) {
+    die("<p>⚠️ El motivo debe tener entre 5 y 500 caracteres.</p>");
+}
+
+// Validar reembolso como número
+if (!is_numeric($reembolso) || $reembolso < 0) {
+    die("<p>⚠️ El importe de reembolso no es válido.</p>");
+}
+$motivo = htmlspecialchars($motivo, ENT_QUOTES, 'UTF-8');
 
 if ($id_reserva > 0 && !empty($dni)) {
     // Consultar la reserva

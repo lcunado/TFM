@@ -1,11 +1,38 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+session_start();
 // Incluir configuración
 require_once "config.php";
 
-// Recoger datos del formulario
+// Control Honeypot, si el campo oculto tiene contenido es spam
+if (!empty('hp_field_reservas')) {
+    die("<p>⚠️ Detección de spam. Petición rechazada.</p>");
+}
+
+// Control tiempo, si tarda menos de 5 segundos es sospechoso
+if (!isset($_SESSION['form_start'])) {
+    $_SESSION['form_start'] = time();
+}
+$tiempoEnvio = time() - $_SESSION['form_start'];
+if ($tiempoEnvio < 5) {
+    die("<p>⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.</p>");
+}
+$_SESSION['form_start'] = time(); // Reinicio del tiempo
+
+// Validaciones de campos
+if (empty($_POST['entrada']) || empty($_POST['salida'])) {
+    die("<p>⚠️ Debes seleccionar fechas válidas.</p>");
+}
+
+if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST['entrada']) ||
+    !preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST['salida'])) {
+    die("<p>⚠️ Formato de fecha no válido.</p>");
+}
+
+if (!ctype_digit($_POST['huespedes'])) {
+    die("<p>⚠️ Número de huéspedes no válido.</p>");
+}
+
+// Crear objetos
 $entrada   = new DateTime($_POST['entrada']);
 $salida    = new DateTime($_POST['salida']);
 $huespedes = (int)$_POST['huespedes'];
@@ -65,6 +92,10 @@ if ($festivosJson !== false) {
 $interval = $entrada->diff($salida);
 $noches = $interval->days;
 
+if ($noches < 1) {
+    die("<p>⚠️ Debes seleccionar al menos 1 noche.</p>");
+}
+
 $precioTotal = 0;
 
 // Iterar cada día de la reserva
@@ -85,6 +116,10 @@ for ($i = 0; $i < $noches; $i++) {
 
 // Añadir limpieza
 $precioTotal += $precioLimpieza;
+
+if ($precioTotal <= 0) {
+    die("<p>⚠️ Error al calcular el precio. Inténtalo de nuevo.</p>");
+}
 
 // Segundo form
 echo '<form id="form-confirmar" class="form">';

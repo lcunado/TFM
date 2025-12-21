@@ -21,7 +21,13 @@
           <h3 class="form__title">Escribe tu valoración</h3>
           
           <label for="nombre">Nombre</label>
-          <input type="text" id="nombre" name="nombre" required>
+          <input 
+            type="text" 
+            id="nombre" 
+            name="nombre" 
+            required
+            pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,40}"
+            title="Solo letras y espacios, entre 2 y 40 caracteres">
 
           <div class="form__grid">
             <div class="form__group">
@@ -168,12 +174,22 @@
           </div>
 
           <label for="comentario">Comentario</label>
-          <textarea id="comentario" name="comentario" placeholder="Escribe tu experiencia..."></textarea>
+          <textarea 
+            id="comentario" 
+            name="comentario" 
+            placeholder="Escribe tu experiencia..."
+            required
+            minlength="5"
+            maxlength="500"
+          ></textarea>
 
           <!-- Honeypot oculto -->
           <div style="display:none;">
-            <label>Si eres humano, deja este campo vacío</label>
-            <input type="text" name="hp_field" value="">
+            <label>No rellenar este campo</label>
+            <input 
+              type="text" 
+              name="hp_field_valoraciones" 
+              value="">
           </div>
 
           <div class="button__wrapper">

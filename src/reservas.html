@@ -25,14 +25,36 @@
             <h3 class="form__title">Realizar una reserva</h3>
 
             <label for="entrada">Fecha de entrada</label>
-            <input type="date" id="entrada" name="entrada" required>
+            <input 
+              type="date" 
+              id="entrada" 
+              name="entrada" 
+              required>
 
             <label for="salida">Fecha de salida</label>
-            <input type="date" id="salida" name="salida" required>
+            <input 
+              type="date" 
+              id="salida" 
+              name="salida" 
+              required>
 
             <label for="huespedes">Número de huéspedes</label>
-            <input type="number" id="huespedes" name="huespedes" min="1" required 
+            <input 
+              type="number" 
+              id="huespedes" 
+              name="huespedes" 
+              min="1" 
+              required 
               placeholder="Incluye solo mayores de 4 años">
+
+            <!-- Honeypot oculto -->
+            <div style="display:none;">
+              <label>No rellenar este campo</label>
+              <input 
+                type="text" 
+                name="hp_field_reservas" 
+                value="">
+            </div>
 
             <div class="button__wrapper">
               <button type="submit" class="button">Calcular precio</button>
@@ -45,13 +67,39 @@
             <h3 class="form__title">Cancelar una reserva</h3>
 
             <label for="id">ID de reserva</label>
-            <input type="text" id="id" name="id" required>
+            <input 
+              type="number" 
+              id="id" 
+              name="id" 
+              required min="1">
 
-            <label for="dni">DNI</label>
-            <input type="text" id="dni" name="dni" required>
+            <label for="dni">DNI / Pasaporte</label>
+            <input 
+              type="text" 
+              id="dni" 
+              name="dni" 
+              required
+              pattern="[A-Za-z0-9]{5,20}"
+              title="Introduce un DNI o pasaporte válido (solo letras y números)">
 
             <label for="motivo">Motivo de la cancelación</label>
-            <textarea id="motivo" name="motivo" rows="3" placeholder="Explica brevemente el motivo..." required></textarea>
+            <textarea 
+              id="motivo" 
+              name="motivo" 
+              rows="3" 
+              minlength="5"
+              maxlength="500"
+              placeholder="Explica brevemente el motivo..." 
+              required></textarea>
+
+            <!-- Honeypot oculto -->
+            <div style="display:none;">
+              <label>No rellenar este campo</label>
+              <input 
+                type="text" 
+                name="hp_field_cancelaciones" 
+                value="">
+            </div>
 
             <div class="button__wrapper">
               <button type="submit" class="button">Cancelar reserva</button>
