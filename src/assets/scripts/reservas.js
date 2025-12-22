@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Obtener contenedores
   const form = document.getElementById("form-reserva");
   const resultado = document.getElementById("resultado-precio");
 
@@ -57,6 +58,8 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "POST",
         body: datos
       });
+
+      // Mostrar respuesta
       resultado.innerHTML = await response.text();
       
       // Confirmar reserva (segundo formulario dinámico)
@@ -65,12 +68,15 @@ document.addEventListener("DOMContentLoaded", () => {
         segundoForm.addEventListener("submit", async (ev) => {
           ev.preventDefault();
           const datos2 = new FormData(segundoForm);
-          
+
+          // Envío al servidor
           try {
             const resp2 = await fetch("./insert-reserva.php", {
               method: "POST",
               body: datos2
             });
+
+            // Mostrar la respuesta
             resultado.innerHTML = await resp2.text();
             
             // Limpiar formularios

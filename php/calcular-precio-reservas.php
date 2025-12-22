@@ -4,7 +4,8 @@ session_start();
 require_once "config.php";
 
 // Control Honeypot, si el campo oculto tiene contenido es spam
-if (!empty('hp_field_reservas')) {
+$hp = trim($_POST['hp_field_reservas'] ?? '');
+if (!empty($hp)) {
     die("<p>⚠️ Detección de spam. Petición rechazada.</p>");
 }
 
@@ -19,15 +20,18 @@ if ($tiempoEnvio < 5) {
 $_SESSION['form_start'] = time(); // Reinicio del tiempo
 
 // Validaciones de campos
+// Fechas obligatorias
 if (empty($_POST['entrada']) || empty($_POST['salida'])) {
     die("<p>⚠️ Debes seleccionar fechas válidas.</p>");
 }
 
+// Validar formato YYYY-MM-DD
 if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST['entrada']) ||
     !preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST['salida'])) {
     die("<p>⚠️ Formato de fecha no válido.</p>");
 }
 
+// Validar huéspedes como número entero
 if (!ctype_digit($_POST['huespedes'])) {
     die("<p>⚠️ Número de huéspedes no válido.</p>");
 }
@@ -37,7 +41,7 @@ $entrada   = new DateTime($_POST['entrada']);
 $salida    = new DateTime($_POST['salida']);
 $huespedes = (int)$_POST['huespedes'];
 
-// Fecha actual (solo día sin hora)
+// Fecha actual sin hora
 $hoy = new DateTime();
 $hoy->setTime(0, 0, 0);
 
@@ -104,9 +108,13 @@ for ($i = 0; $i < $noches; $i++) {
     $dia->modify("+$i day");
     $fechaDia = $dia->format('Y-m-d');
 
-    $esFinDeSemana = ($dia->format('N') == 6 || $dia->format('N') == 7); // sábado=6, domingo=7
+    // Fin de semana: sábado (6) o domingo (7)
+    $esFinDeSemana = ($dia->format('N') == 6 || $dia->format('N') == 7); 
+    
+    // Festivo 
     $esFestivo     = in_array($fechaDia, $festivosSet);
 
+    // Precio según tipo de día
     if ($esFinDeSemana || $esFestivo) {
         $precioTotal += $precioSabDom * $huespedes;
     } else {
@@ -114,19 +122,22 @@ for ($i = 0; $i < $noches; $i++) {
     }
 }
 
-// Añadir limpieza
+// Añadir coste de limpieza
 $precioTotal += $precioLimpieza;
 
+// Validación final
 if ($precioTotal <= 0) {
     die("<p>⚠️ Error al calcular el precio. Inténtalo de nuevo.</p>");
 }
 
-// Segundo form
+// Segundo form de confirmación
 echo '<form id="form-confirmar" class="form">';
+
 // Mostrar resultado
 echo "<h2>Resumen de la reserva</h2>";
 echo "<p>Reserva de $noches noches para $huespedes huésped(es).</p>";
 echo "<p>Precio total: <strong>" . number_format($precioTotal, 2, ',', '.') . " €</strong></p>";
+
 // Formulario de datos personales
 echo "<h2>Confirma la reserva</h2>";
 echo '<div class="form__info">';

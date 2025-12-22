@@ -55,73 +55,73 @@ if (!is_numeric($reembolso) || $reembolso < 0) {
 }
 $motivo = htmlspecialchars($motivo, ENT_QUOTES, 'UTF-8');
 
-if ($id_reserva > 0 && !empty($dni)) {
-    // Consultar la reserva
-    $stmtSelect = $conexion->prepare("SELECT nombre, apellidos, email, telefono, num_personas, fecha_entrada, fecha_salida, precio 
-                                      FROM reservas 
-                                      WHERE id = ? AND dni = ?");
-    $stmtSelect->bind_param("is", $id_reserva, $dni);
-    $stmtSelect->execute();
-    $result = $stmtSelect->get_result();
-    $reserva = $result->fetch_assoc();
-    $stmtSelect->close();
+// Consultar la reserva
+$stmtSelect = $conexion->prepare("SELECT nombre, apellidos, email, telefono, num_personas, fecha_entrada, fecha_salida, precio 
+                                    FROM reservas 
+                                    WHERE id = ? AND dni = ?");
+$stmtSelect->bind_param("is", $id_reserva, $dni);
+$stmtSelect->execute();
+$result = $stmtSelect->get_result();
+$reserva = $result->fetch_assoc();
+$stmtSelect->close();
 
-    if ($reserva) {
-        // Guardar datos en variables
-        $nombre      = $reserva['nombre'];
-        $apellidos   = $reserva['apellidos'];
-        $email       = $reserva['email'];
-        $telefono    = $reserva['telefono'];
-        $num_personas= $reserva['num_personas'];
-        $entrada     = $reserva['fecha_entrada'];
-        $salida      = $reserva['fecha_salida'];
-        $precio      = (float)$reserva['precio'];
+// Si existe la reserva
+if ($reserva) {
+    // Guardar datos en variables
+    $nombre      = $reserva['nombre'];
+    $apellidos   = $reserva['apellidos'];
+    $email       = $reserva['email'];
+    $telefono    = $reserva['telefono'];
+    $num_personas= $reserva['num_personas'];
+    $entrada     = $reserva['fecha_entrada'];
+    $salida      = $reserva['fecha_salida'];
+    $precio      = (float)$reserva['precio'];
     
-        // Actualizar el estado de la reserva
-        $stmtDelete = $conexion->prepare("UPDATE reservas SET estado = 'cancelado' WHERE id = ? AND dni = ?");
-        $stmtDelete->bind_param("is", $id_reserva, $dni);
+    // Actualizar el estado de la reserva
+    $stmtDelete = $conexion->prepare("UPDATE reservas SET estado = 'cancelado' WHERE id = ? AND dni = ?");
+    $stmtDelete->bind_param("is", $id_reserva, $dni);
 
-        if ($stmtDelete->execute()) {
-            // Insertar en cancelaciones
-            $estadoCancelacion = ($reembolso > 0) ? 'pendiente' : 'no_reembolsable';
-            $stmtCancel = $conexion->prepare("INSERT INTO cancelaciones 
+    if ($stmtDelete->execute()) {
+        // Insertar en cancelaciones
+        $estadoCancelacion = ($reembolso > 0) ? 'pendiente' : 'no_reembolsable';
+        $stmtCancel = $conexion->prepare("INSERT INTO cancelaciones 
                 (id_reserva, fecha_cancelacion, importe_pagado, importe_reembolsar, motivo, estado_cancelacion) 
                 VALUES (?, NOW(), ?, ?, ?, ?)");
-            $stmtCancel->bind_param("iddss", $id_reserva, $precio, $reembolso, $motivo, $estadoCancelacion);
-            $stmtCancel->execute();
-            $stmtCancel->close();
+        $stmtCancel->bind_param("iddss", $id_reserva, $precio, $reembolso, $motivo, $estadoCancelacion);
+        $stmtCancel->execute();
+        $stmtCancel->close();
 
-            echo "<p>✅ Reserva cancelada correctamente. Consulta tu correo.</p>";
-            echo "<p>Se reembolsarán <strong>{$reembolso} €</strong>.</p>";
+        echo "<p>✅ Reserva cancelada correctamente. Consulta tu correo.</p>";
+        echo "<p>Se reembolsarán <strong>{$reembolso} €</strong>.</p>";
 
-            // Enviar correos
-            $mail = new PHPMailer(true);
+        // Enviar correos
+        $mail = new PHPMailer(true);
 
-            try {
-                // Configuración SMTP
-                $mail->isSMTP();
-                $mail->Host       = 'smtp.gmail.com';   // Servidor SMTP de gmail
-                $mail->SMTPAuth   = true;
-                $mail->Username   = $propietarioEmail;   
-                $mail->Password   = $propietarioPassword;    
-                $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
-                $mail->Port       = 587;
+        try {
+            // Configuración SMTP
+            $mail->isSMTP();
+            $mail->Host       = 'smtp.gmail.com';   // Servidor SMTP de gmail
+            $mail->SMTPAuth   = true;
+            $mail->Username   = $propietarioEmail;   
+            $mail->Password   = $propietarioPassword;    
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port       = 587;
 
-                // Remitente
-                $mail->setFrom($propietarioEmail, 'Reservas Piso Turistico');
+            // Remitente
+            $mail->setFrom($propietarioEmail, 'Reservas Piso Turistico');
 
-                // Correo al usuario
-                $mail->addAddress($email, $nombre);
-                $mail->Subject = "Cancelación de Reserva";
-                $mail->isHTML(true);
+            // Correo al usuario
+            $mail->addAddress($email, $nombre);
+            $mail->Subject = "Cancelación de Reserva";
+            $mail->isHTML(true);
 
-                $mail->Body = "
-                    <html>
-                        <body style='font-family: Arial, sans-serif; color: #333;'>
-                            <h2>Hola $nombre,</h2>
-                            <p>Tu reserva con ID <strong>$id_reserva</strong> ha sido <span style='color:red;'>cancelada</span>.</p>
+            $mail->Body = "
+                <html>
+                    <body style='font-family: Arial, sans-serif; color: #333;'>
+                        <h2>Hola $nombre,</h2>
+                        <p>Tu reserva con ID <strong>$id_reserva</strong> ha sido <span style='color:red;'>cancelada</span>.</p>
 
-                            <table style='border-collapse: collapse; margin: 20px 0; width: 100%;'>
+                        <table style='border-collapse: collapse; margin: 20px 0; width: 100%;'>
                             <tr style='background-color: #f6f2f2;'>
                                 <td style='padding: 8px; border: 1px solid #ccc;'><strong>Cliente:</strong></td>
                                 <td style='padding: 8px; border: 1px solid #ccc;'>$nombre $apellidos</td>
@@ -158,28 +158,28 @@ if ($id_reserva > 0 && !empty($dni)) {
                                 <td style='padding: 8px; border: 1px solid #ccc;'><strong>Motivo:</strong></td>
                                 <td style='padding: 8px; border: 1px solid #ccc;'>$motivo</td>
                             </tr>
-                            </table>
+                        </table>
 
-                            <p>Si el pago se realizó correctamente, recibirá el reembolso en la misma cuenta.</p>
-                            <p style='margin-top: 30px;'>Sentimos las molestias y esperamos verte pronto.</p>
-                        </body>
-                    </html>
-                ";
-                $mail->send();
+                        <p>Si el pago se realizó correctamente, recibirá el reembolso en la misma cuenta.</p>
+                        <p style='margin-top: 30px;'>Sentimos las molestias y esperamos verte pronto.</p>
+                    </body>
+                </html>
+            ";
+            $mail->send();
 
-                // Correo al propietario
-                $mail->clearAddresses();
-                $mail->addAddress($propietarioEmail);
-                $mail->Subject = "Reserva Cancelada";
-                $mail->isHTML(true);
+            // Correo al propietario
+            $mail->clearAddresses();
+            $mail->addAddress($propietarioEmail);
+            $mail->Subject = "Reserva Cancelada";
+            $mail->isHTML(true);
 
-                $mail->Body = "
-                    <html>
-                        <body style='font-family: Arial, sans-serif; color: #333;'>
-                            <h2>Reserva Cancelada</h2>
-                            <p>Se ha cancelado la siguiente reserva:</p>
+            $mail->Body = "
+                <html>
+                    <body style='font-family: Arial, sans-serif; color: #333;'>
+                        <h2>Reserva Cancelada</h2>
+                        <p>Se ha cancelado la siguiente reserva:</p>
 
-                            <table style='border-collapse: collapse; margin: 20px 0; width: 100%;'>
+                        <table style='border-collapse: collapse; margin: 20px 0; width: 100%;'>
                             <tr style='background-color: #f6f2f2;'>
                                 <td style='padding: 8px; border: 1px solid #ccc;'><strong>ID de reserva:</strong></td>
                                 <td style='padding: 8px; border: 1px solid #ccc;'>$id_reserva</td>
@@ -220,26 +220,23 @@ if ($id_reserva > 0 && !empty($dni)) {
                                 <td style='padding: 8px; border: 1px solid #ccc;'><strong>Motivo:</strong></td>
                                 <td style='padding: 8px; border: 1px solid #ccc;'>$motivo</td>
                             </tr>
-                            </table>
-                        </body>
-                    </html>
-                ";
-                $mail->send();
+                        </table>
+                    </body>
+                </html>
+            ";
+            $mail->send();
 
-            } catch (Exception $e) {
-                echo "<p>⚠️ Error al enviar correos: {$mail->ErrorInfo}</p>";
-            }
-
-        } else {
-            echo "<p>⚠️ Error al cancelar la reserva: " . $stmtDelete->error . "</p>";
+        } catch (Exception $e) {
+            echo "<p>⚠️ Error al enviar correos: {$mail->ErrorInfo}</p>";
         }
 
-        $stmtDelete->close();
     } else {
-        echo "<p>⚠️ No se encontró ninguna reserva con esos datos.</p>";
+        echo "<p>⚠️ Error al cancelar la reserva: " . $stmtDelete->error . "</p>";
     }
+
+    $stmtDelete->close();
 } else {
-    echo "<p>⚠️ Datos de cancelación incompletos.</p>";
+    echo "<p>⚠️ No se encontró ninguna reserva con esos datos.</p>";
 }
 
 $conexion->close();

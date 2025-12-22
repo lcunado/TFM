@@ -6,14 +6,16 @@
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" type="text/css" href="./assets/styles/main.scss"><!-- do not remove this line! -->
-    <title>Alquiler de Piso Turístico en Burgos</title>
+    <title>Alquiler de Piso Turístico en Burgos Contacto</title>
     <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
     
   </head>
   <body>
+    <!-- Header reutilizable -->
     <include src="./views/header.html"></include>
 
+    <!-- Bloque de contacto directo -->
     <section class="bloque">
       <div class="bloque__container">
         <h2 class="bloque__title">Contacto directo</h2>
@@ -21,11 +23,13 @@
       </div>
     </section>
 
+    <!-- Formulario de contacto -->
     <section class="bloque">
       <div class="bloque__container">
         <h2 class="bloque__title">Envíanos un mensaje</h2>
         <form class="form" id="contact-form">
 
+          <!-- Nombre -->
           <label for="nombre">Nombre</label>
           <input 
             type="text" 
@@ -35,6 +39,7 @@
             pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,40}"
             title="Solo letras y espacios, entre 2 y 40 caracteres">
 
+          <!-- Correo -->
           <label for="correo">Correo electrónico</label>
           <input 
             type="email" 
@@ -42,6 +47,7 @@
             name="correo" 
             required>
 
+          <!-- Mensaje -->
           <label for="mensaje">Mensaje</label>
           <textarea 
             id="mensaje" 
@@ -60,16 +66,23 @@
               value="">
           </div>
 
+          <!-- Botón Enviar -->
           <div class="button__wrapper">
             <button type="submit" class="button">Enviar</button>
           </div>
 
         </form>
+
+        <!-- Respuesta del servidor -->
         <div id="contact-response"></div>
       </div>
+
     </section>
 
+    <!-- Footer reutilizable -->
     <include src="./views/footer.html"></include>
+
+    <!-- Scripts -->
     <script type="module" src="./assets/scripts/contacto.js"></script>
     <script type="module" src="./assets/scripts/main.js"></script><!-- do not remove this line! -->
     <script type="module" src="../config/config-render.js"></script>

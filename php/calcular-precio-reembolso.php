@@ -48,6 +48,7 @@ $stmt->bind_param("is", $id_reserva, $dni);
 $stmt->execute();
 $resultado = $stmt->get_result();
 
+// Error si no existe la reserva
 if ($resultado->num_rows === 0) {
     die("<p>⚠️ No se encontró ninguna reserva con ese ID y DNI.</p>");
 }
@@ -60,22 +61,22 @@ $precioOriginal = (float)$reserva['precio'];
 $fechaEntrada   = new DateTime($reserva['fecha_entrada']);
 $hoy            = new DateTime();
 
-// Ya cancelada
+// Error si ya está cancelada
 if ($reserva['estado'] === 'cancelado') {
     die("<p>⚠️ La reserva con ID {$reserva['id']} ya está cancelada.</p>");
 }
 
-// Ya disfrutada o en curso
+// Error si ya está disfrutada o en curso
 if ($fechaEntrada < $hoy) {
     die("<p>⚠️ La reserva con ID {$reserva['id']} ya ha comenzado o finalizado y no puede cancelarse.</p>");
 }
 
 // Calcular el reembolso
 if ($reserva['estado'] !== 'pagado') {
-    $reembolso = 0;
+    $reembolso = 0; // // Solo las reservas pagadas generan reembolso
 } else {
-    $diffDias = $hoy->diff($fechaEntrada)->days;
-
+    $diffDias = $hoy->diff($fechaEntrada)->days; // Días de diferencia entre hoy y la fecha de entrada
+    // Política de reembolso
     if ($diffDias >= 7) {
         $reembolso = $precioOriginal;
     } else {

@@ -9,9 +9,9 @@ leoProfanity.add(["mierda", "joder", "puta", "cabron", "coño", "gilipollas"]);
 // Guardar tiempo de inicio
 let inicio = Date.now();
 
+// Obtener el contenedor
 document.getElementById("valoracion-form").addEventListener("submit", function(event) {
     event.preventDefault();
-
     let formData = new FormData(this);
 
     // Validaciones
@@ -54,7 +54,7 @@ document.getElementById("valoracion-form").addEventListener("submit", function(e
         formData.set("comentario", leoProfanity.clean(comentario));
     }
     
-    // Envío
+    // Envío al servidor
     fetch("insert-valoracion.php", {
         method: "POST",
         body: formData
@@ -73,13 +73,15 @@ document.getElementById("valoracion-form").addEventListener("submit", function(e
     .catch(error => console.error("⚠️ Error:", error));
 });
 
+// Función para cargar valoraciones
 function cargarValoraciones(mostrarTodas = false) {
+    // Si mostarTodas es true, se cargan todas
     let url = mostrarTodas ? "get-valoraciones.php?todas=true" : "get-valoraciones.php";
 
     fetch(url)
         .then(response => response.text())
         .then(html => {
-            // Sustituir el contenido del bloque por el HTML que devuelve PHP
+            // Insertar el HTML generado por PHP
             document.getElementById("valoraciones-container").innerHTML = html;
 
             // Si existe el botón "Mostrar todas", añadir el event listener

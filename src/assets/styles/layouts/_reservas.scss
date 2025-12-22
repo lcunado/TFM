@@ -10,6 +10,12 @@
 
     @media screen and (max-width: v.$max-width) {
       grid-template-columns: 1fr;
+
+      // Orden correcto en móvil
+      #form-reserva { order: 1; }
+      #resultado-precio { order: 2; }
+      #form-cancel { order: 3; }
+      #resultado-precio-cancel { order: 4; }
     }
   }
 

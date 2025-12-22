@@ -7,11 +7,12 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="./assets/styles/main.scss"><!-- do not remove this line! -->
-    <title>Alquiler de Piso Turístico en Burgos</title>
+    <title>Alquiler de Piso Turístico en Burgos Reservas</title>
     <link rel="icon" href="./assets/images/favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
   </head>
   <body>
+    <!-- Header reutilizable -->
     <include src="./views/header.html"></include>
     
     <section class="bloque">
@@ -24,6 +25,7 @@
           <form id="form-reserva" class="form">
             <h3 class="form__title">Realizar una reserva</h3>
 
+            <!-- Fecha de entrada -->
             <label for="entrada">Fecha de entrada</label>
             <input 
               type="date" 
@@ -31,6 +33,7 @@
               name="entrada" 
               required>
 
+            <!-- Fecha de salida -->
             <label for="salida">Fecha de salida</label>
             <input 
               type="date" 
@@ -38,6 +41,7 @@
               name="salida" 
               required>
 
+            <!-- Número de huéspedes -->
             <label for="huespedes">Número de huéspedes</label>
             <input 
               type="number" 
@@ -56,6 +60,7 @@
                 value="">
             </div>
 
+            <!-- Botón Calcular precio -->
             <div class="button__wrapper">
               <button type="submit" class="button">Calcular precio</button>
             </div>
@@ -66,6 +71,7 @@
           <form id="form-cancel" class="form">
             <h3 class="form__title">Cancelar una reserva</h3>
 
+            <!-- ID de reserva -->
             <label for="id">ID de reserva</label>
             <input 
               type="number" 
@@ -73,6 +79,7 @@
               name="id" 
               required min="1">
 
+            <!-- DNI / Pasaporte -->
             <label for="dni">DNI / Pasaporte</label>
             <input 
               type="text" 
@@ -82,6 +89,7 @@
               pattern="[A-Za-z0-9]{5,20}"
               title="Introduce un DNI o pasaporte válido (solo letras y números)">
 
+            <!-- Motivo de cancelación -->
             <label for="motivo">Motivo de la cancelación</label>
             <textarea 
               id="motivo" 
@@ -101,24 +109,27 @@
                 value="">
             </div>
 
+            <!-- Botón -->
             <div class="button__wrapper">
               <button type="submit" class="button">Cancelar reserva</button>
             </div>
             
-            <p class="form__info form__cancelacion"></p>
           </form>
 
-          <!-- Formulario de confirmación de reserva -->
+          <!-- Respuesta del servidor con formulario de confirmación de reserva -->
           <div id="resultado-precio" class="form__info"></div>
 
-          <!-- Formulario de confirmación de cancelación -->
+          <!-- Respuesta del servidor con formulario de confirmación de cancelación -->
           <div id="resultado-precio-cancel" class="form__info"></div>
 
         </div>
       </div>
     </section>
     
+    <!-- Footer reutilizable -->
     <include src="./views/footer.html"></include>
+
+    <!-- Scripts -->
     <script type="module" src="./assets/scripts/reservas.js"></script>
     <script type="module" src="./assets/scripts/cancel-reserva.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/fullcalendar@6.1.8/index.global.min.js"></script>

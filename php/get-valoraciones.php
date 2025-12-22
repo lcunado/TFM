@@ -1,6 +1,7 @@
 <?php
 require_once "config.php";
 
+// Saber si el usuario pidió ver todas las valoraciones
 $todas = isset($_GET['todas']) && $_GET['todas'] === "true";
 
 // Consulta: 3 últimas o todas
@@ -13,13 +14,19 @@ if ($todas) {
 $result = $conexion->query($sql);
 
 // Calcular total y media general
+// Del número de valoraciones (c) obtiene la media
 $totalRes = $conexion->query("SELECT COUNT(*) AS c, AVG(general) AS media FROM valoraciones");
+// Convierte en array c y media
 $stats = $totalRes->fetch_assoc();
-$total = (int)$stats["c"];
-$media = $stats["media"] ? round($stats["media"], 2) : 0;
+// Convierte c a número entero
+$total = (int)$stats["c"]; 
+// Calcula la media redondeada a dos decimales
+$media = $stats["media"] ? round($stats["media"], 2) : 0; 
 
+// Título con resumen general
 echo "<h2>Valoraciones de nuestros huéspedes - ⭐ $media/5 ($total valoraciones)</h2>";
 
+// Mostrar lista
 if ($result && $result->num_rows > 0) {
     while ($row = $result->fetch_assoc()) {
         echo '<div class="valoraciones__item">';

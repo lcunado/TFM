@@ -11,15 +11,18 @@
     <link rel="shortcut icon" href="./assets/images/favicon.ico" type="image/x-icon">
   </head>
   <body>
+    <!-- Header reutilizable -->
     <include src="./views/header.html"></include>
     
     <section class="bloque">
       <div class="bloque__container">
         <h2 class="bloque__title">Valoraciones</h2>
 
+        <!-- Formulario valoraciones -->
         <form class="form" id="valoracion-form">
           <h3 class="form__title">Escribe tu valoración</h3>
           
+          <!-- Nombre -->
           <label for="nombre">Nombre</label>
           <input 
             type="text" 
@@ -29,6 +32,7 @@
             pattern="[A-Za-zÁÉÍÓÚáéíóúÑñ\s]{2,40}"
             title="Solo letras y espacios, entre 2 y 40 caracteres">
 
+          <!-- General -->
           <div class="form__grid">
             <div class="form__group">
               <label for="general" class="form__label">Valoración general</label>
@@ -51,6 +55,7 @@
             </div>
           </div>
 
+          <!-- Limpieza -->
           <div class="form__grid">
             <div class="form__group">
               <label for="limpieza" class="form__label">Limpieza</label>
@@ -72,6 +77,7 @@
               </div>
             </div>
 
+            <!-- Veracidad -->
             <div class="form__group">
               <label for="veracidad" class="form__label">Veracidad</label>
               <div class="form__stars">
@@ -91,7 +97,8 @@
                 <label for="veracidad-1" title="1 estrella">★</label>
               </div>
             </div>
-              
+            
+            <!-- Llegada -->
             <div class="form__group">
               <label for="llegada" class="form__label">Llegada</label>
               <div class="form__stars">
@@ -112,6 +119,7 @@
               </div>
             </div>
 
+            <!-- Comunicación -->
             <div class="form__group">
               <label for="comunicacion" class="form__label">Comunicación</label>
               <div class="form__stars">
@@ -132,6 +140,7 @@
               </div>
             </div>
 
+            <!-- Ubicación -->
             <div class="form__group">
               <label for="ubicacion" class="form__label">Ubicación</label>
               <div class="form__stars">
@@ -152,6 +161,7 @@
               </div>
             </div>
 
+            <!-- Calidad -->
             <div class="form__group">
               <label for="calidad" class="form__label">Calidad</label>
               <div class="form__stars">
@@ -173,6 +183,7 @@
             </div>
           </div>
 
+          <!-- Comentario -->
           <label for="comentario">Comentario</label>
           <textarea 
             id="comentario" 
@@ -192,22 +203,29 @@
               value="">
           </div>
 
+          <!-- Botón -->
           <div class="button__wrapper">
             <button type="submit" class="button">Enviar valoración</button>
           </div>
             
         </form>
+
+        <!-- Respuesta del servidor -->
         <div id="valoracion-mensaje" class="form__info"></div>
       </div>
     </section>
 
+    <!-- Bloque leer valoraciones -->
     <section class="bloque" id="valoraciones-lista">
       <div class="bloque__container">
         <div id="valoraciones-container"></div>
       </div>
     </section>
 
+    <!-- Footer reutilizable -->
     <include src="./views/footer.html"></include>
+
+    <!-- Scripts -->
     <script type="module" src="./assets/scripts/main.js"></script><!-- do not remove this line! -->
     <script type="module" src="./assets/scripts/valoraciones.js"></script>
     <script type="module" src="../config/config-render.js"></script>

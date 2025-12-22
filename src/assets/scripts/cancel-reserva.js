@@ -1,4 +1,5 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Obtener los contenedores
   const form = document.getElementById("form-cancel");
   const resultado = document.getElementById("resultado-precio-cancel");
 
@@ -45,27 +46,32 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Petición
+    // Petición al servidor
     try {
       const response = await fetch("./calcular-precio-reembolso.php", {
         method: "POST",
         body: datos
       });
+      //Mostrar respuesta
       resultado.innerHTML = await response.text();
 
       // Confirmar cancelación (segundo formulario dinámico)
       const segundoForm = document.getElementById("form-cancelar");
 
       if (segundoForm) {
+        // Evento para confirmar la cancelación
         segundoForm.addEventListener("submit", async (ev) => {
           ev.preventDefault();
           const datos2 = new FormData(segundoForm);
-
+          
+          //Petición al servidor
           try {
             const resp2 = await fetch("./cancel-reserva.php", {
               method: "POST",
               body: datos2
             });
+            
+            // Mostrar respuesta
             resultado.innerHTML = await resp2.text();
             
             // Limpiar formularios

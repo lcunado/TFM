@@ -1,7 +1,7 @@
 document.addEventListener("DOMContentLoaded", () => {
+  // Obtener los contenedores
   const form = document.getElementById("contact-form");
   const responseBox = document.getElementById("contact-response");
-
   if (!form) return;
 
   // Tiempo anti‑spam
@@ -34,13 +34,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Honeypot
+    // Control Honeypot, si el campo oculto tiene contenido es spam
     if (formData.get("hp_field_contacto")) {
       responseBox.innerHTML = "<p>⚠️ Detección de spam. Envío bloqueado.</p>";
       return;
     }
 
-    // Tiempo mínimo
+    // Control tiempo, si tarda menos de 5 segundos es sospechoso
     const tiempo = Date.now() - inicio;
     if (tiempo < 5000) {
       responseBox.innerHTML = "<p>⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.</p>";
