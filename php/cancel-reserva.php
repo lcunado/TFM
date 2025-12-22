@@ -112,7 +112,7 @@ if ($reserva) {
 
             // Correo al usuario
             $mail->addAddress($email, $nombre);
-            $mail->Subject = "Cancelación de Reserva";
+            $mail->Subject = "Reserva Cancelada";
             $mail->isHTML(true);
 
             $mail->Body = "

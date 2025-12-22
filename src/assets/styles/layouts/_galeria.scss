@@ -32,3 +32,50 @@
     color: v.$color-text;
   }
 }
+
+.visor {
+  position: fixed;
+  inset: 0;
+  background: v.$color-visor-overlay;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  cursor: zoom-out;
+
+  &__image {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 8px;
+  }
+
+  &__arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: v.$color-arrow-background;
+    border: none;
+    color: v.$color-background;
+    font-size: 3rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: v.$color-arrow-background-hover;
+    }
+
+    &--left {
+      left: 20px;
+    }
+
+    &--right {
+      right: 20px;
+    }
+  }
+}
+
+.hidden {
+  display: none;
+}

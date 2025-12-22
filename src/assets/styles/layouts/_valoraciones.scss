@@ -2,41 +2,41 @@
 
 .valoraciones {
   margin-top: 20px;
-}
 
-.valoraciones__item {
-  border: 2px solid #ccc;
-  padding: 2rem;
-  margin-bottom: 20px;
-  border-radius: 8px;
-  background-color: v.$color-form;
-  box-shadow: 0 2px 6px v.$color-shadow;
-}
+  &__item {
+    border: 2px solid #ccc;
+    padding: 2rem;
+    margin-bottom: 20px;
+    border-radius: 8px;
+    background-color: v.$color-form;
+    box-shadow: 0 2px 6px v.$color-shadow;
+  }
 
-.valoraciones__title {
-  font-size: 18px;
-  font-weight: bold;
-}
+  &__title {
+    font-size: 18px;
+    font-weight: bold;
+  }
 
-.valoraciones__date {
-  font-weight: normal;
-  color: v.$color-comment-date;
-}
+  &__date {
+    font-weight: normal;
+    color: v.$color-comment-date;
+  }
 
-.valoraciones__detail {
-  margin: 5px 0;
-}
+  &__detail {
+    margin: 5px 0;
+  }
 
-.valoraciones__comment {
-  font-style: italic;
-  color: v.$color-comment;
-}
+  &__comment {
+    font-style: italic;
+    color: v.$color-comment;
+  }
 
-.valoraciones__empty {
-  color: v.$color-comment-empty;
-  font-style: italic;
-}
+  &__empty {
+    color: v.$color-comment-empty;
+    font-style: italic;
+  }
 
-#valoraciones-container {
-  width: 100%;
+  &__container {
+    width: 100%;
+  }
 }

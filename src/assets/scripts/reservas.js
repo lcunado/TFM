@@ -13,14 +13,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Validación de campos
     // Fecha de entrada
-    const entrada = datos.get("fecha_entrada");
+    const entrada = datos.get("entrada");
     if (!entrada) {
       resultado.innerHTML = "<p>⚠️ Debes seleccionar una fecha de entrada.</p>";
       return;
     }
 
     // Fecha de salida
-    const salida = datos.get("fecha_salida");
+    const salida = datos.get("salida");
     if (!salida) {
       resultado.innerHTML = "<p>⚠️ Debes seleccionar una fecha de salida.</p>";
       return;
@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // Número de huéspedes
-    const huespedes = datos.get("num_personas");
+    const huespedes = datos.get("huespedes");
     if (!/^[0-9]+$/.test(huespedes) || huespedes < 1 ) {
       resultado.innerHTML = "<p>⚠️ Debes seleccionar un número de huéspedes correcto.</p>";
       return;
