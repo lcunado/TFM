@@ -1,4 +1,4 @@
-// Número máximo de fotos 
+// Número de fotos 
 const totalFotos = 16; 
 
 // Contenedor principal donde se insertarán las imágenes
