@@ -4,9 +4,9 @@
   margin-top: 20px;
 
   &__item {
-    border: 2px solid #ccc;
-    padding: 2rem;
     margin-bottom: 20px;
+    padding: 2rem;
+    border: 2px solid #ccc;
     border-radius: 8px;
     background-color: v.$color-form;
     box-shadow: 0 2px 6px v.$color-shadow;
@@ -18,8 +18,8 @@
   }
 
   &__date {
-    font-weight: normal;
     color: v.$color-comment-date;
+    font-weight: normal;
   }
 
   &__detail {
@@ -27,8 +27,8 @@
   }
 
   &__comment {
-    font-style: italic;
     color: v.$color-comment;
+    font-style: italic;
   }
 
   &__empty {

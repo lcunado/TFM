@@ -4,13 +4,74 @@
     "stylelint-config-standard-scss" 
   ], 
   "plugins": [ 
-    "stylelint-scss" 
+    "stylelint-scss",
+    "stylelint-order" 
   ], 
   "rules": { 
     "selector-class-pattern": "^[a-z0-9]+(?:__[a-z0-9]+)*(?:--[a-z0-9]+)*$",
     "no-descending-specificity": null, 
     "scss/at-rule-no-unknown": true, 
     "color-hex-length": "short", 
-    "block-no-empty": true 
+    "block-no-empty": true,
+    "order/properties-order": [ 
+      [ 
+        "position", 
+        "top", 
+        "right", 
+        "bottom", 
+        "left", 
+        "z-index", 
+        "display", 
+        "flex", 
+        "flex-direction", 
+        "flex-wrap", 
+        "justify-content", 
+        "align-items", 
+        "align-content", 
+        "gap", 
+        "width", 
+        "min-width", 
+        "max-width", 
+        "height", 
+        "min-height", 
+        "max-height", 
+        "margin", 
+        "margin-top", 
+        "margin-right", 
+        "margin-bottom", 
+        "margin-left", 
+        "padding", 
+        "padding-top", 
+        "padding-right", 
+        "padding-bottom", 
+        "padding-left", 
+        "border", 
+        "border-radius", 
+        "border-width", 
+        "border-style", 
+        "border-color", 
+        "background", 
+        "background-color", 
+        "background-image", 
+        "background-size", 
+        "background-position", 
+        "background-repeat", 
+        "color", 
+        "font", 
+        "font-size", 
+        "font-weight", 
+        "font-family", 
+        "line-height", 
+        "text-align", 
+        "box-shadow", 
+        "opacity", 
+        "overflow", 
+        "cursor", 
+        "transition" 
+      ], 
+      { 
+        "unspecified": "bottomAlphabetical" 
+      }
+    ]
   } 
 }

@@ -1,9 +1,9 @@
 @use "../variables" as v;
 
 .footer {
+  padding: 2rem 1rem;
   background-color: v.$color-footer;
   color: v.$color-footer-text;
-  padding: 2rem 1rem;
   text-align: center;
 
   &__container {
@@ -26,9 +26,9 @@
   }
 
   &__title {
-    font-size: 1.2rem;
     margin-bottom: 0.5rem;
     color: v.$color-background;
+    font-size: 1.2rem;
   }
 
   &__text {

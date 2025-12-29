@@ -2,16 +2,16 @@
 
 .button {
   display: inline-block;
+  width: auto;
   padding: 0.75rem 1.5rem;
-  background-color: v.$color-component;
-  color: v.$color-background;
-  text-decoration: none;
   border: 2px solid v.$color-component-border;
   border-radius: 5px;
+  background-color: v.$color-component;
+  color: v.$color-background;
   font-weight: bold;
   transition: background-color 0.3s;
-  width: auto;
-
+  text-decoration: none;
+  
   &__wrapper {
     display: flex;
     justify-content: center;

@@ -10,35 +10,36 @@
   display: flex;
   flex-direction: column;
   gap: 1rem;
-  background-color: v.$color-form;
+  width: 100%;
   padding: 2rem;
   border-radius: 8px;
+  background-color: v.$color-form;
   box-shadow: 0 2px 6px v.$color-shadow;
-  width: 100%;
+  
 
   &__title {
-    font-size: 1.5rem;
     margin-bottom: 1rem;
+    font-size: 1.5rem;
   }
 
   label {
-    font-weight: bold;
     font-size: 0.95rem;
+    font-weight: bold;
   }
 
   input,
   select,
   textarea {
+    width: 100%;
     padding: 0.5rem;
     border: 1px solid v.$color-footer-text;
     border-radius: 4px;
     font-size: 1rem;
-    width: 100%;
   }
 
   textarea {
-    resize: vertical;
     min-height: 100px;
+    resize: vertical;
   }
 
   &__group {
@@ -48,9 +49,9 @@
 
   &__grid {
     display: grid;
+    gap: 1.5rem;
     width: 100%;
     grid-template-columns: 1fr 1fr;
-    gap: 1.5rem;
 
     @media screen and (max-width: v.$max-width) {
       grid-template-columns: 1fr;
@@ -67,8 +68,8 @@
     }
 
     label {
-      font-size: 2rem;
       color: v.$color-star-grey;
+      font-size: 2rem;
       cursor: pointer;
       transition: color 0.2s;
     }

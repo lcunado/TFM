@@ -3,10 +3,10 @@
 .icon {
   &__grid {
     display: grid;
-    width: 100%;
-    grid-template-columns: 1fr 1fr;
     gap: 1.5rem;
+    width: 100%;
     margin-top: 2rem;
+    grid-template-columns: 1fr 1fr;
 
     @media screen and (max-width: v.$max-width) {
       grid-template-columns: 1fr;
@@ -21,8 +21,8 @@
 
     i {
       width: 40px;
-      font-size: 1.5rem;
       color: v.$color-component;
+      font-size: 1.5rem;
     }
 
     span {

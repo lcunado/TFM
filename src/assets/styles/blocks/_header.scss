@@ -1,29 +1,29 @@
 @use "../variables" as v;
 
 .header {
-  background-color: v.$color-background;
-  padding: 1rem 2rem;
   position: relative;
   z-index: 1000; // asegura que el header esté por encima
+  padding: 1rem 2rem;
+  background-color: v.$color-background;
 
   &__container {
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
   }
 
   &__logo img {
-    height: 64px; 
     width: auto;
+    height: 64px; 
   }
 
   /* Botón hamburguesa */
   &__toggle {
     display: none; // oculto en escritorio
-    background: none;
     border: none;
-    font-size: 1.8rem;
+    background: none;
     color: v.$color-component;
+    font-size: 1.8rem;
     cursor: pointer;
 
     @media screen and (max-width: v.$max-width) {
@@ -40,13 +40,13 @@
       position: absolute;
       top: 100%;
       left: 0;
-      width: 100%;
-      background-color: v.$color-background;
+      z-index: 1001;
+      display: none;
       flex-direction: column;
       align-items: flex-start;
+      width: 100%;
       padding: 1rem;
-      display: none;
-      z-index: 1001;
+      background-color: v.$color-background;
     }
 
     &.active {
@@ -55,11 +55,11 @@
   }
 
   &__list {
-    list-style: none;
     display: flex;
     gap: 2rem;
     margin: 0;
     padding: 0;
+    list-style: none;
 
     @media screen and (max-width: v.$max-width) {
       flex-direction: column;
@@ -70,24 +70,24 @@
 
   &__link {
     color: v.$color-component;
-    text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
-
+    text-decoration: none;
+    
     &:hover {
       color: v.$color-component-hover;
     }
   }
 
   &__translate {
-    margin-left: 2rem;
     display: flex;
     align-items: center;
-
+    margin-left: 2rem;
+    
     @media screen and (max-width: v.$max-width) {
-      margin: 1rem 0 0;
-      width: 100%;
       justify-content: flex-start;
+      width: 100%;
+      margin: 1rem 0 0;
     }
   }
 }
