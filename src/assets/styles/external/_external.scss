@@ -1,0 +1,28 @@
+@use "../variables" as v;
+
+/* Estilos del combo de Google Translate */
+.goog-te-combo {
+  padding: 6px 12px;
+  border-radius: 4px;
+  border: 1px solid v.$color-background;
+  font-family: inherit;
+  font-size: 14px;
+  background-color: v.$color-component;
+  color: v.$color-background;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.goog-te-combo:hover {
+  background-color: v.$color-component-hover;
+}
+
+/* Ajustes específicos para FullCalendar */
+.fc .fc-daygrid-day-frame {
+  max-height: 60px;   
+}
+
+.fc .fc-daygrid-day-number {
+  font-size: 0.8rem;  
+  padding: 1px;
+}

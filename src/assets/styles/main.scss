@@ -25,6 +25,11 @@
 @use "components/link";
 
 /**
+ * Import externals
+ */
+ @use "external/external";
+
+/**
  * Import layouts
  * It's a best practice to use a different partial for each page
  */

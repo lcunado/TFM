@@ -1,0 +1,7 @@
+node_modules
+vendor
+*.css
+*.min.css
+*.min.scss
+*.map
+src/assets/styles/external/_external.scss

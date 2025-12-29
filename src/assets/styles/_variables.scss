@@ -1,34 +1,25 @@
 @use "sass:color";
 
-$font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-  "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+$font-family-sans-serif: -apple-system, blinkmacsystemfont, "Segoe UI", roboto,
+  "Helvetica Neue", arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
   "Segoe UI Symbol";
 $font-family-serif: "Georgia", "Times New Roman", serif;
-
-$color-background: #ffffff;
-$color-text: #333333;
-
+$color-background: #fff;
+$color-text: #333;
 $color-component: #2E7D32;
 $color-component-hover: #1B5E20;
-$color-component-border: #000000;
-
-$color-footer: #000000;
-$color-footer-text: #CCCCCC;
-
+$color-component-border: #000;
+$color-footer: #000;
+$color-footer-text: #CCC;
 $color-form: #f6f2f2;
-
 $color-star-yellow: #f1d628;
-$color-star-grey: #CCCCCC;
-
-$color-shadow: rgba(0, 0, 0, 0.2);
-$color-overlay: rgba(0, 0, 0, 0.5);
-
+$color-star-grey: #CCC;
+$color-shadow: rgb(0 0 0 / 20%);
+$color-overlay: rgb(0 0 0 / 50%);
 $color-comment: #444;
 $color-comment-date: #666;
 $color-comment-empty: #999;
-
-$color-visor-overlay: rgba(0, 0, 0, 0.8);
-$color-arrow-background: rgba(255,255,255,0.2);
-$color-arrow-background-hover: rgba(255,255,255,0.4);
-
+$color-visor-overlay: rgb(0 0 0 / 80%);
+$color-arrow-background: rgb(255 255 255 / 20%);
+$color-arrow-background-hover: rgb(255 255 255 / 40%);
 $max-width: 768px;
