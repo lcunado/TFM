@@ -1,3 +1,4 @@
+import { cargarConfig } from "./config.js";
 import leoProfanity from "leo-profanity";
 
 // Cargar diccionario español
@@ -8,6 +9,30 @@ leoProfanity.add(["mierda", "joder", "puta", "cabron", "coño", "gilipollas"]);
 
 // Guardar tiempo de inicio
 let inicio = Date.now();
+
+// Esperar a que el DOM esté listo
+document.addEventListener("DOMContentLoaded", async () => { 
+    try { 
+        const CONFIG = await cargarConfig(); 
+        // Dirección 
+        const footerDireccion = document.querySelector(".footer__direccion"); 
+        if (footerDireccion) { 
+            footerDireccion.innerHTML = CONFIG.direccion; 
+        } 
+        // Contacto 
+        const footerContacto = document.querySelector(".footer__contacto"); 
+        if (footerContacto) { 
+            footerContacto.innerHTML = ` 
+                Tel: ${CONFIG.telefono}<br> 
+                WhatsApp: ${CONFIG.whatsapp}<br> 
+                Email: ${CONFIG.email} `; 
+        } 
+    } catch (error) { 
+        console.error("Error cargando configuración del footer:", error); 
+    } 
+    // Cargar solo 3 valoraciones al iniciar 
+    cargarValoraciones(false); 
+});
 
 // Obtener el contenedor
 document.getElementById("valoracion-form").addEventListener("submit", function(event) {
@@ -55,7 +80,7 @@ document.getElementById("valoracion-form").addEventListener("submit", function(e
     }
     
     // Envío al servidor
-    fetch("insert-valoracion.php", {
+    fetch("/php/insert-valoracion.php", {
         method: "POST",
         body: formData
     })
@@ -76,7 +101,7 @@ document.getElementById("valoracion-form").addEventListener("submit", function(e
 // Función para cargar valoraciones
 function cargarValoraciones(mostrarTodas = false) {
     // Si mostarTodas es true, se cargan todas
-    let url = mostrarTodas ? "get-valoraciones.php?todas=true" : "get-valoraciones.php";
+    let url = mostrarTodas ? "/php/get-valoraciones.php?todas=true" : "/php/get-valoraciones.php";
 
     fetch(url)
         .then(response => response.text())
@@ -93,5 +118,3 @@ function cargarValoraciones(mostrarTodas = false) {
         .catch(error => console.error("⚠️ Error al cargar valoraciones:", error));
 }
 
-// Cargar solo 3 valoraciones al iniciar
-document.addEventListener("DOMContentLoaded", () => cargarValoraciones(false));

@@ -24,7 +24,7 @@ document.addEventListener("DOMContentLoaded", () => {
     },
 
     // Cargar eventos desde el servidor 
-    events: "./get-reservas.php",
+    events: "/php/get-reservas.php",
 
     // Acción al hacer clic en una reserva
     eventClick: function(info) {

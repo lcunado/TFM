@@ -1,4 +1,38 @@
-document.addEventListener("DOMContentLoaded", () => {
+import { cargarConfig } from "./config.js";
+
+document.addEventListener("DOMContentLoaded", async () => {
+
+  /* ============================================================
+     Footer
+  ============================================================ */
+
+  try {
+    const CONFIG = await cargarConfig();
+
+    // Dirección
+    const footerDireccion = document.querySelector(".footer__direccion");
+    if (footerDireccion) {
+      footerDireccion.innerHTML = CONFIG.direccion;
+    }
+
+    // Contacto
+    const footerContacto = document.querySelector(".footer__contacto");
+    if (footerContacto) {
+      footerContacto.innerHTML = `
+        Tel: ${CONFIG.telefono}<br>
+        WhatsApp: ${CONFIG.whatsapp}<br>
+        Email: ${CONFIG.email}
+      `;
+    }
+
+  } catch (error) {
+    console.error("Error cargando configuración del footer:", error);
+  }
+
+  /* ============================================================
+     Contacto
+  ============================================================ */
+
   // Obtener los contenedores
   const form = document.getElementById("contact-form");
   const responseBox = document.getElementById("contact-response");
@@ -49,7 +83,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Envío al servidor
     try {
-      const res = await fetch("contacto.php", {
+      const res = await fetch("/php/contacto.php", {
         method: "POST",
         body: formData
       });

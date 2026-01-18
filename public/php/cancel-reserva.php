@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Incluir configuración
-require_once "config.php";
+require_once __DIR__ . "/config.php";
 
 //Incluir phpmailer
 require 'vendor/phpmailer/Exception.php';

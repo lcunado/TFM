@@ -21,5 +21,15 @@
   &:hover {
     background-color: v.$color-component-hover;
   }
+
+  &--danger { 
+    background-color: v.$color-danger; 
+    border-color: v.$color-danger; 
+    color: v.$color-background; 
+    
+    &:hover { 
+      background-color: v.$color-danger-hover; 
+    } 
+  }
 }
 

@@ -1,0 +1,42 @@
+@use "../variables" as v;
+@use "../components/button";
+
+/* Contenedor principal del panel admin */
+.admin-panel {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 2rem;
+}
+
+/* Bloques de edición */
+.admin-section {
+    margin-top: 3rem;
+
+    &__title {
+        margin-bottom: 1rem;
+        font-size: 1.6rem;
+        font-weight: 600;
+    }
+}
+
+/* Editor visual */
+.editor-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.editor-item {
+    display: flex;
+    gap: 1rem;
+
+    input {
+        flex: 1;
+    }
+
+    .editor-remove {
+        @extend .button--danger;
+    }
+}
+
+

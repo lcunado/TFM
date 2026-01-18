@@ -1,4 +1,31 @@
-document.addEventListener("DOMContentLoaded", () => {
+import { cargarConfig } from "./config.js";
+
+document.addEventListener("DOMContentLoaded", async () => {
+  
+  /* ============================================================ 
+    FOOTER 
+  ============================================================ */ 
+  try { 
+    const CONFIG = await cargarConfig(); 
+    // Dirección 
+    const footerDireccion = document.querySelector(".footer__direccion"); 
+    if (footerDireccion) { 
+      footerDireccion.innerHTML = CONFIG.direccion; 
+    } 
+    // Contacto 
+    const footerContacto = document.querySelector(".footer__contacto"); 
+    if (footerContacto) { 
+      footerContacto.innerHTML = ` 
+        Tel: ${CONFIG.telefono}<br> 
+        WhatsApp: ${CONFIG.whatsapp}<br> 
+        Email: ${CONFIG.email} `; 
+      } 
+  } catch (error) { 
+    console.error("Error cargando configuración del footer:", error); 
+  } 
+  /* ============================================================ 
+    RESERVAS 
+  ============================================================ */
   // Obtener contenedores
   const form = document.getElementById("form-reserva");
   const resultado = document.getElementById("resultado-precio");
@@ -54,7 +81,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Envío al servidor
     try {
-      const response = await fetch("./calcular-precio-reservas.php", {
+      const response = await fetch("/php/calcular-precio-reservas.php", {
         method: "POST",
         body: datos
       });
@@ -71,7 +98,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           // Envío al servidor
           try {
-            const resp2 = await fetch("./insert-reserva.php", {
+            const resp2 = await fetch("/php/insert-reserva.php", {
               method: "POST",
               body: datos2
             });

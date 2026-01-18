@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Incluir configuración
-require_once "config.php";
+require_once __DIR__ . "/config.php";
 
 // Control Honeypot, si el campo oculto tiene contenido es spam
 $hp = trim($_POST['hp_field_reservas'] ?? '');

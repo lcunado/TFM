@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Petición al servidor
     try {
-      const response = await fetch("./calcular-precio-reembolso.php", {
+      const response = await fetch("/php/calcular-precio-reembolso.php", {
         method: "POST",
         body: datos
       });
@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
           
           //Petición al servidor
           try {
-            const resp2 = await fetch("./cancel-reserva.php", {
+            const resp2 = await fetch("/php/cancel-reserva.php", {
               method: "POST",
               body: datos2
             });

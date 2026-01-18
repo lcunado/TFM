@@ -1,12 +1,13 @@
 <?php
 session_start();
+
 // Incluir configuración
-require_once "config.php";
+require_once __DIR__ . "/config.php";
 
 //Incluir phpmailer
-require 'vendor/phpmailer/Exception.php';
-require 'vendor/phpmailer/PHPMailer.php';
-require 'vendor/phpmailer/SMTP.php';
+require __DIR__ . '/vendor/phpmailer/Exception.php'; 
+require __DIR__ . '/vendor/phpmailer/PHPMailer.php'; 
+require __DIR__ . '/vendor/phpmailer/SMTP.php';
 
 // Envío de correos con PHPMailer
 use PHPMailer\PHPMailer\PHPMailer;
