@@ -7,7 +7,12 @@ document.addEventListener("DOMContentLoaded", async () => {
   /* ------------------------------ 
     FOOTER 
   ------------------------------ */ 
-  document.querySelector(".footer__direccion").innerHTML = CONFIG.direccion; 
+  document.querySelector(".footer__direccion").innerHTML = `
+    ${CONFIG.direccionCalle}<br>
+    ${CONFIG.direccionCP} ${CONFIG.direccionCiudad}<br>
+    ${CONFIG.direccionPais}
+  `;
+ 
   document.querySelector(".footer__contacto").innerHTML = ` 
     Tel: ${CONFIG.telefono}<br> 
     WhatsApp: ${CONFIG.whatsapp}<br> 

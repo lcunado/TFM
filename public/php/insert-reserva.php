@@ -2,7 +2,7 @@
 session_start();
 
 // Incluir configuración
-require_once __DIR__ . "/config.php";
+require_once __DIR__ . '/../private/config.php';
 
 //Incluir phpmailer
 require __DIR__ . '/vendor/phpmailer/Exception.php'; 
@@ -27,6 +27,19 @@ if ($tiempoEnvio < 5) {
     die("<p>⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.</p>");
 }
 $_SESSION['form_start'] = time(); // Reinicio del tiempo
+
+// Obtener email del propietario desde la BD 
+$stmt = $conexion->prepare(" 
+    SELECT email 
+    FROM configuracion 
+    WHERE id = 1 LIMIT 1 
+"); 
+$stmt->execute(); 
+$stmt->bind_result($emailPropietario); 
+$stmt->fetch(); $stmt->close(); 
+if (!$emailPropietario) { 
+    die("<p>⚠️ Error al obtener el email del propietario.</p>"); 
+}
 
 // Recoger datos del POST
 $dni         = trim($_POST['dni'] ?? '');
@@ -107,13 +120,13 @@ if ($stmt->execute()) {
         $mail->isSMTP();
         $mail->Host       = 'smtp.gmail.com';   // Servidor SMTP de gmail
         $mail->SMTPAuth   = true;
-        $mail->Username   = $propietarioEmail;   
+        $mail->Username   = $emailPropietario;   
         $mail->Password   = $propietarioPassword;    
         $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
         $mail->Port       = 587;
 
         // Remitente
-        $mail->setFrom($propietarioEmail, 'Reservas Piso Turistico');
+        $mail->setFrom($emailPropietario, 'Reservas Piso Turistico');
 
         // Correo al usuario
         $mail->addAddress($email, $nombre);
@@ -177,7 +190,7 @@ if ($stmt->execute()) {
 
         // Correo al propietario
         $mail->clearAddresses();
-        $mail->addAddress($propietarioEmail);
+        $mail->addAddress($emailPropietario);
         $mail->Subject = "Nueva reserva confirmada";
         $mail->isHTML(true); // Activar formato HTML
 

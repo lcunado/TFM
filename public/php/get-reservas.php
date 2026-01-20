@@ -1,6 +1,6 @@
 <?php
 // Incluir configuración
-require_once __DIR__ . "/config.php";
+require_once __DIR__ . '/../private/config.php';
 
 // Respuesta en JSON
 header('Content-Type: application/json');

@@ -1,6 +1,6 @@
 /* ============================================================
    EDITOR VISUAL: INFORMACIÓN GENERAL
-   ============================================================ */
+============================================================ */
 
 function renderInfoGeneral() {
     const container = document.getElementById("infoGeneralContainer");
@@ -41,59 +41,81 @@ function removeInfoGeneral(index) {
     renderInfoGeneral();
 }
 
-/* ============================================================
-   EDITOR VISUAL: ICONOS INCLUIDOS
-   ============================================================ */
+/* ============================================================ 
+    EDITOR VISUAL: LUGARES DE INTERÉS 
+============================================================ */ 
+function renderLugares() { 
+    const container = document.getElementById("lugaresContainer");
+    container.innerHTML = ""; 
 
-function renderIconos() {
-    const container = document.getElementById("iconosContainer");
-    container.innerHTML = "";
+    lugaresInteres.forEach((item, index) => { 
+        const div = document.createElement("div"); 
+        div.classList.add("editor-item"); 
 
-    iconosIncluidos.forEach((item, index) => {
-        const div = document.createElement("div");
-        div.classList.add("editor-item");
-
-        div.innerHTML = `
+        div.innerHTML = ` 
             <input 
                 type="text" 
-                class="form__input"
-                value="${item.icono}"
-                placeholder="Nombre del icono"
-                oninput="iconosIncluidos[${index}].icono = this.value"
-            >
-            <input 
-                type="text" 
-                class="form__input"
-                value="${item.texto}"
-                placeholder="Texto del icono"
-                oninput="iconosIncluidos[${index}].texto = this.value"
-            >
+                class="form__input" 
+                value="${item}" 
+                placeholder="Lugar de interés" 
+                oninput="lugaresInteres[${index}] = this.value" 
+            > 
             <button 
                 type="button" 
-                class="button button--danger"
-                onclick="removeIcono(${index})"
-            >
-                Eliminar
-            </button>
-        `;
+                class="button button--danger" 
+                onclick="removeLugar(${index})" 
+            > 
+                Eliminar 
+            </button> `
+        ; 
 
-        container.appendChild(div);
-    });
+        container.appendChild(div); 
+    }); 
+} 
+
+function addLugar() { 
+    lugaresInteres.push(""); 
+    renderLugares(); 
+} 
+
+function removeLugar(index) { 
+    lugaresInteres.splice(index, 1); 
+    renderLugares(); 
 }
 
-function addIcono() {
-    iconosIncluidos.push({ icono: "", texto: "" });
-    renderIconos();
+/* ============================================================
+   EDITOR VISUAL: ICONOS INCLUIDOS
+============================================================ */
+
+function renderDatosNumericos() { 
+    document.getElementById("metrosCuadradosInput").value = metrosCuadrados; 
+    document.getElementById("maxHuespedesInput").value = maxHuespedes; 
+    document.getElementById("numHabitacionesInput").value = numHabitaciones; 
+    document.getElementById("numBanosInput").value = numBanos; 
+    document.getElementById("edadBebesGratisInput").value = edadBebesGratis; 
 }
 
-function removeIcono(index) {
-    iconosIncluidos.splice(index, 1);
-    renderIconos();
+function renderIconosActivables() { 
+    const mapping = [ 
+        { id: "iconoGaraje", var: "iconoGaraje" }, 
+        { id: "iconoMascotas", var: "iconoMascotas" }, 
+        { id: "iconoChimenea", var: "iconoChimenea" }, 
+        { id: "iconoBarbacoa", var: "iconoBarbacoa" }, 
+        { id: "iconoJardin", var: "iconoJardin" }, 
+        { id: "iconoWifi", var: "iconoWifi" }, 
+        { id: "iconoEquipado", var: "iconoEquipado" }, 
+        { id: "iconoCalefaccion", var: "iconoCalefaccion" } 
+    ]; 
+
+    mapping.forEach(item => { 
+        document.getElementById(item.id).checked = window[item.var] == 1; 
+
+    }); 
 }
 
 /* ============================================================
    EDITOR VISUAL: POLÍTICAS DE RESERVA
-   ============================================================ */
+============================================================ */
 
 function renderPoliticas() {
     const container = document.getElementById("politicasContainer");
@@ -136,17 +158,34 @@ function removePolitica(index) {
 
 /* ============================================================
    GUARDAR ANTES DE ENVIAR EL FORMULARIO
-   ============================================================ */
+============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
     renderInfoGeneral();
-    renderIconos();
+    renderLugares(); 
+    renderDatosNumericos(); 
+    renderIconosActivables();
     renderPoliticas();
 
     document.querySelector("form").addEventListener("submit", () => {
         document.getElementById("informacionGeneralInput").value = JSON.stringify(infoGeneral);
-        document.getElementById("iconosIncluidosInput").value = JSON.stringify(iconosIncluidos);
+        document.getElementById("lugaresInteresInput").value = JSON.stringify(lugaresInteres);
         document.getElementById("politicasReservaInput").value = JSON.stringify(politicasReserva);
+        
+        metrosCuadrados = parseInt(document.getElementById("metrosCuadradosInput").value); 
+        maxHuespedes = parseInt(document.getElementById("maxHuespedesInput").value); 
+        numHabitaciones = parseInt(document.getElementById("numHabitacionesInput").value); 
+        numBanos = parseInt(document.getElementById("numBanosInput").value); 
+        edadBebesGratis = parseInt(document.getElementById("edadBebesGratisInput").value); 
+        
+        iconoGaraje = document.getElementById("iconoGaraje").checked ? 1 : 0; 
+        iconoMascotas = document.getElementById("iconoMascotas").checked ? 1 : 0; 
+        iconoChimenea = document.getElementById("iconoChimenea").checked ? 1 : 0; 
+        iconoBarbacoa = document.getElementById("iconoBarbacoa").checked ? 1 : 0; 
+        iconoJardin = document.getElementById("iconoJardin").checked ? 1 : 0; 
+        iconoWifi = document.getElementById("iconoWifi").checked ? 1 : 0; 
+        iconoEquipado = document.getElementById("iconoEquipado").checked ? 1 : 0; 
+        iconoCalefaccion = document.getElementById("iconoCalefaccion").checked ? 1 : 0;
     });
 });
 

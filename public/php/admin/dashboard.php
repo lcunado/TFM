@@ -4,14 +4,24 @@ if (!isset($_SESSION['admin'])) {
     header("Location: login.php");
     exit;
 }
+
+$title = "Dashboard";
+
+// Empieza a capturar el contenido
+ob_start();
 ?>
 
-<h1>Panel de administración</h1>
+<h1 class="admin-section__title">Bienvenido admin</h1>
 
-<ul>
-    <li><a href="configuracion.php">Editar información del piso</a></li>
-    <li><a href="galeria.php">Gestionar galería</a></li>
-    <li><a href="galeria.php">Gestionar reservas</a></li>
-    <li><a href="galeria.php">Gestionar valoraciones</a></li>
-    <li><a href="logout.php">Cerrar sesión</a></li>
-</ul>
+<div class="admin-section">
+    <p>Este es tu panel de control.</p>
+</div>
+
+<?php
+// Guardamos el contenido en $content
+$content = ob_get_clean();
+
+// Cargamos el layout
+include __DIR__ . '/layout.php';
+
+

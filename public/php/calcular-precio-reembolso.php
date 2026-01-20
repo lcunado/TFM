@@ -1,6 +1,6 @@
 <?php
 session_start();
-require_once __DIR__ . "/config.php";
+require_once __DIR__ . '/../private/config.php';
 
 //Recoger los datos
 $id_reserva = trim($_POST['id'] ?? '');

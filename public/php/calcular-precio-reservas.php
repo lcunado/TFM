@@ -1,7 +1,7 @@
 <?php
 session_start();
 // Incluir configuración
-require_once __DIR__ . "/config.php";
+require_once __DIR__ . '/../private/config.php';
 
 // Control Honeypot, si el campo oculto tiene contenido es spam
 $hp = trim($_POST['hp_field_reservas'] ?? '');
@@ -18,6 +18,18 @@ if ($tiempoEnvio < 5) {
     die("<p>⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.</p>");
 }
 $_SESSION['form_start'] = time(); // Reinicio del tiempo
+
+// Consulta variables en la BD
+$stmt = $conexion->prepare("
+    SELECT precioDiario, precioSabDom, precioLimpieza, maxHuespedes
+    FROM configuracion
+    WHERE id = 1
+    LIMIT 1
+");
+$stmt->execute();
+$stmt->bind_result($precioDiario, $precioSabDom, $precioLimpieza, $maxHuespedes);
+$stmt->fetch();
+$stmt->close();
 
 // Validaciones de campos
 // Fechas obligatorias

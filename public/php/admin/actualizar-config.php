@@ -5,7 +5,7 @@ if (!isset($_SESSION['admin'])) {
     exit;
 }
 
-require_once __DIR__ . "/config.php";
+require_once __DIR__ . '/../../private/config.php';
 
 // Recoger datos
 $localidad = $_POST['localidad'];

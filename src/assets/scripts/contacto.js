@@ -6,28 +6,19 @@ document.addEventListener("DOMContentLoaded", async () => {
      Footer
   ============================================================ */
 
-  try {
-    const CONFIG = await cargarConfig();
+  const CONFIG = await cargarConfig();
 
-    // Dirección
-    const footerDireccion = document.querySelector(".footer__direccion");
-    if (footerDireccion) {
-      footerDireccion.innerHTML = CONFIG.direccion;
-    }
-
-    // Contacto
-    const footerContacto = document.querySelector(".footer__contacto");
-    if (footerContacto) {
-      footerContacto.innerHTML = `
-        Tel: ${CONFIG.telefono}<br>
-        WhatsApp: ${CONFIG.whatsapp}<br>
-        Email: ${CONFIG.email}
-      `;
-    }
-
-  } catch (error) {
-    console.error("Error cargando configuración del footer:", error);
-  }
+  document.querySelector(".footer__direccion").innerHTML = `
+    ${CONFIG.direccionCalle}<br>
+    ${CONFIG.direccionCP} ${CONFIG.direccionCiudad}<br>
+    ${CONFIG.direccionPais}
+  `;
+ 
+  document.querySelector(".footer__contacto").innerHTML = ` 
+    Tel: ${CONFIG.telefono}<br> 
+    WhatsApp: ${CONFIG.whatsapp}<br> 
+    Email: ${CONFIG.email} 
+  `;
 
   /* ============================================================
      Contacto

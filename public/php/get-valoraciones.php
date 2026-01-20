@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . "/config.php";
+require_once __DIR__ . '/../private/config.php';
 
 // Saber si el usuario pidió ver todas las valoraciones
 $todas = isset($_GET['todas']) && $_GET['todas'] === "true";
