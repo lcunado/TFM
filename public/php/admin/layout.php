@@ -18,6 +18,7 @@
             <li><a href="configuracion.php">Configuración</a></li>
             <li><a href="galeria.php">Galería</a></li>
             <li><a href="reservas.php">Reservas</a></li>
+            <li><a href="cambiar-password.php">Cambiar contraseña</a></li>
             <li><a href="logout.php">Cerrar sesión</a></li>
         </ul>
     </nav>
