@@ -108,8 +108,7 @@ function renderIconosActivables() {
     ]; 
 
     mapping.forEach(item => { 
-        document.getElementById(item.id).checked = window[item.var] == 1; 
-
+        document.getElementById(item.id).checked = (eval(item.var) == 1);
     }); 
 }
 
@@ -156,6 +155,46 @@ function removePolitica(index) {
     renderPoliticas();
 }
 
+/* ============================
+   GALERÍA
+============================ */
+
+function renderGaleria() {
+    const container = document.getElementById("galeriaContainer");
+    container.innerHTML = "";
+
+    galeria.forEach((item, index) => {
+        const div = document.createElement("div");
+        div.classList.add("editor-item");
+
+        div.innerHTML = ` 
+            <label>Archivo</label> 
+            <input type="text" class="form__input" value="${item.src || ''}" 
+                onchange="updateGaleria(${index}, 'src', this.value)"> 
+            
+            <label>Título</label> 
+            <input type="text" class="form__input" value="${item.titulo || ''}" 
+                onchange="updateGaleria(${index}, 'titulo', this.value)"> 
+            
+            <button class="button button--danger" onclick="removeFotoGaleria(${index})"> 
+                Eliminar 
+            </button> 
+            `;
+
+        container.appendChild(div);
+    });
+}
+
+function addFotoGaleria() {
+    galeria.push({ src: "", titulo: "" });
+    renderGaleria();
+}
+
+function removeFotoGaleria(index) {
+    galeria.splice(index, 1);
+    renderGaleria();
+}
+
 /* ============================================================
    GUARDAR ANTES DE ENVIAR EL FORMULARIO
 ============================================================ */
@@ -166,11 +205,13 @@ document.addEventListener("DOMContentLoaded", () => {
     renderDatosNumericos(); 
     renderIconosActivables();
     renderPoliticas();
+    renderGaleria();
 
     document.querySelector("form").addEventListener("submit", () => {
         document.getElementById("informacionGeneralInput").value = JSON.stringify(infoGeneral);
         document.getElementById("lugaresInteresInput").value = JSON.stringify(lugaresInteres);
         document.getElementById("politicasReservaInput").value = JSON.stringify(politicasReserva);
+        document.getElementById("galeriaInput").value = JSON.stringify(galeria);
         
         metrosCuadrados = parseInt(document.getElementById("metrosCuadradosInput").value); 
         maxHuespedes = parseInt(document.getElementById("maxHuespedesInput").value); 

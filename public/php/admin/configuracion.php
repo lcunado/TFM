@@ -20,7 +20,6 @@ $config = $result->fetch_assoc();
 
 // Decodificar JSON
 $config['informacionGeneral'] = json_decode($config['informacionGeneral'], true);
-$config['iconosIncluidos'] = json_decode($config['iconosIncluidos'], true);
 $config['galeria'] = json_decode($config['galeria'], true);
 $config['lugaresInteres'] = json_decode($config['lugaresInteres'], true) ?? [];
 $config['politicasReserva'] = json_decode($config['politicasReserva'], true) ?? [];
@@ -32,7 +31,7 @@ $title = "Editar configuración";
 ob_start();
 ?>
 
-    <h1 class="admin-section__title">Editar información del piso</h1>
+    <h1 class="admin-section__title">Editar información de la vivienda</h1>
 
     <?php if (isset($_GET['ok'])): ?>
         <div class="ok">Los cambios se han guardado correctamente.</div>
@@ -44,7 +43,7 @@ ob_start();
             DATOS DE LA VIVIENDA (EDITOR VISUAL)
         ============================= -->
         <div class="admin-section">
-            <h2 class="admin-section__title">Datos de la vivienda</h2>
+            <h2 class="admin-section__title">Datos</h2>
             
             <label class="form__label">Título de presentación</label> 
             <input class="form__input" type="text" name="titulo" value="<?= htmlspecialchars($config['titulo']) ?>">
@@ -52,7 +51,7 @@ ob_start();
             <label class="form__label">Nombre de la vivienda</label>
             <input class="form__input" type="text" name="vivienda" value="<?= htmlspecialchars($config['vivienda']) ?>">
 
-            <label class="form__label">Imagen de fondo (ruta)</label>
+            <label class="form__label">Imagen de fondo</label>
             <input class="form__input" type="text" name="imagenFondo" value="<?= htmlspecialchars($config['imagenFondo']) ?>">
 
             <label class="form__label">Calle y número</label>
@@ -139,7 +138,6 @@ ob_start();
             <label><input id="iconoEquipado" type="checkbox" name="iconoEquipado" <?= $config['iconoEquipado'] ? 'checked' : '' ?>> Totalmente equipado</label>
             <label><input id="iconoCalefaccion" type="checkbox" name="iconoCalefaccion" <?= $config['iconoCalefaccion'] ? 'checked' : '' ?>> Calefacción</label>
 
-            <input type="hidden" name="iconosIncluidos" id="iconosIncluidosInput">
         </div>
 
         <!-- ============================
@@ -157,6 +155,20 @@ ob_start();
             <input type="hidden" name="politicasReserva" id="politicasReservaInput">
         </div>
 
+        <!-- ============================
+            GALERÍA (EDITOR VISUAL)
+        ============================= -->
+        <div class="admin-section">
+            <h2 class="admin-section__title">Galería</h2>
+
+            <div id="galeriaContainer" class="editor-list"></div>
+
+            <button type="button" class="button" onclick="addFotoGaleria()">
+                Añadir foto
+            </button>
+
+            <input type="hidden" name="galeria" id="galeriaInput">
+        </div>
 
         <button class="button" type="submit">Guardar cambios</button>
 
@@ -166,50 +178,48 @@ ob_start();
 <!-- Inyección de datos desde PHP hacia JS -->
 <script>
     // Datos generales
-    const titulo = <?= json_encode($config['titulo'], JSON_UNESCAPED_UNICODE) ?>;
-    const imagenFondo = <?= json_encode($config['imagenFondo'], JSON_UNESCAPED_UNICODE) ?>;
+    var titulo = <?= json_encode($config['titulo'], JSON_UNESCAPED_UNICODE) ?>;
+    var imagenFondo = <?= json_encode($config['imagenFondo'], JSON_UNESCAPED_UNICODE) ?>;
 
-    const direccionCalle = <?= json_encode($config['direccionCalle'], JSON_UNESCAPED_UNICODE) ?>;
-    const direccionCP = <?= json_encode($config['direccionCP'], JSON_UNESCAPED_UNICODE) ?>;
-    const direccionCiudad = <?= json_encode($config['direccionCiudad'], JSON_UNESCAPED_UNICODE) ?>;
-    const direccionPais = <?= json_encode($config['direccionPais'], JSON_UNESCAPED_UNICODE) ?>;
+    var direccionCalle = <?= json_encode($config['direccionCalle'], JSON_UNESCAPED_UNICODE) ?>;
+    var direccionCP = <?= json_encode($config['direccionCP'], JSON_UNESCAPED_UNICODE) ?>;
+    var direccionCiudad = <?= json_encode($config['direccionCiudad'], JSON_UNESCAPED_UNICODE) ?>;
+    var direccionPais = <?= json_encode($config['direccionPais'], JSON_UNESCAPED_UNICODE) ?>;
 
-    const horarioEntrada = <?= json_encode($config['horarioEntrada'], JSON_UNESCAPED_UNICODE) ?>;
-    const horarioSalida = <?= json_encode($config['horarioSalida'], JSON_UNESCAPED_UNICODE) ?>;
+    var horarioEntrada = <?= json_encode($config['horarioEntrada'], JSON_UNESCAPED_UNICODE) ?>;
+    var horarioSalida = <?= json_encode($config['horarioSalida'], JSON_UNESCAPED_UNICODE) ?>;
 
-    const precioDiario = <?= json_encode($config['precioDiario'], JSON_UNESCAPED_UNICODE) ?>;
+    var precioDiario = <?= json_encode($config['precioDiario'], JSON_UNESCAPED_UNICODE) ?>;
 
     // Arrays
-    const infoGeneral = <?= json_encode($config['informacionGeneral'] ?? [], JSON_UNESCAPED_UNICODE) ?>;
-    const lugaresInteres = <?= json_encode($config['lugaresInteres'] ?? [], JSON_UNESCAPED_UNICODE) ?>;
-    const politicasReserva = <?= json_encode($config['politicasReserva'] ?? [], JSON_UNESCAPED_UNICODE) ?>;
+    var infoGeneral = <?= json_encode($config['informacionGeneral'] ?? [], JSON_UNESCAPED_UNICODE) ?>;
+    var lugaresInteres = <?= json_encode($config['lugaresInteres'] ?? [], JSON_UNESCAPED_UNICODE) ?>;
+    var politicasReserva = <?= json_encode($config['politicasReserva'] ?? [], JSON_UNESCAPED_UNICODE) ?>;
+    var galeria = <?= json_encode($config['galeria'] ?? [], JSON_UNESCAPED_UNICODE) ?>;
 
     // Datos numéricos
-    const metrosCuadrados = <?= json_encode($config['metrosCuadrados']) ?>;
-    const maxHuespedes = <?= json_encode($config['maxHuespedes']) ?>;
-    const numHabitaciones = <?= json_encode($config['numHabitaciones']) ?>;
-    const numBanos = <?= json_encode($config['numBanos']) ?>;
-    const edadBebesGratis = <?= json_encode($config['edadBebesGratis']) ?>;
+    var metrosCuadrados = <?= json_encode($config['metrosCuadrados']) ?>;
+    var maxHuespedes = <?= json_encode($config['maxHuespedes']) ?>;
+    var numHabitaciones = <?= json_encode($config['numHabitaciones']) ?>;
+    var numBanos = <?= json_encode($config['numBanos']) ?>;
+    var edadBebesGratis = <?= json_encode($config['edadBebesGratis']) ?>;
 
     // Checkboxes
-    const iconoGaraje = <?= json_encode($config['iconoGaraje']) ?>;
-    const iconoMascotas = <?= json_encode($config['iconoMascotas']) ?>;
-    const iconoChimenea = <?= json_encode($config['iconoChimenea']) ?>;
-    const iconoBarbacoa = <?= json_encode($config['iconoBarbacoa']) ?>;
-    const iconoJardin = <?= json_encode($config['iconoJardin']) ?>;
-    const iconoWifi = <?= json_encode($config['iconoWifi']) ?>;
-    const iconoEquipado = <?= json_encode($config['iconoEquipado']) ?>;
-    const iconoCalefaccion = <?= json_encode($config['iconoCalefaccion']) ?>;
+    var iconoGaraje = <?= json_encode($config['iconoGaraje']) ?>;
+    var iconoChimenea = <?= json_encode($config['iconoChimenea']) ?>;
+    var iconoBarbacoa = <?= json_encode($config['iconoBarbacoa']) ?>;
+    var iconoJardin = <?= json_encode($config['iconoJardin']) ?>;
+    var iconoWifi = <?= json_encode($config['iconoWifi']) ?>;
+    var iconoEquipado = <?= json_encode($config['iconoEquipado']) ?>;
+    var iconoCalefaccion = <?= json_encode($config['iconoCalefaccion']) ?>;
+
 </script>
 
 <!-- Scripts -->
 <script src="js/configuracion.js"></script>
-<script src="/dist/admin.js"></script>
 
 </body>
 </html>
-
-
 
 <?php
 

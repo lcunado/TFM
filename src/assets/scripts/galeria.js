@@ -33,7 +33,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     figure.classList.add("galeria__item");
 
     const img = document.createElement("img");
-    img.src = foto.src;
+    img.src = "/assets/images/galeria/" + foto.src;
     img.alt = foto.titulo;
     img.classList.add("galeria__image");
 

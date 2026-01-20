@@ -15,7 +15,6 @@ $latitud = $_POST['latitud'];
 $longitud = $_POST['longitud'];
 
 $informacionGeneral = json_encode(json_decode($_POST['informacionGeneral'], true), JSON_UNESCAPED_UNICODE);
-$iconosIncluidos = json_encode(json_decode($_POST['iconosIncluidos'], true), JSON_UNESCAPED_UNICODE);
 $politicasReserva = json_encode(json_decode($_POST['politicasReserva'], true), JSON_UNESCAPED_UNICODE);
 
 // Actualizar BD
@@ -26,7 +25,6 @@ $sql = "UPDATE configuracion SET
     latitud = '$latitud',
     longitud = '$longitud',
     informacionGeneral = '$informacionGeneral',
-    iconosIncluidos = '$iconosIncluidos',
     politicasReserva = '$politicasReserva'
     WHERE id = 1";
 

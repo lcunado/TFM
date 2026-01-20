@@ -3,13 +3,18 @@ import { cargarConfig } from "./config.js";
 async function init() {
     const CONFIG = await cargarConfig();
 
+    // Convertir iconos "0"/"1" en booleanos reales 
+    [ "iconoGaraje", "iconoMascotas", "iconoChimenea", "iconoBarbacoa", "iconoJardin", "iconoWifi", "iconoEquipado", "iconoCalefaccion" ].forEach(key => { 
+        CONFIG[key] = CONFIG[key] == 1; // Devuelve true o false
+    });
+
     /* ------------------------------
        CABECERA PRINCIPAL
     ------------------------------ */
 
     document.querySelector(".titulo").textContent = CONFIG.titulo;
     document.querySelectorAll(".vivienda").forEach(el => el.textContent = CONFIG.vivienda);
-    document.querySelector(".index__image").src = CONFIG.imagenFondo;
+    document.querySelector(".index__image").src = "/assets/images/" + CONFIG.imagenFondo;
     document.querySelector(".bloque__comment").textContent =
         `Desde ${parseInt(CONFIG.precioDiario)}€ la noche`;
     
@@ -79,7 +84,7 @@ async function init() {
         iconos.push({ icono: "fa-fire", texto: "Chimenea" });
 
     if (CONFIG.iconoBarbacoa)
-        iconos.push({ icono: "fa-fire-burner", texto: "Barbacoa" });
+        iconos.push({ icono: "fa-drumstick-bite", texto: "Barbacoa" });
 
     if (CONFIG.iconoJardin)
         iconos.push({ icono: "fa-tree", texto: "Jardín" });
