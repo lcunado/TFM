@@ -37,6 +37,7 @@
    ESTILO GENERAL
 ============================ */
 body {
+    
     font-family: var(--font-sans);
     background: var(----color-background);
     margin: 0;
@@ -49,6 +50,42 @@ body {
     max-width: 900px;
     margin: 40px auto;
     padding: 0 1.5rem;
+}
+
+/* ============================
+   LOGIN
+============================ */
+
+.login-box {
+    width: 100%;
+    max-width: 380px;
+    background: var(--color-form);
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px var(--color-shadow);
+    position: absolute; 
+    top: 50%; 
+    left: 50%; 
+    transform: translate(-50%, -50%);
+}
+
+.login-title {
+    font-size: 1.6rem;
+    font-weight: 600;
+    color: var(--color-text);
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.error-box {
+    background: #f8d7da;
+    color: var(--color-danger);
+    padding: 0.9rem 1.2rem;
+    border-radius: 8px;
+    border: 1px solid #f5c6cb;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    text-align: center;
 }
 
 /* ============================

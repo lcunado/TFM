@@ -7,6 +7,15 @@ if (!isset($_SESSION['admin'])) {
 
 require_once __DIR__ . '/../../private/config.php';
 
+// Función para validar contraseñas seguras 
+function password_segura($pass) { 
+    if (strlen($pass) < 8) return false; 
+    if (!preg_match('/[A-Z]/', $pass)) return false; 
+    if (!preg_match('/[a-z]/', $pass)) return false; 
+    if (!preg_match('/[0-9]/', $pass)) return false; 
+    if (!preg_match('/[\W_]/', $pass)) return false; 
+    return true; 
+}
 // Recoger datos del formulario
 $actual = $_POST['actual'] ?? '';
 $nueva = $_POST['nueva'] ?? '';
@@ -16,6 +25,12 @@ $repetir = $_POST['repetir'] ?? '';
 if ($nueva !== $repetir) {
     header("Location: cambiar-password.php?error=Las contraseñas no coinciden");
     exit;
+}
+
+// Validar seguridad de la nueva contraseña 
+if (!password_segura($nueva)) { 
+    header("Location: cambiar-password.php?error=La contraseña debe tener al menos 8 caracteres, mayúsculas, minúsculas, números y símbolos."); 
+    exit; 
 }
 
 // Obtener contraseña actual de la BD

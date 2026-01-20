@@ -116,19 +116,19 @@ ob_start();
             <h2 class="admin-section__title">Iconos incluidos</h2>
 
             <label>Metros cuadrados</label>
-            <input id="metrosCuadradosInput" type="number" name="metrosCuadrados" value="<?= $config['metrosCuadrados'] ?>">
+            <input id="metrosCuadradosInput" class="form__input" type="number" name="metrosCuadrados" value="<?= $config['metrosCuadrados'] ?>">
 
             <label>Número máximo de huéspedes</label>
-            <input id="maxHuespedesInput" type="number" name="maxHuespedes" value="<?= $config['maxHuespedes'] ?>">
+            <input id="maxHuespedesInput" class="form__input" type="number" name="maxHuespedes" value="<?= $config['maxHuespedes'] ?>">
 
             <label>Número de habitaciones</label>
-            <input id="numHabitacionesInput" type="number" name="numHabitaciones" value="<?= $config['numHabitaciones'] ?>">
+            <input id="numHabitacionesInput" class="form__input" type="number" name="numHabitaciones" value="<?= $config['numHabitaciones'] ?>">
 
             <label>Número de baños</label>
-            <input id="numBanosInput" type="number" name="numBanos" value="<?= $config['numBanos'] ?>">
+            <input id="numBanosInput" class="form__input" type="number" name="numBanos" value="<?= $config['numBanos'] ?>">
 
             <label>Edad bebés gratis</label>
-            <input id="edadBebesGratisInput" type="number" name="edadBebesGratis" value="<?= $config['edadBebesGratis'] ?>">
+            <input id="edadBebesGratisInput" class="form__input" type="number" name="edadBebesGratis" value="<?= $config['edadBebesGratis'] ?>">
 
             <label><input id="iconoGaraje" type="checkbox" name="iconoGaraje" <?= $config['iconoGaraje'] ? 'checked' : '' ?>> Garaje</label>
             <label><input id="iconoMascotas" type="checkbox" name="iconoMascotas" <?= $config['iconoMascotas'] ? 'checked' : '' ?>> Admite mascotas</label>

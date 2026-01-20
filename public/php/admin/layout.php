@@ -20,6 +20,7 @@
             <li><a href="reservas.php">Reservas</a></li>
             <li><a href="cambiar-password.php">Cambiar contraseña</a></li>
             <li><a href="logout.php">Cerrar sesión</a></li>
+            <li><a href="/index.html">Volver a la web</a></li>
         </ul>
     </nav>
 

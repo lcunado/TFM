@@ -4,6 +4,8 @@ ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
 session_start();
+
+// Conexión BD
 require_once __DIR__ . '/../../private/config.php';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -71,13 +73,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
+<!DOCTYPE html> 
+<html lang="es"> 
+    <head> 
+        <meta charset="UTF-8"> 
+        <title>Acceso Administrador</title> 
+        <?php include __DIR__ . '/admin-styles.php'; ?>
+    </head> 
+    <body>
+        <div class="login-box">
+            <h2 class="login-title">Acceso Administrador</h2>
 
-<form method="POST">
-    <input type="text" name="user" placeholder="Usuario" required>
-    <input type="password" name="pass" placeholder="Contraseña" required>
-    <button type="submit">Entrar</button>
-    <?php if(isset($error)) echo "<p>$error</p>"; ?>
-</form>
+            <?php if(isset($error)): ?>
+                <div class="error-box"><?= $error ?></div>
+            <?php endif; ?>
+
+            <form method="POST">
+                <input class="form__input" type="text" name="user" placeholder="Usuario" required>
+                <input class="form__input" type="password" name="pass" placeholder="Contraseña" required>
+                <button class="button" type="submit">Entrar</button>
+            </form>
+        </div>
+    </body>
+</html>
+
+
 
 
 

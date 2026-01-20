@@ -25,18 +25,22 @@ ob_start();
 
     <form method="POST" action="cambiar-password-guardar.php">
 
-        <label>Contraseña actual</label>
-        <input class="form__input" type="password" name="actual" required>
-
-        <label>Nueva contraseña</label>
-        <input class="form__input" type="password" name="nueva" required>
-
-        <label>Repetir nueva contraseña</label>
-        <input class="form__input" type="password" name="repetir" required>
-
+        <label class="form__label">Contraseña actual</label> 
+        <input class="form__input" type="password" name="actual" required> 
+        
+        <label class="form__label">Nueva contraseña</label> 
+        <input class="form__input" type="password" name="nueva" id="nueva" required> 
+        <div id="seguridad-pass" class="form__label"></div> 
+        
+        <label class="form__label">Repetir nueva contraseña</label> 
+        <input class="form__input" type="password" name="repetir" required> 
+        
         <button class="button" type="submit">Actualizar contraseña</button>
     </form>
 </div>
+
+<script src="js/validar-password.js"></script>
+
 
 <?php
 $content = ob_get_clean();
