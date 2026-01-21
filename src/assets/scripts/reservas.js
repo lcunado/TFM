@@ -99,20 +99,15 @@ document.addEventListener("DOMContentLoaded", async () => {
               body: datos2
             });
 
-            // Mostrar la respuesta
-            resultado.innerHTML = await resp2.text();
+            const json = await resp2.json(); 
             
-            // Limpiar formularios
-            form.reset();          
-            segundoForm.reset();   
-
-            // Reiniciar tiempo anti-spam
-            inicio = Date.now();
-
-            // Actualizar el calendario
-            if (window.calendar) {
-              window.calendar.refetchEvents();
-            }
+            if (json.ok) { 
+              window.location.href = "php/pago-sesion.php"; 
+              return; 
+            } 
+            
+            resultado.innerHTML = "<p>⚠️ No se pudo iniciar el pago.</p>";
+          
           } catch (error) {
             resultado.innerHTML = "<p>⚠️ Error al confirmar la reserva.</p>";
           }
