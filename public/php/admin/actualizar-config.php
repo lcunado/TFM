@@ -16,6 +16,7 @@ require_once __DIR__ . '/../../private/config.php';
 ============================================================ */
 
 // Strings
+$dominio = $_POST['dominio'] ?? '';
 $titulo = $_POST['titulo'] ?? '';
 $vivienda = $_POST['vivienda'] ?? '';
 $imagenFondo = $_POST['imagenFondo'] ?? '';
@@ -56,6 +57,7 @@ $iconoCalefaccion = isset($_POST['iconoCalefaccion']) ? 1 : 0;
 
 $sql = "
 UPDATE configuracion SET
+    dominio = ?,
     titulo = ?,
     vivienda = ?,
     imagenFondo = ?,
@@ -93,7 +95,8 @@ WHERE id = 1
 $stmt = $conexion->prepare($sql);
 
 $stmt->bind_param(
-    "ssssssssssssssiiiiiiiiiiiii",
+    "sssssssssssssssiiiiiiiiiiiii",
+    $dominio,
     $titulo,
     $vivienda,
     $imagenFondo,

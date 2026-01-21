@@ -40,6 +40,16 @@ ob_start();
     <form class="form" action="actualizar-config.php" method="POST">
 
         <!-- ============================
+            DOMINIO (EDITOR VISUAL)
+        ============================= -->
+        <div class="admin-section">
+            <h2 class="admin-section__title">Página web</h2>
+
+            <label class="form__label">Dominio</label> 
+            <input class="form__input" type="text" name="dominio" value="<?= htmlspecialchars($config['dominio']) ?>">
+        </div>
+
+        <!-- ============================
             DATOS DE LA VIVIENDA (EDITOR VISUAL)
         ============================= -->
         <div class="admin-section">
@@ -178,6 +188,7 @@ ob_start();
 <!-- Inyección de datos desde PHP hacia JS -->
 <script>
     // Datos generales
+    var dominio = <?= json_encode($config['dominio'], JSON_UNESCAPED_UNICODE) ?>;
     var titulo = <?= json_encode($config['titulo'], JSON_UNESCAPED_UNICODE) ?>;
     var imagenFondo = <?= json_encode($config['imagenFondo'], JSON_UNESCAPED_UNICODE) ?>;
 

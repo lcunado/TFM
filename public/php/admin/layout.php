@@ -17,6 +17,8 @@
             <li><a href="dashboard.php">Dashboard</a></li>
             <li><a href="configuracion.php">Configuración</a></li>
             <li><a href="reservas.php">Reservas</a></li>
+            <li><a href="cancelaciones.php">Cancelaciones</a></li>
+            <li><a href="valoraciones.php">Valoraciones</a></li>
             <li><a href="cambiar-password.php">Cambiar contraseña</a></li>
             <li><a href="logout.php">Cerrar sesión</a></li>
             <li><a href="/index.html">Volver a la web</a></li>

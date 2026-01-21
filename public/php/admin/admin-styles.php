@@ -29,6 +29,8 @@
     --color-arrow-background-hover: rgb(255 255 255 / 40%);
     --color-danger: #C62828;
     --color-danger-hover: #8E0000;
+    --color-th: #f4f4f4;
+    --color-th-even: #fafafa;
 
     --max-width: 768px;
 }
@@ -246,6 +248,48 @@ body {
     color: var(--color-component-hover);
 }
 
+@media (max-width: 768px) { 
+    .admin-nav ul { 
+        flex-direction: column; 
+        gap: 0.5rem; 
+    } 
+    .admin-nav a { 
+        display: block; 
+        padding: 10px; 
+        border-radius: 6px; 
+    } 
+}
+/* ============================
+   TABLAS
+============================ */
+
+.admin-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.admin-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: auto;
+    min-width: 700px; 
+}
+
+.admin-table th,
+.admin-table td {
+    padding: 12px 20px;
+    text-align: left;
+    white-space: nowrap; 
+}
+
+.admin-table th {
+    background: var(--color-th);
+    font-weight: 600;
+}
+
+.admin-table tr:nth-child(even) {
+    background: var(--color-th-even);
+}
 
 </style>
 
