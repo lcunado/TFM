@@ -251,3 +251,7 @@ $RECYCLE.BIN/
 
 ### UOC Boilerplate ###
 dist
+
+# Stripe
+private/config.php
+private/stripe-php-7
