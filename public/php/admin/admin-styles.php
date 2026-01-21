@@ -135,8 +135,13 @@ body {
 
 .form__input:focus {
     border-color: var(--color-component);
-    background: #ffffff;
+    background: var(--color-background);
     outline: none;
+}
+
+.form__note {
+    display: block;
+    color: var(--color-comment);
 }
 
 /* ============================

@@ -72,16 +72,28 @@ if ($fechaEntrada < $hoy) {
 }
 
 // Calcular el reembolso
+// Obtener política de reembolso desde la BD
+$conf = $conexion->query("SELECT diasReembolsoCompleto, porcentajeReembolso 
+                        FROM configuracion 
+                        LIMIT 1");
+$politica = $conf->fetch_assoc();
+
+$diasReembolsoCompleto = (int)$politica['diasReembolsoCompleto'];   // ej: 7
+$porcentajeReembolso   = (float)$politica['porcentajeReembolso'];   // ej: 0.4
+
 if ($reserva['estado'] !== 'pagado') {
     $reembolso = 0; // // Solo las reservas pagadas generan reembolso
 } else {
     $diffDias = $hoy->diff($fechaEntrada)->days; // Días de diferencia entre hoy y la fecha de entrada
     // Política de reembolso
-    if ($diffDias >= 7) {
-        $reembolso = $precioOriginal;
-    } else {
-        $reembolso = $precioOriginal * 0.4;
-    }
+    if ($diffDias >= $diasReembolsoCompleto) {
+    // Reembolso completo
+    $reembolso = $precioOriginal;
+} else {
+    // Reembolso parcial según porcentaje
+    $reembolso = $precioOriginal * $porcentajeReembolso;
+}
+
 }
 
 // Formulario de confirmación
