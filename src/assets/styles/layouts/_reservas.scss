@@ -27,39 +27,41 @@
   }
 }
 
-  .payment-info {
-    margin: 20px 0;
-    padding: 15px;
-    background: v.$color-payment;
-    border-left: 4px solid v.$color-payment-border;
+.payment-info {
+  margin: 20px 0;
+  padding: 15px;
+  background: v.$color-payment;
+  border-left: 4px solid v.$color-payment-border;
 
-    p {
-      margin: 0;
-      font-size: 14px;
-    }
+  p {
+    margin: 0;
+    font-size: 14px;
+  }
 
-    &__icons {
-      margin-top: 10px;
+  &__icons {
+    margin-top: 10px;
+    width: 60px;
+    height: 40px;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left center;
+
+    img {
       width: 60px;
-      height: 40px;
-      background-image: url("https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png");
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: left center;
-
-      img {
-        width: 60px;
-        height: auto;
-        display: block;
-      }
-    }
-
-    &__note {
-      margin-top: 5px;
-      font-size: 13px;
-      color: var(--color-comment);
+      height: auto;
+      display: block;
     }
   }
+
+  &__note {
+    margin-top: 5px;
+    font-size: 13px;
+    color: var(--color-comment);
+  }
+}
+
+
 
 
 

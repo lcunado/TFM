@@ -157,6 +157,7 @@ body {
     font-size: 0.95rem;
     margin-top: 1rem;
     transition: background 0.2s, transform 0.1s;
+    text-decoration: none;
 }
 
 .button:hover {
@@ -294,6 +295,28 @@ body {
 
 .admin-table tr:nth-child(even) {
     background: var(--color-th-even);
+}
+
+.icon__item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    color: #333;
+    margin: 1rem 0;
+}
+
+.icon__item--success i {
+    color: var(--color-component);
+}
+
+.icon__item--error i {
+    color: var(--color-danger); 
+}
+
+.icon__item span {
+    flex: 1;
+    font-size: 1rem;
 }
 
 </style>
