@@ -13,12 +13,12 @@ if (!empty($hp_field)) {
     die("<p>⚠️ Detección de spam. Petición rechazada.</p>");
 }
 
-// Control tiempo, si tarda menos de 5 segundos es sospechoso
+// Control tiempo, si tarda menos de 3 segundos es sospechoso
 if (!isset($_SESSION['form_start'])) {
     $_SESSION['form_start'] = time();
 }
 $tiempoEnvio = time() - $_SESSION['form_start'];
-if ($tiempoEnvio < 5) {
+if ($tiempoEnvio < 3) {
     die("<p>⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.</p>");
 }
 $_SESSION['form_start'] = time(); // Reinicio del tiempo
