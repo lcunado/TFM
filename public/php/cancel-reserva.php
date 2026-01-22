@@ -173,7 +173,6 @@ if ($reserva) {
                             </tr>
                         </table>
 
-                        <p>Si el pago se realizó correctamente, recibirá el reembolso en la misma cuenta.</p>
                         <p style='margin-top: 30px;'>Sentimos las molestias y esperamos verte pronto.</p>
                     </body>
                 </html>

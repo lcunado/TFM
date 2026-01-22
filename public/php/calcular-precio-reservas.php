@@ -166,8 +166,15 @@ echo '<input type="hidden" name="salida" value="' . $salida->format('Y-m-d') . '
 echo '<input type="hidden" name="precio" value="' . $precioTotal . '">';
 echo '<input type="hidden" name="personas" value="' . $huespedes . '">';
 
+echo "
+    <div class='payment-info'>
+        <p><strong>Método de pago:</strong> el pago se realizará de forma segura a través de <strong>Stripe</strong> mediante tarjeta de crédito o débito.</p>
+        <div class='payment-info__icons'></div>
+        <p class='payment-info__note'>Tus datos bancarios no se almacenan en nuestro servidor.</p>
+    </div>";
+
 echo '<div class="button__wrapper">
-        <button type="submit" class="button">Confirmar reserva</button>
+        <button type="submit" class="button">Pagar reserva</button>
       </div>';
 
 echo '</form>';
