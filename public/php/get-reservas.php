@@ -8,7 +8,7 @@ header('Content-Type: application/json');
 // Consultar reservas activas
 $sql = "SELECT id, fecha_entrada, fecha_salida, estado 
         FROM reservas 
-        WHERE estado IN ('pendiente','pagado')"; // Solo las reservas pendientes o pagadas
+        WHERE estado IN ('pagado')"; // No las canceladas
 $result = $conexion->query($sql);
 
 // Respuesta
@@ -17,7 +17,7 @@ while ($row = $result->fetch_assoc()) {
     $eventos[] = [
         "title" => "Reservado",
         "start" => $row["fecha_entrada"],
-        "end"   => date('Y-m-d', strtotime($row["fecha_salida"] . ' +1 day')), // // FullCalendar interpreta 'end' como fecha NO incluida, por eso se suma 1 día
+        "end"   => date('Y-m-d', strtotime($row["fecha_salida"])), 
         "color" => "#d9534f"
     ];
 }

@@ -38,9 +38,9 @@ try {
 if ($event['type'] === 'checkout.session.completed') {
 
     $session = $event['data']['object'];
-
-    // Recuperar datos de la reserva 
     $meta = $session['metadata'];
+    
+    // Recuperar datos de la reserva 
     $nombre_user       = $meta['nombre'];
     $apellidos_user    = $meta['apellidos'];
     $dni_user          = $meta['dni'];
@@ -50,9 +50,7 @@ if ($event['type'] === 'checkout.session.completed') {
     $entrada_user      = $meta['entrada'];
     $salida_user       = $meta['salida'];
     $precio_user       = $meta['precio'];
-
-    // Recuperar id del payment intent
-    $paymentIntent = $session['payment_intent']['id'];
+    $paymentIntent     = null; // Se envía después
 
     // Insertar reserva en la BD
     $stmt = $conexion->prepare("INSERT INTO reservas 
@@ -228,7 +226,32 @@ if ($event['type'] === 'checkout.session.completed') {
         echo "<p>⚠️ Error al enviar correos: {$mail->ErrorInfo}</p>";
     }
 
+    http_response_code(200);
+    exit;
 }
 
-http_response_code(200);
-echo "OK";
+// Recuperar el payment intent
+if ($event['type'] === 'payment_intent.succeeded') { 
+    $pi = $event['data']['object']; 
+    $paymentIntentId = $pi['id']; 
+
+    // Recuperar DNI desde metadata 
+    $dni = $pi['metadata']['dni']; 
+    if ($dni) { 
+        // Actualizar la última reserva creada con ese DNI 
+        $stmt = $conexion->prepare(" UPDATE reservas 
+                                    SET payment_intent = ? 
+                                    WHERE dni = ? 
+                                    ORDER BY id 
+                                    DESC LIMIT 1 "); 
+        $stmt->bind_param("ss", $paymentIntentId, $dni); 
+        $stmt->execute(); 
+        $stmt->close(); 
+    } 
+    
+    http_response_code(200); 
+    exit; 
+} 
+
+http_response_code(200); 
+exit;
