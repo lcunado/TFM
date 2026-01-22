@@ -48,6 +48,7 @@ $session = \Stripe\Checkout\Session::create([
         "salida" => $_SESSION['reserva']['salida'], 
         "precio" => $_SESSION['reserva']['precio'] 
     ]
+    "expand" => ["payment_intent"]
 ]);
 
 header("Location: " . $session->url);

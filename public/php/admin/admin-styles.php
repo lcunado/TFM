@@ -49,7 +49,7 @@ body {
 }
 
 .admin-panel {
-    max-width: 900px;
+    max-width: 1200px;
     margin: 40px auto;
     padding: 0 1.5rem;
 }
@@ -283,7 +283,7 @@ body {
 
 .admin-table th,
 .admin-table td {
-    padding: 12px 20px;
+    padding: 8px 12px;
     text-align: left;
     white-space: nowrap; 
 }
@@ -297,6 +297,9 @@ body {
     background: var(--color-th-even);
 }
 
+/* ============================
+   ICONOS
+============================ */
 .icon__item {
     display: flex;
     align-items: center;
@@ -317,6 +320,29 @@ body {
 .icon__item span {
     flex: 1;
     font-size: 1rem;
+}
+
+/* ============================
+   ALERTAS
+============================ */
+.admin-alert {
+    padding: 1rem 1.2rem;
+    border-radius: 6px;
+    margin-bottom: 1.5rem;
+    font-size: 0.95rem;
+    font-weight: 600;
+}
+
+.admin-alert--success {
+    background: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.admin-alert--error {
+    background: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
 }
 
 </style>

@@ -51,14 +51,17 @@ if ($event['type'] === 'checkout.session.completed') {
     $salida_user       = $meta['salida'];
     $precio_user       = $meta['precio'];
 
+    // Recuperar id del payment intent
+    $paymentIntent = $session['payment_intent']['id'];
 
     // Insertar reserva en la BD
     $stmt = $conexion->prepare("INSERT INTO reservas 
-        (dni, nombre, apellidos, email, telefono, num_personas, fecha_entrada, fecha_salida, precio, estado)
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pagado')");
+        (payment_intent, dni, nombre, apellidos, email, telefono, num_personas, fecha_entrada, fecha_salida, precio, estado)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'pagado')");
 
     $stmt->bind_param(
-        "sssssissd",
+        "ssssssissd",
+        $paymentIntent,
         $dni_user,
         $nombre_user,
         $apellidos_user,

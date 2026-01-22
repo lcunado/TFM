@@ -7,6 +7,8 @@ if (!isset($_SESSION['admin'])) {
 
 require_once __DIR__ . '/../../private/config.php';
 
+//\Stripe\Stripe::setApiKey($stripeSecretKey);
+
 // Obtener cancelaciones
 $sql = "SELECT 
             id_cancelacion,
@@ -29,6 +31,12 @@ ob_start();
 
 <h1>Listado de cancelaciones</h1>
 
+<?php if (isset($_GET['refund']) && $_GET['refund'] === 'ok'): ?> 
+    <div class="admin-alert admin-alert--success"> 
+        ✔ La devolución se ha realizado correctamente. 
+    </div> 
+<?php endif; ?>
+
 <div class="admin-table-wrapper">
     <table class="admin-table">
         <thead>
@@ -40,6 +48,7 @@ ob_start();
                 <th>Reembolsar (€)</th>
                 <th>Motivo</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
 
@@ -53,6 +62,21 @@ ob_start();
                     <td><?= number_format($row['importe_reembolsar'], 2) ?></td>
                     <td><?= htmlspecialchars($row['motivo']) ?></td>
                     <td><?= htmlspecialchars($row['estado_cancelacion']) ?></td>
+                    <td>
+                        <?php if ($row['estado_cancelacion'] === 'pendiente'): ?>
+                            <form action="devolucion-sesion.php" method="POST" style="display:inline;">
+                                <input type="hidden" name="id_cancelacion" value="<?= $row['id_cancelacion'] ?>">
+                                <input type="hidden" name="id_reserva" value="<?= $row['id_reserva'] ?>">
+                                <button class="button button--danger"
+                                        onclick="return confirm('¿Seguro que deseas realizar la devolución?')">
+                                    Realizar devolución
+                                </button>
+                            </form>
+
+                        <?php else: ?>
+                            <span style="color: var(--color-component); font-weight: bold;">Completada</span>
+                        <?php endif; ?>
+                    </td>
                 </tr>
             <?php endwhile; ?>
         </tbody>
