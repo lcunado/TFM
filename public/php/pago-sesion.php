@@ -3,7 +3,7 @@ ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 session_start();
 require_once __DIR__ . "/../private/config.php";
-require_once __DIR__ . "/../private/stripe-php-7/init.php";
+require_once __DIR__ . "/../private/stripe-php/init.php";
 
 \Stripe\Stripe::setApiKey($stripeSecretKey);
 
@@ -47,13 +47,8 @@ $session = \Stripe\Checkout\Session::create([
         "entrada" => $_SESSION['reserva']['entrada'], 
         "salida" => $_SESSION['reserva']['salida'], 
         "precio" => $_SESSION['reserva']['precio'] 
-    ],
-    // Localizador del pago
-    "payment_intent_data" => [ 
-        "metadata" => [ 
-            "dni" => $_SESSION['reserva']['dni'] 
-        ] 
     ]
+    
 ]);
 
 header("Location: " . $session->url);
