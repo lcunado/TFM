@@ -17,7 +17,8 @@ $sql = "SELECT
             importe_pagado,
             importe_reembolsar,
             motivo,
-            estado_cancelacion
+            estado_cancelacion,
+            fecha_reembolso
         FROM cancelaciones
         ORDER BY fecha_cancelacion DESC";
 
@@ -43,11 +44,12 @@ ob_start();
             <tr>
                 <th>ID Cancelación</th>
                 <th>ID Reserva</th>
-                <th>Fecha</th>
+                <th>Fecha cancelación</th>
                 <th>Pagado (€)</th>
                 <th>Reembolsar (€)</th>
                 <th>Motivo</th>
                 <th>Estado</th>
+                <th>Fecha reembolso</th>
                 <th>Acciones</th>
             </tr>
         </thead>
@@ -62,14 +64,16 @@ ob_start();
                     <td><?= number_format($row['importe_reembolsar'], 2) ?></td>
                     <td><?= htmlspecialchars($row['motivo']) ?></td>
                     <td><?= htmlspecialchars($row['estado_cancelacion']) ?></td>
+                    <td><?= $row['fecha_reembolso'] ?></td>
                     <td>
                         <?php if ($row['estado_cancelacion'] === 'pendiente'): ?>
                             <form action="devolucion-sesion.php" method="POST" style="display:inline;">
                                 <input type="hidden" name="id_cancelacion" value="<?= $row['id_cancelacion'] ?>">
                                 <input type="hidden" name="id_reserva" value="<?= $row['id_reserva'] ?>">
-                                <button class="button button--danger"
-                                        onclick="return confirm('¿Seguro que deseas realizar la devolución?')">
-                                    Realizar devolución
+                                <?php $importe = number_format($row['importe_reembolsar'], 2); ?> 
+                                <button class="button button--danger" 
+                                    onclick="return confirm('¿Seguro que deseas devolver <?= $importe ?> €?')"> 
+                                    Realizar devolución 
                                 </button>
                             </form>
 

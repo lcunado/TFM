@@ -80,7 +80,8 @@ try {
 
 // Actualizar BD
 $sql = "UPDATE cancelaciones 
-        SET estado_cancelacion = 'reembolsada'
+        SET estado_cancelacion = 'reembolsada',
+            fecha_reembolso = NOW()
         WHERE id_cancelacion = ?";
 $stmt = $conexion->prepare($sql);
 $stmt->bind_param("i", $idCancelacion);

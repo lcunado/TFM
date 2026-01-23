@@ -98,8 +98,8 @@ if ($reserva) {
         // Insertar en cancelaciones
         $estadoCancelacion = ($reembolso > 0) ? 'pendiente' : 'no_reembolsable';
         $stmtCancel = $conexion->prepare("INSERT INTO cancelaciones 
-                (id_reserva, fecha_cancelacion, importe_pagado, importe_reembolsar, motivo, estado_cancelacion) 
-                VALUES (?, NOW(), ?, ?, ?, ?)");
+                (id_reserva, fecha_cancelacion, importe_pagado, importe_reembolsar, motivo, estado_cancelacion, fecha_reembolso) 
+                VALUES (?, NOW(), ?, ?, ?, ?, null)");
         $stmtCancel->bind_param("iddss", $id_reserva, $precio, $reembolso, $motivo, $estadoCancelacion);
         $stmtCancel->execute();
         $stmtCancel->close();
