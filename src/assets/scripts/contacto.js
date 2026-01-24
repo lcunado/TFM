@@ -1,28 +1,12 @@
 import { cargarConfig } from "./config.js";
+import { cargarFooter } from "./footer.js";
+
+document.addEventListener("DOMContentLoaded", cargarFooter);
+
 
 document.addEventListener("DOMContentLoaded", async () => {
 
-  /* ============================================================
-     Footer
-  ============================================================ */
-
   const CONFIG = await cargarConfig();
-
-  document.querySelector(".footer__direccion").innerHTML = `
-    ${CONFIG.direccionCalle}<br>
-    ${CONFIG.direccionCP} ${CONFIG.direccionCiudad}<br>
-    ${CONFIG.direccionPais}
-  `;
- 
-  document.querySelector(".footer__contacto").innerHTML = ` 
-    Tel: ${CONFIG.telefono}<br> 
-    WhatsApp: ${CONFIG.whatsapp}<br> 
-    Email: ${CONFIG.email} 
-  `;
-
-  /* ============================================================
-     Contacto
-  ============================================================ */
 
   // Obtener los contenedores
   const form = document.getElementById("contact-form");

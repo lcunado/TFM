@@ -24,6 +24,9 @@ $direccionCalle = $_POST['direccionCalle'] ?? '';
 $direccionCP = $_POST['direccionCP'] ?? '';
 $direccionCiudad = $_POST['direccionCiudad'] ?? '';
 $direccionPais = $_POST['direccionPais'] ?? '';
+$telefono = $_POST['telefono'] ?? '';
+$whatsapp = $_POST['whatsapp'] ?? '';
+$email = $_POST['email'] ?? '';
 $latitud = $_POST['latitud'] ?? '';
 $longitud = $_POST['longitud'] ?? '';
 $precioDiario = $_POST['precioDiario'] ?? '';
@@ -65,6 +68,9 @@ UPDATE configuracion SET
     direccionCP = ?,
     direccionCiudad = ?,
     direccionPais = ?,
+    telefono = ?,
+    whatsapp = ?,
+    email = ?,
     latitud = ?,
     longitud = ?,
     precioDiario = ?,
@@ -95,7 +101,7 @@ WHERE id = 1
 $stmt = $conexion->prepare($sql);
 
 $stmt->bind_param(
-    "sssssssssssssssiiiiiiiiiiiii",
+    "sssssssssssdddssssiiiiiiiiiiiii",
     $dominio,
     $titulo,
     $vivienda,
@@ -104,6 +110,10 @@ $stmt->bind_param(
     $direccionCP,
     $direccionCiudad,
     $direccionPais,
+    $telefono,
+    $whatsapp,
+    $email,
+
     $latitud,
     $longitud,
     $precioDiario,

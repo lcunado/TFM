@@ -72,7 +72,9 @@ if ($event['type'] === 'checkout.session.completed') {
     );
 
     $stmt->execute();
+    $id_reserva = $stmt->insert_id;
     $stmt->close();
+
 
     // Enviar correos 
     
@@ -86,7 +88,7 @@ if ($event['type'] === 'checkout.session.completed') {
 
     $emailPropietario = $config['email'];
     $dominio          = $config['dominio'];
-    $vivienda          = $config['vivienda'];
+    $vivienda         = $config['vivienda'];
 
     try {
         // Configuración SMTP
@@ -115,7 +117,7 @@ if ($event['type'] === 'checkout.session.completed') {
                     <table style='border-collapse: collapse; margin: 20px 0; width: 100%;'>
                         <tr style='background-color: #f6f2f2;'>
                             <td style='padding: 8px; border: 1px solid #ccc;'><strong>ID de reserva:</strong></td>
-                            <td style='padding: 8px; border: 1px solid #ccc;'>$id</td>
+                            <td style='padding: 8px; border: 1px solid #ccc;'>$id_reserva</td>
                         </tr>
                         <tr>
                             <td style='padding: 8px; border: 1px solid #ccc;'><strong>Nombre:</strong></td>
@@ -179,7 +181,7 @@ if ($event['type'] === 'checkout.session.completed') {
                     <table style='border-collapse: collapse; margin: 20px 0; width: 100%;'>
                     <tr style='background-color: #f6f2f2;'>
                         <td style='padding: 8px; border: 1px solid #ccc;'><strong>ID de reserva:</strong></td>
-                        <td style='padding: 8px; border: 1px solid #ccc;'>$id</td>
+                        <td style='padding: 8px; border: 1px solid #ccc;'>$id_reserva</td>
                     </tr>
                     <tr>
                         <td style='padding: 8px; border: 1px solid #ccc;'><strong>Cliente:</strong></td>

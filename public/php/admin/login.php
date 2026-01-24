@@ -93,6 +93,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input class="form__input" type="password" name="pass" placeholder="Contraseña" required>
                 <button class="button" type="submit">Entrar</button>
             </form>
+            <div style="margin-top: 15px; text-align:center;">
+                <a href="recuperar-clave.php" style="color: var(--color-component); font-weight:bold;">
+                    ¿Olvidaste tu contraseña?
+                </a>
+            </div>
+
         </div>
     </body>
 </html>

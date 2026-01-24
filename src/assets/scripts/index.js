@@ -1,5 +1,9 @@
 import { cargarConfig } from "./config.js";
 
+import { cargarFooter } from "./footer.js";
+
+document.addEventListener("DOMContentLoaded", cargarFooter);
+
 async function init() {
     const CONFIG = await cargarConfig();
 
@@ -152,21 +156,6 @@ async function init() {
         mapa.src = `https://maps.google.com/maps?q=${CONFIG.latitud},${CONFIG.longitud}&z=15&output=embed`;
     }
 
-    /* ------------------------------
-       FOOTER
-    ------------------------------ */
-
-    document.querySelector(".footer__direccion").innerHTML = `
-        ${CONFIG.direccionCalle}<br>
-        ${CONFIG.direccionCP} ${CONFIG.direccionCiudad}<br>
-        ${CONFIG.direccionPais}
-    `;
- 
-    document.querySelector(".footer__contacto").innerHTML = ` 
-        Tel: ${CONFIG.telefono}<br> 
-        WhatsApp: ${CONFIG.whatsapp}<br> 
-        Email: ${CONFIG.email} 
-    `;
 }
 
 init();

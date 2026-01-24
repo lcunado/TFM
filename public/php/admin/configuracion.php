@@ -76,6 +76,15 @@ ob_start();
             <label class="form__label">País</label>
             <input class="form__input" type="text" name="direccionPais" value="<?= htmlspecialchars($config['direccionPais']) ?>">
 
+            <label class="form__label">Teléfono</label>
+            <input class="form__input" type="text" name="telefono" value="<?= htmlspecialchars($config['telefono']) ?>">
+
+            <label class="form__label">Whatsapp</label>
+            <input class="form__input" type="text" name="whatsapp" value="<?= htmlspecialchars($config['whatsapp']) ?>">
+
+            <label class="form__label">Email</label>
+            <input class="form__input" type="text" name="email" value="<?= htmlspecialchars($config['email']) ?>">
+
             <label class="form__label">Latitud</label>
             <input class="form__input" type="text" name="latitud" value="<?= htmlspecialchars($config['latitud']) ?>">
 
@@ -196,6 +205,9 @@ ob_start();
     var direccionCP = <?= json_encode($config['direccionCP'], JSON_UNESCAPED_UNICODE) ?>;
     var direccionCiudad = <?= json_encode($config['direccionCiudad'], JSON_UNESCAPED_UNICODE) ?>;
     var direccionPais = <?= json_encode($config['direccionPais'], JSON_UNESCAPED_UNICODE) ?>;
+    var telefono = <?= json_encode($config['telefono'], JSON_UNESCAPED_UNICODE) ?>;
+    var whatsapp = <?= json_encode($config['whatsapp'], JSON_UNESCAPED_UNICODE) ?>;
+    var email = <?= json_encode($config['email'], JSON_UNESCAPED_UNICODE) ?>;
 
     var horarioEntrada = <?= json_encode($config['horarioEntrada'], JSON_UNESCAPED_UNICODE) ?>;
     var horarioSalida = <?= json_encode($config['horarioSalida'], JSON_UNESCAPED_UNICODE) ?>;

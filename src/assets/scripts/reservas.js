@@ -1,27 +1,12 @@
 import { cargarConfig } from "./config.js";
+import { cargarFooter } from "./footer.js";
+
+document.addEventListener("DOMContentLoaded", cargarFooter);
 
 document.addEventListener("DOMContentLoaded", async () => {
   
   const CONFIG = await cargarConfig();
 
-  /* ============================================================ 
-    FOOTER 
-  ============================================================ */
-  document.querySelector(".footer__direccion").innerHTML = `
-    ${CONFIG.direccionCalle}<br>
-    ${CONFIG.direccionCP} ${CONFIG.direccionCiudad}<br>
-    ${CONFIG.direccionPais}
-  `;
- 
-  document.querySelector(".footer__contacto").innerHTML = ` 
-    Tel: ${CONFIG.telefono}<br> 
-    WhatsApp: ${CONFIG.whatsapp}<br> 
-    Email: ${CONFIG.email} 
-  `;
-  
-  /* ============================================================ 
-    RESERVAS 
-  ============================================================ */
   // Obtener contenedores
   const form = document.getElementById("form-reserva");
   const resultado = document.getElementById("resultado-precio");

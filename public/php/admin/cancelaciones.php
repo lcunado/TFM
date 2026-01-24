@@ -7,8 +7,6 @@ if (!isset($_SESSION['admin'])) {
 
 require_once __DIR__ . '/../../private/config.php';
 
-//\Stripe\Stripe::setApiKey($stripeSecretKey);
-
 // Obtener cancelaciones
 $sql = "SELECT 
             id_cancelacion,

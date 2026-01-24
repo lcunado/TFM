@@ -1,5 +1,8 @@
 import { cargarConfig } from "./config.js";
 import leoProfanity from "leo-profanity";
+import { cargarFooter } from "./footer.js";
+
+document.addEventListener("DOMContentLoaded", cargarFooter);
 
 // Cargar diccionario español
 leoProfanity.loadDictionary("es");
@@ -12,25 +15,6 @@ let inicio = Date.now();
 
 // Esperar a que el DOM esté listo
 document.addEventListener("DOMContentLoaded", async () => { 
-    
-    /* ============================================================ 
-        FOOTER 
-    ============================================================ */
-    document.querySelector(".footer__direccion").innerHTML = `
-        ${CONFIG.direccionCalle}<br>
-        ${CONFIG.direccionCP} ${CONFIG.direccionCiudad}<br>
-        ${CONFIG.direccionPais}
-    `;
-    
-    document.querySelector(".footer__contacto").innerHTML = ` 
-        Tel: ${CONFIG.telefono}<br> 
-        WhatsApp: ${CONFIG.whatsapp}<br> 
-        Email: ${CONFIG.email} 
-    `; 
-
-    /* ============================================================ 
-        VALORACIONES
-    ============================================================ */
     // Cargar solo 3 valoraciones al iniciar 
     cargarValoraciones(false); 
 });
