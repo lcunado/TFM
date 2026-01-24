@@ -23,12 +23,12 @@ if (!empty($hp_field)) {
     die("<p>⚠️ Detección de spam. Envío rechazado.</p>");
 }
 
-// Control tiempo, si tarda menos de 5 segundos es sospechoso
+// Control tiempo, si tarda menos de 3 segundos es sospechoso
 if (!isset($_SESSION['form_start'])) {
     $_SESSION['form_start'] = time();
 }
 $tiempoEnvio = time() - $_SESSION['form_start'];
-if ($tiempoEnvio < 5) {
+if ($tiempoEnvio < 3) {
     die("<p>⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.</p>");
 }
 $_SESSION['form_start'] = time(); // Reinicio del tiempo
@@ -54,7 +54,7 @@ $mensaje = htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8');
 $mail = new PHPMailer(true);
 
 try {
-    // Configuración SMTP (Outlook/Hotmail)
+    // Configuración SMTP 
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;

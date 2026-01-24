@@ -14,13 +14,13 @@ ob_start();
     <h2 class="form__title">Cambiar contraseña</h2>
 
     <?php if (isset($_GET['error'])): ?>
-        <div class="ok" style="background:#f8d7da;color:#721c24;border-color:#f5c6cb;">
+        <div class="admin-alert admin-alert--error">
             <?= htmlspecialchars($_GET['error']) ?>
         </div>
     <?php endif; ?>
 
     <?php if (isset($_GET['ok'])): ?>
-        <div class="ok">Contraseña actualizada correctamente.</div>
+        <div class="admin-alert admin-alert--success">Contraseña actualizada correctamente.</div>
     <?php endif; ?>
 
     <form method="POST" action="cambiar-password-guardar.php">

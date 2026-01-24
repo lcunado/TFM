@@ -53,7 +53,7 @@ if ($resultado->num_rows === 0) {
     die("<p>⚠️ No se encontró ninguna reserva con ese ID y DNI.</p>");
 }
 
-$reserva = $resultado->fetch_assoc();
+$reserva = $resultado->fetch_assoc(); // Guardar el resultado
 $stmt->close();
 
 // Validaciones de estado
@@ -76,7 +76,7 @@ if ($fechaEntrada < $hoy) {
 $conf = $conexion->query("SELECT diasReembolsoCompleto, porcentajeReembolso 
                         FROM configuracion 
                         LIMIT 1");
-$politica = $conf->fetch_assoc();
+$politica = $conf->fetch_assoc(); // Guardar el resultado
 
 $diasReembolsoCompleto = (int)$politica['diasReembolsoCompleto'];   // ej: 7
 $porcentajeReembolso   = (float)$politica['porcentajeReembolso'];   // ej: 0.4

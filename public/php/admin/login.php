@@ -1,19 +1,18 @@
 <?php
-ini_set('display_errors', 1); 
-ini_set('display_startup_errors', 1); 
-error_reporting(E_ALL);
-
 session_start();
 
 // Conexión BD
 require_once __DIR__ . '/../../private/config.php';
 
+// Si el formulario se envía
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $user = $_POST['user'];
-    $pass = $_POST['pass'];
+    $user = $_POST['user']; // Recoger user
+    $pass = $_POST['pass']; // Recoger contraseña
 
     // Buscar usuario
-    $sql = "SELECT * FROM admin WHERE usuario = ? LIMIT 1";
+    $sql = "SELECT * FROM admin 
+            WHERE usuario = ? 
+            LIMIT 1";
     $stmt = $conexion->prepare($sql);
     $stmt->bind_param("s", $user);
     $stmt->execute();
@@ -21,18 +20,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $admin = $resultado->fetch_assoc();
 
     if ($admin) {
-
         // Comprobar si está bloqueado
         if ($admin['bloqueado_hasta'] !== null && strtotime($admin['bloqueado_hasta']) > time()) {
-            $minutos = ceil((strtotime($admin['bloqueado_hasta']) - time()) / 60);
+            $minutos = ceil((strtotime($admin['bloqueado_hasta']) - time()) / 60); // Segundos / minutos
             $error = "Demasiados intentos fallidos. Inténtalo de nuevo en $minutos minutos.";
         } else {
-
             // Verificar contraseña
             if (password_verify($pass, $admin['password_hash'])) {
-
                 // Reiniciar intentos
-                $sql = "UPDATE admin SET intentos = 0, bloqueado_hasta = NULL WHERE id = ?";
+                $sql = "UPDATE admin 
+                        SET intentos = 0, bloqueado_hasta = NULL 
+                        WHERE id = ?";
                 $stmt = $conexion->prepare($sql);
                 $stmt->bind_param("i", $admin['id']);
                 $stmt->execute();
@@ -42,7 +40,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 exit;
 
             } else {
-
                 // Incrementar intentos
                 $intentos = $admin['intentos'] + 1;
 
@@ -50,7 +47,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     // Bloquear 10 minutos
                     $bloqueo = date("Y-m-d H:i:s", time() + 10 * 60);
 
-                    $sql = "UPDATE admin SET intentos = ?, bloqueado_hasta = ? WHERE id = ?";
+                    $sql = "UPDATE admin 
+                            SET intentos = ?, bloqueado_hasta = ? 
+                            WHERE id = ?";
                     $stmt = $conexion->prepare($sql);
                     $stmt->bind_param("isi", $intentos, $bloqueo, $admin['id']);
                     $stmt->execute();
@@ -58,7 +57,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $error = "Has superado el número de intentos. Cuenta bloqueada durante 10 minutos.";
                 } else {
                     // Solo aumentar intentos
-                    $sql = "UPDATE admin SET intentos = ? WHERE id = ?";
+                    $sql = "UPDATE admin 
+                            SET intentos = ? 
+                            WHERE id = ?";
                     $stmt = $conexion->prepare($sql);
                     $stmt->bind_param("ii", $intentos, $admin['id']);
                     $stmt->execute();
@@ -93,8 +94,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 <input class="form__input" type="password" name="pass" placeholder="Contraseña" required>
                 <button class="button" type="submit">Entrar</button>
             </form>
-            <div style="margin-top: 15px; text-align:center;">
-                <a href="recuperar-clave.php" style="color: var(--color-component); font-weight:bold;">
+            <div class="link-container">
+                <a href="recuperar-clave.php" class="link">
                     ¿Olvidaste tu contraseña?
                 </a>
             </div>

@@ -231,6 +231,5 @@ if ($event['type'] === 'checkout.session.completed') {
     exit;
 }
 
-
 http_response_code(200); 
 exit;

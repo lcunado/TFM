@@ -17,12 +17,12 @@ if (!empty($_POST['hp_field_cancelaciones'])) {
     die("<p>⚠️ Detección de spam. Cancelación rechazada.</p>");
 }
 
-// Control tiempo, si tarda menos de 5 segundos es sospechoso
+// Control tiempo, si tarda menos de 3 segundos es sospechoso
 if (!isset($_SESSION['form_start'])) {
     $_SESSION['form_start'] = time();
 }
 $tiempoEnvio = time() - $_SESSION['form_start'];
-if ($tiempoEnvio < 5) {
+if ($tiempoEnvio < 3) {
     die("<p>⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.</p>");
 }
 $_SESSION['form_start'] = time(); // Reinicio del tiempo
@@ -35,7 +35,9 @@ $stmt = $conexion->prepare("
 "); 
 $stmt->execute(); 
 $stmt->bind_result($emailPropietario); 
-$stmt->fetch(); $stmt->close(); 
+$stmt->fetch(); 
+$stmt->close(); 
+
 if (!$emailPropietario) { 
     die("<p>⚠️ Error al obtener el email del propietario.</p>"); 
 }
@@ -61,12 +63,12 @@ if (!preg_match('/^[A-Za-z0-9]{5,20}$/', $dni)) {
 if (strlen($motivo) < 5 || strlen($motivo) > 500) {
     die("<p>⚠️ El motivo debe tener entre 5 y 500 caracteres.</p>");
 }
+$motivo = htmlspecialchars($motivo, ENT_QUOTES, 'UTF-8'); // Texto seguro
 
 // Validar reembolso como número
 if (!is_numeric($reembolso) || $reembolso < 0) {
     die("<p>⚠️ El importe de reembolso no es válido.</p>");
 }
-$motivo = htmlspecialchars($motivo, ENT_QUOTES, 'UTF-8');
 
 // Consultar la reserva
 $stmtSelect = $conexion->prepare("SELECT nombre, apellidos, email, telefono, num_personas, fecha_entrada, fecha_salida, precio 
@@ -75,7 +77,7 @@ $stmtSelect = $conexion->prepare("SELECT nombre, apellidos, email, telefono, num
 $stmtSelect->bind_param("is", $id_reserva, $dni);
 $stmtSelect->execute();
 $result = $stmtSelect->get_result();
-$reserva = $result->fetch_assoc();
+$reserva = $result->fetch_assoc(); // Guardar datos
 $stmtSelect->close();
 
 // Si existe la reserva
@@ -91,7 +93,9 @@ if ($reserva) {
     $precio      = (float)$reserva['precio'];
     
     // Actualizar el estado de la reserva
-    $stmtDelete = $conexion->prepare("UPDATE reservas SET estado = 'cancelado' WHERE id = ? AND dni = ?");
+    $stmtDelete = $conexion->prepare("UPDATE reservas 
+                                    SET estado = 'cancelado' 
+                                    WHERE id = ? AND dni = ?");
     $stmtDelete->bind_param("is", $id_reserva, $dni);
 
     if ($stmtDelete->execute()) {

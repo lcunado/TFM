@@ -7,15 +7,9 @@ document.addEventListener("DOMContentLoaded", cargarFooter);
 async function init() {
     const CONFIG = await cargarConfig();
 
-    // Convertir iconos "0"/"1" en booleanos reales 
-    [ "iconoGaraje", "iconoMascotas", "iconoChimenea", "iconoBarbacoa", "iconoJardin", "iconoWifi", "iconoEquipado", "iconoCalefaccion" ].forEach(key => { 
-        CONFIG[key] = CONFIG[key] == 1; // Devuelve true o false
-    });
-
     /* ------------------------------
        CABECERA PRINCIPAL
     ------------------------------ */
-
     document.querySelector(".titulo").textContent = CONFIG.titulo;
     document.querySelectorAll(".vivienda").forEach(el => el.textContent = CONFIG.vivienda);
     document.querySelector(".index__image").src = "/assets/images/" + CONFIG.imagenFondo;
@@ -25,7 +19,6 @@ async function init() {
     /* ------------------------------
         SECCIÓN INFORMACIÓN GENERAL
     ------------------------------ */
-
     const textosContainer = document.querySelector(".info__textos");
     textosContainer.innerHTML = "";
     CONFIG.informacionGeneral.forEach(texto => {
@@ -35,7 +28,6 @@ async function init() {
     /* ------------------------------
         SECCIÓN LUGARES DE INTERÉS
     ------------------------------ */
-
     const lugaresContainer = document.querySelector(".info__lugares");
     lugaresContainer.innerHTML = "";
     CONFIG.lugaresInteres.forEach(lugar => {
@@ -45,11 +37,15 @@ async function init() {
     /* ------------------------------
        SECCIÓN ICONOS INCLUIDOS
     ------------------------------ */
+    // Convertir iconos "0"/"1" en booleanos reales 
+    [ "iconoGaraje", "iconoMascotas", "iconoChimenea", "iconoBarbacoa", "iconoJardin", "iconoWifi", "iconoEquipado", "iconoCalefaccion" ].forEach(key => { 
+        CONFIG[key] = CONFIG[key] == 1; // Devuelve true o false
+    });
 
     const iconosContainer = document.querySelector(".icon__grid");
     iconosContainer.innerHTML = "";
 
-    const iconos = [];
+    const iconos = []; // Array para pintar iconos
 
     // Iconos con texto dinámico
     iconos.push({
@@ -102,7 +98,7 @@ async function init() {
     if (CONFIG.iconoCalefaccion)
         iconos.push({ icono: "fa-temperature-high", texto: "Calefacción" });
 
-    // Pintar iconos
+    // Pintar iconos que están en el array
     iconos.forEach(item => {
         iconosContainer.innerHTML += `
             <div class="icon__item">
@@ -111,7 +107,6 @@ async function init() {
             </div>
         `;
     });
-
 
     /* ------------------------------
        POLÍTICAS DE RESERVA
@@ -150,7 +145,6 @@ async function init() {
     /* ------------------------------
        MAPA
     ------------------------------ */
-
     const mapa = document.querySelector(".mapa");
     if (mapa) {
         mapa.src = `https://maps.google.com/maps?q=${CONFIG.latitud},${CONFIG.longitud}&z=15&output=embed`;

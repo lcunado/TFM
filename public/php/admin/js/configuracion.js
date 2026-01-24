@@ -1,7 +1,6 @@
 /* ============================================================
    EDITOR VISUAL: INFORMACIÓN GENERAL
 ============================================================ */
-
 function renderInfoGeneral() {
     const container = document.getElementById("infoGeneralContainer");
     container.innerHTML = "";
@@ -86,7 +85,6 @@ function removeLugar(index) {
 /* ============================================================
    EDITOR VISUAL: ICONOS INCLUIDOS
 ============================================================ */
-
 function renderDatosNumericos() { 
     document.getElementById("metrosCuadradosInput").value = metrosCuadrados; 
     document.getElementById("maxHuespedesInput").value = maxHuespedes; 
@@ -115,7 +113,6 @@ function renderIconosActivables() {
 /* ============================================================
    EDITOR VISUAL: POLÍTICAS DE RESERVA
 ============================================================ */
-
 function renderPoliticas() {
     const container = document.getElementById("politicasContainer");
     container.innerHTML = "";
@@ -158,7 +155,6 @@ function removePolitica(index) {
 /* ============================
    GALERÍA
 ============================ */
-
 function renderGaleria() {
     const container = document.getElementById("galeriaContainer");
     container.innerHTML = "";
@@ -200,6 +196,7 @@ function removeFotoGaleria(index) {
 ============================================================ */
 
 document.addEventListener("DOMContentLoaded", () => {
+    // Renderizar los bloques
     renderInfoGeneral();
     renderLugares(); 
     renderDatosNumericos(); 
@@ -207,18 +204,21 @@ document.addEventListener("DOMContentLoaded", () => {
     renderPoliticas();
     renderGaleria();
 
+    // Capturar el envío del formulario
     document.querySelector("form").addEventListener("submit", () => {
+        // Actualizar los datos 
+        // Convertir JS en JSON para la BD
         document.getElementById("informacionGeneralInput").value = JSON.stringify(infoGeneral);
         document.getElementById("lugaresInteresInput").value = JSON.stringify(lugaresInteres);
         document.getElementById("politicasReservaInput").value = JSON.stringify(politicasReserva);
         document.getElementById("galeriaInput").value = JSON.stringify(galeria);
-        
+        // Recoger números
         metrosCuadrados = parseInt(document.getElementById("metrosCuadradosInput").value); 
         maxHuespedes = parseInt(document.getElementById("maxHuespedesInput").value); 
         numHabitaciones = parseInt(document.getElementById("numHabitacionesInput").value); 
         numBanos = parseInt(document.getElementById("numBanosInput").value); 
         edadBebesGratis = parseInt(document.getElementById("edadBebesGratisInput").value); 
-        
+        // Recoger checkboxes
         iconoGaraje = document.getElementById("iconoGaraje").checked ? 1 : 0; 
         iconoMascotas = document.getElementById("iconoMascotas").checked ? 1 : 0; 
         iconoChimenea = document.getElementById("iconoChimenea").checked ? 1 : 0; 

@@ -5,9 +5,6 @@ if (!isset($_SESSION['admin'])) {
     exit;
 }
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-
 require_once __DIR__ . '/../../private/config.php';
 require_once __DIR__ . '/../../private/stripe-php/init.php';
 

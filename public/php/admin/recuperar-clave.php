@@ -12,9 +12,7 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    file_put_contents("debug.txt", "POST RECIBIDO\n", FILE_APPEND);
-
-    $user = trim($_POST['user']); //admin
+    $user = trim($_POST['user']); // Recoger usuario 
 
     // Buscar usuario
     $stmt = $conexion->prepare("SELECT id, email 
@@ -41,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $stmt->execute();
         $stmt->close();
         
-        // Datos de configuracion
+        // Datos de configuracion para el email
         $result = $conexion->query("SELECT email, dominio 
                                     FROM configuracion 
                                     WHERE id = 1");

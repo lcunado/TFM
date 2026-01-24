@@ -1,7 +1,5 @@
 <?php
 session_start();
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 
 // Incluir configuración
 require_once __DIR__ . '/../private/config.php';
@@ -11,12 +9,12 @@ if (!empty($_POST['hp_field_reservas'])) {
     die("<p>⚠️ Detección de spam. Reserva rechazada.</p>");
 }
 
-// Control tiempo, si tarda menos de 5 segundos es sospechoso
+// Control tiempo, si tarda menos de 3 segundos es sospechoso
 if (!isset($_SESSION['form_start'])) {
     $_SESSION['form_start'] = time();
 }
 $tiempoEnvio = time() - $_SESSION['form_start'];
-if ($tiempoEnvio < 5) {
+if ($tiempoEnvio < 3) {
     die("<p>⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.</p>");
 }
 $_SESSION['form_start'] = time(); // Reinicio del tiempo

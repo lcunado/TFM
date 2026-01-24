@@ -265,10 +265,10 @@ body {
         border-radius: 6px; 
     } 
 }
+
 /* ============================
    TABLAS
 ============================ */
-
 .admin-table-wrapper {
     width: 100%;
     overflow-x: auto;
@@ -295,6 +295,15 @@ body {
 
 .admin-table tr:nth-child(even) {
     background: var(--color-th-even);
+}
+
+.inline-form {
+    display: inline;
+}
+
+.estado-completada {
+    color: var(--color-component);
+    font-weight: bold;
 }
 
 /* ============================
@@ -343,6 +352,26 @@ body {
     background: #f8d7da;
     color: #721c24;
     border: 1px solid #f5c6cb;
+}
+
+/* ============================
+   LINK
+============================ */
+.link-container {
+    margin-top: 15px;
+    text-align: center;
+}
+
+.link {
+    color: var(--color-component);
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.link:hover {
+    text-decoration: underline;
+    opacity: 0.8;
 }
 
 </style>

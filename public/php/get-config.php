@@ -1,5 +1,5 @@
 <?php
-header('Content-Type: application/json; charset=utf-8');
+header('Content-Type: application/json; charset=utf-8'); // Respuesta JSON
 
 // Conexión a la base de datos
 require_once __DIR__ . '/../private/config.php';
@@ -13,7 +13,8 @@ if (!$result || $result->num_rows === 0) {
     exit;
 }
 
-$config = $result->fetch_assoc();
+// Convertir SQL en array
+$config = $result->fetch_assoc(); // Devuelve todos los campos como strings
 
 // Convertir los campos JSON almacenados como texto en arrays
 $config['informacionGeneral'] = json_decode($config['informacionGeneral'], true);

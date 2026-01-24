@@ -5,19 +5,20 @@ document.addEventListener("DOMContentLoaded", cargarFooter);
 
 document.addEventListener("DOMContentLoaded", async () => {
   
+  // Obtener configuración
   const CONFIG = await cargarConfig();
 
-  // Obtener contenedores
+  // Obtener contenedores del formulario
   const form = document.getElementById("form-reserva");
   const resultado = document.getElementById("resultado-precio");
 
   // Guardar tiempo de inicio
   let inicio = Date.now();
 
-  // Calcular precio
+  // Envío del formulario
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const datos = new FormData(form);
+    const datos = new FormData(form); // Datos recibidos
 
     // Validación de campos
     // Fecha de entrada
@@ -53,9 +54,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // Control tiempo, si tarda menos de 5 segundos es sospechoso
+    // Control tiempo, si tarda menos de 3 segundos es sospechoso
     let tiempo = Date.now() - inicio;
-    if (tiempo < 5000) {
+    if (tiempo < 3000) {
       resultado.innerHTML = "<p>⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.</p>";
       return;
     }
@@ -67,7 +68,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         body: datos
       });
 
-      // Mostrar respuesta
+      // Mostrar respuesta del servidor
       resultado.innerHTML = await response.text();
       
       // Confirmar reserva (segundo formulario dinámico)
@@ -75,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       if (segundoForm) {
         segundoForm.addEventListener("submit", async (ev) => {
           ev.preventDefault();
-          const datos2 = new FormData(segundoForm);
+          const datos2 = new FormData(segundoForm); // Datos recibidos
 
           // Envío al servidor
           try {
@@ -86,6 +87,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
             const json = await resp2.json(); 
             
+            // Si se devuelve ok redirige al pago
             if (json.ok) { 
               window.location.href = "php/pago-sesion.php"; 
               return; 

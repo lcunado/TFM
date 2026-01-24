@@ -12,6 +12,7 @@ function password_segura($pass) {
     return true; 
 }
 
+// Recuperar token del enlace
 $token = $_GET['codigo'] ?? '';
 
 if (!$token) {
@@ -36,7 +37,7 @@ if (!$idAdmin) {
 if (strtotime($caduca) < time()) {
     die("El enlace ha caducado.");
 }
-
+// Formulario
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $pass1 = $_POST['pass1'];
     $pass2 = $_POST['pass2'];

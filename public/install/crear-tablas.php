@@ -110,5 +110,6 @@ $conexion->query("
     ) 
 ");
 
+// Redirigir
 header("Location: crear-admin.php");
 exit;

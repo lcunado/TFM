@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 session_start();
 if (!isset($_SESSION['admin'])) {
     header("Location: login.php");
@@ -32,10 +28,10 @@ $longitud = $_POST['longitud'] ?? '';
 $precioDiario = $_POST['precioDiario'] ?? '';
 
 // Arrays JSON
-$informacionGeneral = json_encode(json_decode($_POST['informacionGeneral'], true) ?: [], JSON_UNESCAPED_UNICODE);
-$lugaresInteres = json_encode(json_decode($_POST['lugaresInteres'], true) ?: [], JSON_UNESCAPED_UNICODE);
-$politicasReserva = json_encode(json_decode($_POST['politicasReserva'], true) ?: [], JSON_UNESCAPED_UNICODE);
-$galeria = json_encode(json_decode($_POST['galeria'], true) ?: [], JSON_UNESCAPED_UNICODE);
+$informacionGeneral = $_POST['informacionGeneral'] ?? '[]'; 
+$lugaresInteres = $_POST['lugaresInteres'] ?? '[]'; 
+$politicasReserva = $_POST['politicasReserva'] ?? '[]';
+$galeria = $_POST['galeria'] ?? '[]';
 
 // Números
 $metrosCuadrados = intval($_POST['metrosCuadrados']);

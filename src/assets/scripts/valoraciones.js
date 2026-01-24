@@ -1,4 +1,3 @@
-import { cargarConfig } from "./config.js";
 import leoProfanity from "leo-profanity";
 import { cargarFooter } from "./footer.js";
 
@@ -22,7 +21,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 // Obtener el contenedor
 document.getElementById("valoracion-form").addEventListener("submit", function(event) {
     event.preventDefault();
-    let formData = new FormData(this);
+    let formData = new FormData(this); // Datos recibidos
 
     // Validaciones
     // Nombre
@@ -52,9 +51,9 @@ document.getElementById("valoracion-form").addEventListener("submit", function(e
         return;
     }
 
-    // Control tiempo, si tarda menos de 5 segundos es sospechoso
+    // Control tiempo, si tarda menos de 3 segundos es sospechoso
     let tiempo = Date.now() - inicio;
-    if (tiempo < 5000) {
+    if (tiempo < 3000) {
         alert("⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.");
         return;
     }
@@ -88,7 +87,7 @@ function cargarValoraciones(mostrarTodas = false) {
     // Si mostarTodas es true, se cargan todas
     let url = mostrarTodas ? "/php/get-valoraciones.php?todas=true" : "/php/get-valoraciones.php";
 
-    fetch(url)
+    fetch(url) // Llama a php
         .then(response => response.text())
         .then(html => {
             // Insertar el HTML generado por PHP

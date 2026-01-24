@@ -1,8 +1,4 @@
 <?php
-ini_set('display_errors', 1); 
-ini_set('display_startup_errors', 1); 
-error_reporting(E_ALL);
-
 session_start();
 if (!isset($_SESSION['admin'])) {
     header("Location: login.php");
@@ -22,10 +18,10 @@ ob_start();
 </div>
 
 <?php
-// Guardamos el contenido en $content
+// Guardar el contenido en $content
 $content = ob_get_clean();
 
-// Cargamos el layout
+// Cargar el layout
 include __DIR__ . '/layout.php';
 
 

@@ -7,9 +7,9 @@ document.addEventListener("DOMContentLoaded", () => {
   let inicio = Date.now();
 
   // Calcular reembolso
-  form.addEventListener("submit", async (event) => {
+  form.addEventListener("submit", async (event) => { // Envío del formulario
     event.preventDefault();
-    const datos = new FormData(form);
+    const datos = new FormData(form); // Datos recibidos
 
     // Validación de campos
     // Validar ID (solo números)
@@ -39,9 +39,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    // Control tiempo, si tarda menos de 5 segundos es sospechoso
+    // Control tiempo, si tarda menos de 3 segundos es sospechoso
     let tiempo = Date.now() - inicio;
-    if (tiempo < 5000) {
+    if (tiempo < 3000) {
       resultado.innerHTML = "<p>⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.</p>";
       return;
     }

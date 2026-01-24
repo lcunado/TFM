@@ -1,6 +1,4 @@
 <?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
 session_start();
 require_once __DIR__ . "/../private/config.php";
 require_once __DIR__ . "/../private/stripe-php/init.php";
@@ -8,7 +6,9 @@ require_once __DIR__ . "/../private/stripe-php/init.php";
 \Stripe\Stripe::setApiKey($stripeSecretKey);
 
 // Leer dominio desde la BD
-$result = $conexion->query("SELECT dominio FROM configuracion LIMIT 1");
+$result = $conexion->query("SELECT dominio 
+                            FROM configuracion 
+                            LIMIT 1");
 $dom = $result->fetch_assoc();
 $dominio = $dom['dominio'];
 

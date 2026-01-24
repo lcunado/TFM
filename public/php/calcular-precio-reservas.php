@@ -31,27 +31,27 @@ $stmt->bind_result($precioDiario, $precioSabDom, $precioLimpieza, $maxHuespedes)
 $stmt->fetch();
 $stmt->close();
 
+// Crear objetos del formulario
+$entrada   = new DateTime($_POST['entrada']);
+$salida    = new DateTime($_POST['salida']);
+$huespedes = (int)$_POST['huespedes'];
+
 // Validaciones de campos
 // Fechas obligatorias
-if (empty($_POST['entrada']) || empty($_POST['salida'])) {
+if (empty($_POST['entrada']) || empty($salida)) {
     die("<p>⚠️ Debes seleccionar fechas válidas.</p>");
 }
 
 // Validar formato YYYY-MM-DD
-if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST['entrada']) ||
-    !preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST['salida'])) {
+if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $entrada) ||
+    !preg_match('/^\d{4}-\d{2}-\d{2}$/', $salida)) {
     die("<p>⚠️ Formato de fecha no válido.</p>");
 }
 
 // Validar huéspedes como número entero
-if (!ctype_digit($_POST['huespedes'])) {
+if (!ctype_digit($huespedes)) {
     die("<p>⚠️ Número de huéspedes no válido.</p>");
 }
-
-// Crear objetos
-$entrada   = new DateTime($_POST['entrada']);
-$salida    = new DateTime($_POST['salida']);
-$huespedes = (int)$_POST['huespedes'];
 
 // Fecha actual sin hora
 $hoy = new DateTime();
@@ -94,13 +94,13 @@ $pais = "ES"; // España
 $año  = $entrada->format("Y");
 $url  = "https://date.nager.at/api/v3/PublicHolidays/$año/$pais";
 
-$festivosJson = @file_get_contents($url);
+$festivosJson = @file_get_contents($url); // Descargar los datos
 $festivosSet = [];
 
 if ($festivosJson !== false) {
-    $festivos = json_decode($festivosJson, true);
+    $festivos = json_decode($festivosJson, true); // Convertir a array
     if (is_array($festivos)) {
-        $festivosSet = array_column($festivos, "date"); // array de YYYY-MM-DD
+        $festivosSet = array_column($festivos, "date"); // Agrega el campo date "YYYY-MM-DD"
     }
 }
 
@@ -116,15 +116,15 @@ $precioTotal = 0;
 
 // Iterar cada día de la reserva
 for ($i = 0; $i < $noches; $i++) {
-    $dia = clone $entrada;
-    $dia->modify("+$i day");
-    $fechaDia = $dia->format('Y-m-d');
+    $dia = clone $entrada; // Clona la fecha de entrada
+    $dia->modify("+$i day"); // Avanza 1 día en la iteración
+    $fechaDia = $dia->format('Y-m-d'); // Convierte la fecha a formato YYYY-MM-DD
 
     // Fin de semana: sábado (6) o domingo (7)
     $esFinDeSemana = ($dia->format('N') == 6 || $dia->format('N') == 7); 
     
     // Festivo 
-    $esFestivo     = in_array($fechaDia, $festivosSet);
+    $esFestivo = in_array($fechaDia, $festivosSet);
 
     // Precio según tipo de día
     if ($esFinDeSemana || $esFestivo) {

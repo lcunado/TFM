@@ -37,7 +37,6 @@ document.addEventListener("DOMContentLoaded", async () => {
   /* ------------------------------
     VISOR 
   ------------------------------ */
-
   const visor = document.getElementById("visor");
   const visorImg = document.getElementById("visor-img");
   const prevBtn = document.getElementById("prev");
@@ -47,12 +46,14 @@ document.addEventListener("DOMContentLoaded", async () => {
   const imagenes = Array.from(document.querySelectorAll(".galeria__image"));
   let indiceActual = 0;
 
+  // Mostrar una imagen en el visor
   function mostrarImagen(index) {
     indiceActual = index;
     visorImg.src = imagenes[indiceActual].src;
     visor.classList.remove("hidden");
   }
 
+  // Mostrar una imagen al hacer click
   galeria.addEventListener("click", (e) => {
     if (e.target.tagName === "IMG") {
       const index = imagenes.indexOf(e.target);
@@ -60,12 +61,14 @@ document.addEventListener("DOMContentLoaded", async () => {
     }
   });
 
+  // Cerrar el visor al clickar fuera
   visor.addEventListener("click", (e) => {
     if (e.target === visor) {
       visor.classList.add("hidden");
     }
   });
 
+  // Botones de navegación
   prevBtn.addEventListener("click", (e) => {
     e.stopPropagation();
     indiceActual = (indiceActual - 1 + imagenes.length) % imagenes.length;
@@ -78,6 +81,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     mostrarImagen(indiceActual);
   });
 
+  // Navegación por teclado (arrow left, arrow richt y esc)
   document.addEventListener("keydown", (e) => {
     if (visor.classList.contains("hidden")) return;
 

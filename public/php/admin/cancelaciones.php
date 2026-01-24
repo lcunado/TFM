@@ -65,7 +65,7 @@ ob_start();
                     <td><?= $row['fecha_reembolso'] ?></td>
                     <td>
                         <?php if ($row['estado_cancelacion'] === 'pendiente'): ?>
-                            <form action="devolucion-sesion.php" method="POST" style="display:inline;">
+                            <form action="devolucion-sesion.php" method="POST" class="inline-form">
                                 <input type="hidden" name="id_cancelacion" value="<?= $row['id_cancelacion'] ?>">
                                 <input type="hidden" name="id_reserva" value="<?= $row['id_reserva'] ?>">
                                 <?php $importe = number_format($row['importe_reembolsar'], 2); ?> 
@@ -76,7 +76,7 @@ ob_start();
                             </form>
 
                         <?php else: ?>
-                            <span style="color: var(--color-component); font-weight: bold;">Completada</span>
+                            <span class="estado-completada">Completada</span>
                         <?php endif; ?>
                     </td>
                 </tr>

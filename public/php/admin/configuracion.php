@@ -1,7 +1,4 @@
 <?php
-ini_set('display_errors', 1); 
-ini_set('display_startup_errors', 1); 
-error_reporting(E_ALL);
 session_start();
 
 // Si no hay sesión, redirige al login
@@ -10,15 +7,15 @@ if (!isset($_SESSION['admin'])) {
     exit;
 }
 
-// Cargar configuración actual
+// Conexion
 require_once __DIR__ . '/../../private/config.php';
 
-// Obtener configuración
+// Obtener configuración actual
 $sql = "SELECT * FROM configuracion WHERE id = 1 LIMIT 1";
 $result = $conexion->query($sql);
 $config = $result->fetch_assoc();
 
-// Decodificar JSON
+// Decodificar JSON en arrays PHP
 $config['informacionGeneral'] = json_decode($config['informacionGeneral'], true);
 $config['galeria'] = json_decode($config['galeria'], true);
 $config['lugaresInteres'] = json_decode($config['lugaresInteres'], true) ?? [];
@@ -34,7 +31,7 @@ ob_start();
     <h1 class="admin-section__title">Editar información de la vivienda</h1>
 
     <?php if (isset($_GET['ok'])): ?>
-        <div class="ok">Los cambios se han guardado correctamente.</div>
+        <div class="admin-alert admin-alert--success">Los cambios se han guardado correctamente.</div>
     <?php endif; ?>
 
     <form class="form" action="actualizar-config.php" method="POST">

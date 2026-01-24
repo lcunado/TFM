@@ -19,7 +19,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   form.addEventListener("submit", async (e) => {
     e.preventDefault(); // Evita recargar la página
 
-    const formData = new FormData(form);
+    const formData = new FormData(form); // Datos del formulario
 
     // Validaciones
     // Nombre: solo letras y espacios, 2–40 caracteres
@@ -49,9 +49,9 @@ document.addEventListener("DOMContentLoaded", async () => {
       return;
     }
 
-    // Control tiempo, si tarda menos de 5 segundos es sospechoso
+    // Control tiempo, si tarda menos de 3 segundos es sospechoso
     const tiempo = Date.now() - inicio;
-    if (tiempo < 5000) {
+    if (tiempo < 3000) {
       responseBox.innerHTML = "<p>⚠️ Has enviado demasiado rápido. Inténtalo de nuevo.</p>";
       return;
     }
@@ -63,7 +63,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         body: formData
       });
 
-      const text = await res.text();
+      const text = await res.text(); // Respuesta
       responseBox.innerHTML = text; // Muestra la respuesta debajo del formulario
 
       // Limpieza 
