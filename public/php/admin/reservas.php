@@ -31,7 +31,7 @@ $title = "Reservas";
 ob_start();
 ?>
 
-<h1>Listado de reservas</h1>
+<h1 class="admin-section__title">Listado de reservas</h1>
 
 <div class="admin-table-wrapper">
     <table class="admin-table">

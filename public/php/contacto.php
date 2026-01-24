@@ -50,6 +50,21 @@ if (strlen($mensaje) < 5 || strlen($mensaje) > 500) {
 }
 $mensaje = htmlspecialchars($mensaje, ENT_QUOTES, 'UTF-8');
 
+// Obtener email del propietario desde la BD 
+$stmt = $conexion->prepare(" 
+    SELECT email 
+    FROM configuracion 
+    WHERE id = 1 LIMIT 1 
+"); 
+$stmt->execute(); 
+$stmt->bind_result($emailPropietario); 
+$stmt->fetch(); 
+$stmt->close(); 
+
+if (!$emailPropietario) { 
+    die("<p>⚠️ Error al obtener el email del propietario.</p>"); 
+}
+
 // Enviar email
 $mail = new PHPMailer(true);
 
@@ -58,7 +73,7 @@ try {
     $mail->isSMTP();
     $mail->Host       = 'smtp.gmail.com';
     $mail->SMTPAuth   = true;
-    $mail->Username   = $propietarioEmail;
+    $mail->Username   = $emailPropietario;
     $mail->Password   = $propietarioPassword;
     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
     $mail->Port       = 587;
@@ -67,7 +82,7 @@ try {
     $mail->setFrom($correo, $nombre);
 
     // Destinatario (el propietario)
-    $mail->addAddress($propietarioEmail);
+    $mail->addAddress($emailPropietario);
 
     // Contenido
     $mail->Subject = "Nuevo mensaje de contacto";

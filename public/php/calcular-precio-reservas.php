@@ -31,27 +31,27 @@ $stmt->bind_result($precioDiario, $precioSabDom, $precioLimpieza, $maxHuespedes)
 $stmt->fetch();
 $stmt->close();
 
-// Crear objetos del formulario
-$entrada   = new DateTime($_POST['entrada']);
-$salida    = new DateTime($_POST['salida']);
-$huespedes = (int)$_POST['huespedes'];
-
 // Validaciones de campos
 // Fechas obligatorias
-if (empty($_POST['entrada']) || empty($salida)) {
+if (empty($_POST['entrada']) || empty($_POST['salida'])) {
     die("<p>⚠️ Debes seleccionar fechas válidas.</p>");
 }
 
 // Validar formato YYYY-MM-DD
-if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $entrada) ||
-    !preg_match('/^\d{4}-\d{2}-\d{2}$/', $salida)) {
+if (!preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST['entrada']) ||
+    !preg_match('/^\d{4}-\d{2}-\d{2}$/', $_POST['salida'])) {
     die("<p>⚠️ Formato de fecha no válido.</p>");
 }
 
 // Validar huéspedes como número entero
-if (!ctype_digit($huespedes)) {
+if (!ctype_digit($_POST['huespedes'])) {
     die("<p>⚠️ Número de huéspedes no válido.</p>");
 }
+
+// Crear objetos
+$entrada   = new DateTime($_POST['entrada']);
+$salida    = new DateTime($_POST['salida']);
+$huespedes = (int)$_POST['huespedes'];
 
 // Fecha actual sin hora
 $hoy = new DateTime();
@@ -167,10 +167,10 @@ echo '<input type="hidden" name="precio" value="' . $precioTotal . '">';
 echo '<input type="hidden" name="personas" value="' . $huespedes . '">';
 
 echo "
-    <div class='payment-info'>
+    <div class='paymentinfo'>
         <p><strong>Método de pago:</strong> el pago se realizará de forma segura a través de <strong>Stripe</strong> mediante tarjeta de crédito o débito.</p>
-        <div class='payment-info__icons'></div>
-        <p class='payment-info__note'>Tus datos bancarios no se almacenan en nuestro servidor.</p>
+        <div class='paymentinfo__icons'></div>
+        <p class='paymentinfo__note'>Tus datos bancarios no se almacenan en nuestro servidor.</p>
     </div>";
 
 echo '<div class="button__wrapper">

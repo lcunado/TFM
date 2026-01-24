@@ -10,8 +10,8 @@ $title = "Cambiar contraseña";
 ob_start();
 ?>
 
+<h1 class="admin-section__title">Cambiar contraseña</h1>
 <div class="form">
-    <h2 class="form__title">Cambiar contraseña</h2>
 
     <?php if (isset($_GET['error'])): ?>
         <div class="admin-alert admin-alert--error">
@@ -23,24 +23,25 @@ ob_start();
         <div class="admin-alert admin-alert--success">Contraseña actualizada correctamente.</div>
     <?php endif; ?>
 
-    <form method="POST" action="cambiar-password-guardar.php">
+    <div class="admin-section">
+        <form class="form" action="cambiar-password-guardar.php" method="POST">
 
-        <label class="form__label">Contraseña actual</label> 
-        <input class="form__input" type="password" name="actual" required> 
-        
-        <label class="form__label">Nueva contraseña</label> 
-        <input class="form__input" type="password" name="nueva" id="nueva" required> 
-        <div id="seguridad-pass" class="form__label"></div> 
-        
-        <label class="form__label">Repetir nueva contraseña</label> 
-        <input class="form__input" type="password" name="repetir" required> 
-        
-        <button class="button" type="submit">Actualizar contraseña</button>
-    </form>
+            <label class="form__label">Contraseña actual</label> 
+            <input class="form__input" type="password" name="actual" required> 
+            
+            <label class="form__label">Nueva contraseña</label> 
+            <input class="form__input" type="password" name="nueva" id="nueva" required> 
+            <div id="seguridad-pass" class="form__label"></div> 
+            
+            <label class="form__label">Repetir nueva contraseña</label> 
+            <input class="form__input" type="password" name="repetir" required> 
+            
+            <button class="button" type="submit">Actualizar contraseña</button>
+        </form>
+    </div>
 </div>
 
 <script src="js/validar-password.js"></script>
-
 
 <?php
 $content = ob_get_clean();

@@ -23,8 +23,8 @@
   }
 
   &--danger { 
-    background-color: v.$color-danger; 
     border-color: v.$color-danger; 
+    background-color: v.$color-danger; 
     color: v.$color-background; 
     
     &:hover { 

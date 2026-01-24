@@ -86,7 +86,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <h2 class="login-title">Acceso Administrador</h2>
 
             <?php if(isset($error)): ?>
-                <div class="error-box"><?= $error ?></div>
+                <div class="admin-alert admin-alert--error"><?= $error ?></div>
             <?php endif; ?>
 
             <form method="POST">

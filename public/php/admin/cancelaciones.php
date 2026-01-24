@@ -28,7 +28,7 @@ $title = "Cancelaciones";
 ob_start();
 ?>
 
-<h1>Listado de cancelaciones</h1>
+<h1 class="admin-section__title">Listado de cancelaciones</h1>
 
 <?php if (isset($_GET['refund']) && $_GET['refund'] === 'ok'): ?> 
     <div class="admin-alert admin-alert--success"> 

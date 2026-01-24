@@ -27,7 +27,7 @@
   }
 }
 
-.payment-info {
+.paymentinfo {
   margin: 20px 0;
   padding: 15px;
   background: v.$color-payment;
@@ -39,25 +39,25 @@
   }
 
   &__icons {
-    margin-top: 10px;
     width: 60px;
     height: 40px;
+    margin-top: 10px;
     background-image: url("https://upload.wikimedia.org/wikipedia/commons/0/04/Mastercard-logo.png");
     background-size: contain;
-    background-repeat: no-repeat;
     background-position: left center;
+    background-repeat: no-repeat;
 
     img {
+      display: block;
       width: 60px;
       height: auto;
-      display: block;
     }
   }
 
   &__note {
     margin-top: 5px;
-    font-size: 13px;
     color: var(--color-comment);
+    font-size: 13px;
   }
 }
 

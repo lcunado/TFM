@@ -13,6 +13,8 @@
     --color-text: #333;
     --color-component: #2E7D32;
     --color-component-hover: #1B5E20;
+    --color-success-background: #d4edda;
+    --color-success-border: #c3e6cb;
     --color-component-border: #000;
     --color-footer: #000;
     --color-footer-text: #CCC;
@@ -29,8 +31,11 @@
     --color-arrow-background-hover: rgb(255 255 255 / 40%);
     --color-danger: #C62828;
     --color-danger-hover: #8E0000;
+    --color-danger-border: #f5c6cb;
+    --color-danger-background: #f8d7da;
     --color-th: #f4f4f4;
     --color-th-even: #fafafa;
+    --color-admin-nav-border: #e6e9ef;
 
     --max-width: 768px;
 }
@@ -76,17 +81,6 @@ body {
     font-weight: 600;
     color: var(--color-text);
     margin-bottom: 1.5rem;
-    text-align: center;
-}
-
-.error-box {
-    background: #f8d7da;
-    color: var(--color-danger);
-    padding: 0.9rem 1.2rem;
-    border-radius: 8px;
-    border: 1px solid #f5c6cb;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
     text-align: center;
 }
 
@@ -210,27 +204,14 @@ body {
 }
 
 /* ============================
-   MENSAJE OK
-============================ */
-.ok {
-    background: #d4edda;
-    color: var(--color-component);
-    padding: 0.9rem 1.2rem;
-    border-radius: 8px;
-    margin-bottom: 1.5rem;
-    border: 1px solid #c3e6cb;
-    font-size: 0.95rem;
-}
-
-/* ============================
    MENÚ DE NAVEGACIÓN
 ============================ */
 .admin-nav {
     background: var(--color-background);
-    border-bottom: 1px solid #e6e9ef;
+    border-bottom: 1px solid var(--color-admin-nav-border);
     padding: 0.8rem 2rem;
     margin-bottom: 2rem;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    box-shadow: 0 2px 6px var(--color-shadow);
 }
 
 .admin-nav ul {
@@ -314,7 +295,7 @@ body {
     align-items: center;
     gap: 10px;
     font-size: 1rem;
-    color: #333;
+    color: var(--color-text);
     margin: 1rem 0;
 }
 
@@ -343,15 +324,15 @@ body {
 }
 
 .admin-alert--success {
-    background: #d4edda;
-    color: #155724;
-    border: 1px solid #c3e6cb;
+    background: var(--color-success-background);
+    color: var(--color-component-hover:);
+    border: 1px solid var(--color-success-border);
 }
 
 .admin-alert--error {
-    background: #f8d7da;
-    color: #721c24;
-    border: 1px solid #f5c6cb;
+    background: var(--color-danger-background);
+    color: var(--color-danger-hover:);
+    border: 1px solid var(--color-danger-border);
 }
 
 /* ============================
