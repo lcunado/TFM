@@ -49,6 +49,7 @@ Y crea la cuenta en *Create Account*.
 ### 3.4. Entra en la cuenta creada.
 - **Puedes ver la *URL* del sitio y los datos *FTP* en *Overview*.**  
 <img src="manual/3.4.a.png" width="500" alt="3.4.a"> 
+
 - **Puedes acceder al panel de control en *Control Panel*.**  
 <img src="manual/3.4.b.png" width="500" alt="3.4.b">
 
