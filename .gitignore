@@ -253,6 +253,4 @@ $RECYCLE.BIN/
 dist
 
 # Stripe
-private/config.php
-private/stripe-php-7
 private/stripe-php

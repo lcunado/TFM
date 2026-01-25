@@ -58,7 +58,7 @@ Y crea la cuenta en *Create Account*.
 <img src="manual/3.4.b.png" width="500" alt="3.4.b">
 
 ### 4.2. Accede a *DataBases -> MySQL Databases*.  
-<img src="manual/4.2.png" width="500" alt="4.2.b">
+<img src="manual/4.2.png" width="500" alt="4.2">
 
 ### 4.3. Crea la base de datos bd_pisoturistico.
 Es muy importante que se llame **bd_pisoturistico**.  
