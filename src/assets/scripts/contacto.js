@@ -8,6 +8,25 @@ document.addEventListener("DOMContentLoaded", async () => {
 
   const CONFIG = await cargarConfig();
 
+  // Enlaces directos
+  const grid = document.querySelector(".contacto__grid"); 
+  if (grid) { 
+    grid.innerHTML = ` 
+    <a class="icon__item" href="tel:${CONFIG.telefono}" target="_blank" rel="noopener">
+      <i class="fa-solid fa-phone"></i>
+      <span>${CONFIG.telefono}</span>
+    </a>
+    <a class="icon__item" href="https://wa.me/${CONFIG.whatsapp}" target="_blank" rel="noopener">
+      <i class="fa-brands fa-whatsapp"></i>
+      <span>${CONFIG.whatsapp}</span>
+    </a>
+    <a class="icon__item" href="mailto:${CONFIG.email}" target="_blank" rel="noopener">
+      <i class="fa-solid fa-envelope"></i>
+      <span>${CONFIG.email}</span>
+    </a>
+    `; 
+  }
+
   // Obtener los contenedores
   const form = document.getElementById("contact-form");
   const responseBox = document.getElementById("contact-response");
